@@ -2,12 +2,7 @@ import { ArrowUpRight, Plus } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 
-/** Outer 1120px frame for the header, footer and hairlines. */
-export function Frame({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[1120px] px-5 md:px-6 ${className}`}>{children}</div>;
-}
-
-/** Centred column. `text` for reading (760px), `wide` for work (960px). */
+/** Centred column. `text` is a 760px reading measure, `wide` a 960px work measure (plus gutters). */
 export function Column({
   children,
   className = "",

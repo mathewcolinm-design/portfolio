@@ -1,6 +1,6 @@
 ---
 name: Mathew Colin Portfolio
-description: A quiet, white, centred single-column portfolio where words and flat grey tiles carry the work. Light mode only.
+description: A quiet, white portfolio told as one story in chapters, with a progress rail; words and flat grey tiles carry the work. Light mode only.
 colors:
   ink: "#0a0a0a"
   paper: "#ffffff"
@@ -13,22 +13,34 @@ colors:
 typography:
   wordmark:
     fontFamily: "Geist Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "34px"
+    fontSize: "30px"
     fontWeight: 500
     lineHeight: 1
     letterSpacing: "-0.05em"
   display:
     fontFamily: "Geist Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2rem, 4.4vw, 2.5rem)"
+    fontSize: "clamp(2.5rem, 4.4vw, 3.75rem)"
     fontWeight: 400
-    lineHeight: 1.08
-    letterSpacing: "-0.04em"
+    lineHeight: 1.04
+    letterSpacing: "-0.045em"
   headline:
     fontFamily: "Geist Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.75rem, 3.6vw, 2.25rem)"
+    fontSize: "clamp(1.625rem, 2.8vw, 2.5rem)"
     fontWeight: 400
-    lineHeight: 1.1
-    letterSpacing: "-0.04em"
+    lineHeight: 1.08
+    letterSpacing: "-0.035em"
+  title:
+    fontFamily: "Geist Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.6rem, 3.2vw, 2.1rem)"
+    fontWeight: 400
+    lineHeight: 1.12
+    letterSpacing: "-0.035em"
+  body-lead:
+    fontFamily: "Geist Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "18px"
+    fontWeight: 400
+    lineHeight: 1.625
+    letterSpacing: "0em"
   body:
     fontFamily: "Geist Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "16px"
@@ -50,15 +62,18 @@ typography:
 rounded:
   focus: "4px"
   md: "10px"
+  node: "9999px"
 spacing:
   row: "12px"
   row-lg: "16px"
   gutter-mobile: "20px"
   gutter: "24px"
-  title-gap: "36px"
-  stack: "56px"
-  section: "80px"
-  section-lg: "96px"
+  chapter-head-plain: "40px"
+  work-gap: "56px"
+  chapter-head: "64px"
+  work-gap-lg: "80px"
+  chapter-top: "96px"
+  chapter-end: "128px"
 components:
   button-pill:
     backgroundColor: "{colors.tile}"
@@ -66,42 +81,37 @@ components:
     rounded: "{rounded.md}"
     typography: "{typography.body}"
     padding: "0 16px"
-    height: "42px"
+    height: "40px"
   button-pill-hover:
     backgroundColor: "{colors.tile-hover}"
-  button-solid:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.md}"
-    typography: "{typography.body}"
-    padding: "0 20px"
-    height: "48px"
-    width: "100%"
   link-arrow:
     textColor: "{colors.ink}"
     typography: "{typography.body}"
   link-arrow-hover:
     textColor: "{colors.muted}"
-  nav-link:
+  rail-link:
     textColor: "{colors.muted}"
-    typography: "{typography.body}"
-  nav-link-active:
+    typography: "{typography.label}"
+  rail-link-active:
     textColor: "{colors.ink}"
+  chapter-bar:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    typography: "{typography.label}"
+    height: "40px"
   work-tile:
     backgroundColor: "{colors.tile}"
     rounded: "{rounded.md}"
-  input-field:
-    backgroundColor: "{colors.field}"
+  ruled-row:
     textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
     typography: "{typography.body}"
-    padding: "12px 16px"
-  chip-skill:
-    backgroundColor: "{colors.tile}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
-    typography: "{typography.label}"
-    padding: "8px 14px"
+    padding: "12px 0"
+  path-node:
+    backgroundColor: "{colors.paper}"
+    rounded: "{rounded.node}"
+    size: "11px"
+  path-node-current:
+    backgroundColor: "{colors.ink}"
 ---
 
 # Design System: Mathew Colin Portfolio
@@ -110,37 +120,38 @@ components:
 
 **Creative North Star: "The Quiet Column"**
 
-A white page, one centred reading column, and nothing raised off the ground. Every page is a stack of sections separated by full-frame hairlines; inside each, a 720px column holds a plus-marked title, a two-tone statement or a ruled list, and at most one up-right arrow link. The work sits in flat light-grey tiles with small corners, and the tiles do the only "framing" on the page. There is no accent hue: the system is ink, two greys, white, and one tile grey.
+A white page, centred columns, and nothing raised off the ground. The site is one story read in chapters: the home page opens on an oversized two-tone sentence, then runs Work, How I work, Path and Say hello; each case page runs Overview, What I did, Results, Designs and Next project. Every chapter starts at a hairline with a large statement and then gives way to its content: flat grey work tiles on a wider measure, ruled lists and short muted paragraphs on a narrower reading measure. A progress rail in the right margin (a thin bar under the header on smaller screens) says where you are in the story. There is no accent hue: the system is ink, two greys, white and one tile grey.
 
-Density is low and the rhythm is generous: 80 to 96px between hairlines, 56px between stacked works. Hierarchy comes from size and tone, never weight: large text is set regular with tight negative tracking, and the second half of a large statement drops to a softer grey so one sentence reads as claim then context. Motion is small and slow-settling: an arrow that travels two pixels up-right, an image that eases in by 2%, colour that fades over 300ms.
+Density is low and the rhythm is long: 96 to 128px of air closes each chapter, 64 to 96px opens the next. Hierarchy comes from size and tone, never weight: large text is regular with tight negative tracking, and the second half of a large statement drops to a softer grey so one sentence reads as claim then context. Motion is slow-settling and small: Lenis-eased scrolling, a rail hairline that fills with reading progress, an active chapter name that steps 6px forward, an arrow that travels 2px, an image that eases in by 2%. All of it stands down under reduced motion.
 
 **Key Characteristics:**
 - Pure white ground, near-black ink, body grey, and a soft grey reserved for large text.
 - Geist everywhere, regular weight; medium only for the name wordmark.
-- Centred 720px column inside a 1120px frame; hairlines span the frame, content stays in the column.
+- Two centred measures: 760px for reading, 960px for work; the header shares the 960px measure.
+- Chapters open with a hairline and a large statement; a progress rail tracks them.
 - Flat grey tiles with 10px corners hold the work; no shadows anywhere.
-- Thin plus marks beside section titles and metadata; thin up-right arrows on text links.
+- Thin Lucide strokes: up-right arrows on links, a small plus on notes, hollow-to-solid dots on the path.
 
 ## Colors
 
 A monochrome palette: white, near-black, two greys and two flat surface greys. No accent colour exists and none should be added.
 
 ### Primary
-- **Ink** (`ink`): all primary text, the wordmark, active nav, the solid submit button's fill, focus outlines, caret and form accent colour.
+- **Ink** (`ink`): all primary text, the wordmark, the active rail chapter, the filled rail and bar progress line, the current path node, focus outlines, caret and accent colour, the skip link's fill.
 
 ### Neutral
-- **Paper** (`paper`): the page ground and the header (at 88% opacity behind a blur). The only background behind running content.
-- **Muted Grey** (`muted`): body copy under a title, captions, metadata (focus, year, dates), inactive nav and footer links, and the hover tone for ink links. Passes AA for body text on paper.
-- **Soft Grey** (`soft`): only the continuation half of a large two-tone statement (24px and up). It is too light for body text.
-- **Hairline** (`hairline`): 1px rules between sections, under the header, and between rows of every list.
-- **Tile Grey** (`tile`): work tiles, the header pill, skill chips and the in-section call-to-action band.
-- **Tile Pressed** (`tile-hover`): the pill button's hover fill, one step darker than tile.
-- **Field Grey** (`field`): text input and textarea fills, a half step lighter than tile so fields and tiles never read as the same object.
+- **Paper** (`paper`): the page ground, the solid header and the mobile chapter bar. The only background behind running content.
+- **Muted Grey** (`muted`): supporting copy, captions, meta (company, year, dates), inactive rail names, the chapter counter, footer text and the hover tone for ink links. Passes AA for body text on paper.
+- **Soft Grey** (`soft`): the continuation half of a large two-tone statement and the large years on the Path (24px and up). Too light for body text.
+- **Hairline** (`hairline`): 1px rules that open chapters, separate list rows, run down the Path, sit under the header once scrolled and under the mobile chapter bar, and form the unfilled rail track.
+- **Tile Grey** (`tile`): work tiles and placeholders, and the "Get in touch" pill.
+- **Tile Pressed** (`tile-hover`): the pill's hover fill, one step darker than tile.
+- **Field Grey** (`field`): a half step lighter than tile, kept for text inputs so a field never reads as a tile. No shipped surface uses it at present.
 
 ### Named Rules
 **The No-Accent Rule.** The palette is ink and greys. Emphasis comes from tone (ink against muted) and size, never from a hue.
 
-**The Soft-Is-Large Rule.** Soft grey appears only in statements of 24px and up, as the second half of a sentence. Body text that needs to recede uses muted, never soft.
+**The Soft-Is-Large Rule.** Soft grey appears only at 24px and up: the second half of a statement, or a large figure like a Path year. Text that needs to recede below that uses muted.
 
 ## Typography
 
@@ -148,80 +159,98 @@ A monochrome palette: white, near-black, two greys and two flat surface greys. N
 **Body Font:** Geist Variable
 **Label/Mono Font:** none; figures use Geist with tabular numerals.
 
-**Character:** One family at one weight. Large text is pulled tight (-0.04em) so a 40px statement reads as dense and calm; small text is left at default tracking.
+**Character:** One family at one weight. Large text is pulled tight (-0.035em to -0.045em) so a 60px sentence reads as dense and calm; small text keeps default tracking.
 
 ### Hierarchy
-- **Wordmark** (500, 34px desktop / 28px mobile, line-height 1, -0.05em): the name in the header; the footer repeats it at 26px. The only medium-weight text on the site.
-- **Display** (400, clamp 2rem to 2.5rem, 1.08, -0.04em): the opening two-tone statement on Home, About, Contact and the closing band; case-study titles use the same scale at 1.05.
-- **Headline** (400, clamp 1.75rem to 2.25rem, 1.1, -0.04em): secondary two-tone statements inside sections (Home about, case-study overview).
-- **Body** (400, 16px, 1.5): section titles, list rows, nav, buttons, links, form labels. Nearly everything below a statement is 16px.
-- **Body Reading** (400, 16px, 1.625): muted paragraphs, capped at 54ch.
-- **Label** (400, 15px): footnotes, placeholder text inside tiles, the copyright line, skill chips.
+- **Wordmark** (500, 30px desktop / 26px mobile, line-height 1, -0.05em): the name in the header. The only medium-weight text on the site.
+- **Display** (400, clamp 2.5rem to 3.75rem, 1.04, -0.045em): the page-opening statement, on Home and as each case title (name in ink, caption in soft).
+- **Headline** (400, clamp 1.625rem to 2.5rem, 1.08, -0.035em): two-tone chapter openers on Home ("Work." then its soft continuation) and the not-found message.
+- **Title** (400, clamp 1.6rem to 2.1rem, 1.12, -0.035em): plain, ink-only chapter openers on case pages. The email address in Say hello sits near this scale (clamp 1.5rem to 2.5rem).
+- **Body Lead** (400, 18px, 1.625): the case Overview paragraph, capped at 54ch.
+- **Body** (400, 16px, 1.5): subheads inside chapters, list rows, project names and meta, buttons, links.
+- **Body Reading** (400, 16px, 1.625): muted paragraphs (Path entries, skills), capped at 54 to 60ch.
+- **Label** (400, 15px): rail and chapter-bar names, tile placeholder notes, footer line, the copy hint.
 
 ### Named Rules
 **The One Weight Rule.** Everything is 400 except the wordmark at 500. Hierarchy is size and ink-versus-grey, never bold.
 
-**The Two-Tone Sentence Rule.** A large statement is one sentence: the claim in ink, the continuation in soft grey, in the same size and line.
+**The Two-Tone Sentence Rule.** A large statement that opens a page or a home chapter is one sentence: the claim in ink, the continuation in soft grey, same size, same line. Case-page chapters open plain, ink only and a step smaller.
 
 ## Layout
 
-A 1120px frame (20px side gutters on mobile, 24px from 768px) holds the header, hairlines and footer. All content sits in a centred 720px column inside it, never offset to one side. Each section is a hairline-topped band with 80px vertical padding (96px from 768px); the first section on a page drops the hairline. A section title sits 36px above its content. Works stack in a single column with 56px between them; there are no card grids.
+Two centred measures, both with 20px side gutters (24px from 768px): a **text** measure of 760px content (808px with gutters) for statements, lists and paragraphs, and a **wide** measure of 960px content (1008px with gutters) for work tiles, case covers and design screens. The header sits on the wide measure; chapter hairlines and the footer sit on the text measure. Nothing is offset to one side.
 
-Ruled lists are the default way to show structured information (services, jobs, toolkit, case-study meta, results): a hairline above the list and under every row, 12 to 16px row padding, label left and value right-aligned with tabular numerals. The footer is the only multi-column block: a 1.4fr / 1fr / 1fr grid from 640px, stacked below.
+A chapter is a section that begins with a hairline on the text measure, 64px of air (96px from 768px), then its statement. Content follows 48px below a two-tone opener (64px from 768px) or 32px below a plain one (40px), and the chapter closes with 96px (128px from 768px). The home opening has no hairline: 64px top (112px from 768px), statement, then a row with "Start with the work" and the availability note.
 
-The header is sticky, 72px tall, with the wordmark left and nav plus pill right; below 768px the nav collapses to a menu button that drops a full-width panel of 22px links.
+Work runs in a wide, pair, wide rhythm: one 16:9 tile across the wide measure, then two 4:5 tiles side by side with a 24px gap, the second dropped 96px so the eye zigzags down; 56px between rows (80px from 768px). Pairs stack below 768px. Supporting lists (Other work, What I do) are two hairline-ruled columns from 768px with a 40px gap.
 
-**The Centre Column Rule.** Content never leaves the 720px column; only hairlines, the header and the footer span the full frame.
+Ruled lists are the default way to show structured facts (toolkit, education, case meta, results, what I did): a hairline above the list and under every row, 12px row padding (16px for two-line rows), label left and value right with tabular numerals.
+
+The Path is a vertical timeline on the text measure: one hairline the steps hang from, an 11px node per job, a 96px year column from 768px, and the entry beside it.
+
+The progress rail appears from 1280px, fixed in the right margin and vertically centred. Below 1280px it becomes a 40px chapter bar fixed under the 64px header, which fades in once the first chapter is reached. Anchor scrolling offsets by 72px with the rail and 112px with the bar.
+
+**The Two Measures Rule.** Reading lives on the 760px measure, work on the 960px measure. Only the header and the rail sit outside them.
 
 ## Elevation & Depth
 
-The system is flat. No element casts a shadow. Separation is carried by hairlines between sections and rows, and by the tile-grey fill behind work, chips, buttons and fields. The single translucency is the sticky header: white at 88% with a medium backdrop blur, so content slides under it without a rule of its own beyond its bottom hairline.
+The system is flat. No element casts a shadow and nothing is translucent. Separation is carried by hairlines (chapter tops, list rows, the Path, the rail) and by the tile-grey fill behind work. The header is solid paper; its hairline appears only after 8px of scroll and fades in over 300ms.
 
 **The Flat Ground Rule.** Depth is tone and line, never shadow. If something needs to stand apart, give it a tile fill or a hairline.
 
 ## Shapes
 
-One corner radius, small and soft (10px), on everything with a fill: work tiles, the pill button, the solid button, fields, skill chips and the call-to-action band. Focus outlines use a tighter 4px radius with a 3px offset. Lines are 1px hairlines. Icons are thin outline strokes (plus marks at 1.25 stroke, 12 to 14px; arrows, menu and check at 1.5 stroke, 16 to 22px).
+One corner radius, small and soft (10px), on everything with a fill: work tiles, placeholders, the pill and the skip link. Focus outlines use 4px with a 3px offset. The only circles are the Path nodes (11px, 1px ink ring; hollow for past roles, filled for the current one). Lines are 1px hairlines. Icons are thin Lucide strokes: up-right, down, left and up arrows and check at 1.5 stroke (15 to 16px), the note plus at 1.25 stroke (14px).
 
 ## Components
 
 ### Buttons
-- **Pill (header "Get in touch"):** tile-grey fill, ink text, 10px corners, 42px tall, 16px side padding, a 16px up-right arrow after the label. Hover fades to the pressed grey over 300ms. It is the only filled button in the chrome.
-- **Solid (form submit):** full-width ink fill, white text, 48px tall, 10px corners. Hover drops to 85% opacity; disabled sits at 40%.
+- **Pill ("Get in touch", header):** tile-grey fill, ink text, 10px corners, 40px tall, 16px side padding, a 16px up-right arrow after the label. Hover fades to the pressed grey over 300ms. It scrolls to Say hello (or routes there from a case page). It is the only filled button.
 
 ### Arrow Link
-The site's main call to action. Ink 16px text followed by a thin up-right arrow. On hover the text fades to muted and the arrow travels 2px up and right on the expo-out ease. Used for "Get in touch", "See all projects", "More about me" and similar; one per section.
+The site's call to action. Ink 16px text followed by a thin arrow; on hover the text fades to muted and the arrow travels 2px in its direction on the expo-out ease over 300ms. Up-right for leaving or opening ("Open in your email app", "LinkedIn", "Back to the start"), down for "Start with the work". Quiet muted variants with a left or up arrow serve "All work" and "Back to top".
 
-### Section Title
-A 14px thin plus mark, then the title in ink and an optional one-line continuation in muted directly beneath, both at 16px. It is the only section heading device on the site.
+### Chapter Opener
+A hairline on the text measure, then a large statement as the chapter heading. Home chapters use the two-tone headline; case chapters use the plain, ink-only title. It is the only section heading device; smaller subheads inside a chapter are plain 16px ink.
 
-### Work Item and Tile
-- **Item:** project name left in ink, focus and year right in muted separated by a 12px plus, a 10px gap, the tile, then a muted caption. The whole item is one link; on hover the name fades to muted and the image scales to 1.02 over 700ms.
-- **Tile:** tile-grey fill, 10px corners, 720 / 590 aspect ratio by default, image cover-fitted. With no image it shows a centred 15px muted line ("Screens coming soon") so a placeholder reads as a placeholder.
+### Progress Rail and Chapter Bar
+- **Rail (1280px and up):** chapter names right-aligned in 15px muted, 12px apart, beside a 1px hairline track. The track fills top-down in ink with scroll progress (spring-smoothed). The active name turns ink and steps 6px toward the page over 500ms on the expo-out ease; no name is active until the first chapter is reached. Names are links that scroll to their chapter.
+- **Bar (below 1280px):** a 40px paper strip under the header with a hairline beneath: the current chapter name left in ink, "n / total" right in muted tabular numerals, and a 1px ink line along its bottom that fills left to right with progress. Hidden until the first chapter.
 
-### Chips
-Skill tags on About: tile-grey fill, ink 15px text, 10px corners, 8px by 14px padding, wrapping with 8px gaps. Non-interactive.
+### Work Figure and Tile
+- **Figure:** the tile first, then the project name left in ink and "Company · Year" right in muted, then a muted caption capped at 46ch. The whole figure is one link; on hover the name fades to muted and the image scales to 1.02 over 700ms.
+- **Tile:** tile-grey fill, 10px corners, image cover-fitted. Ratios: 16:9 wide (16:7 when only a placeholder), 4:5 tall in pairs, 4:3 for small Other work tiles.
+- **Placeholder:** when screens are not ready the tile says so: "Screens on the way" in 15px ink at the top, and the list of coming screens in muted at clamp 1.25rem to 1.75rem at the bottom, 24px inset (32px from 768px). A placeholder must always read as a placeholder.
 
-### Inputs / Fields
-- **Style:** field-grey fill, no visible border, 10px corners, 12px by 16px padding, 16px ink text; labels sit above in ink at 16px with optional hints in muted.
-- **Focus:** a 1px ink ring fades in over 300ms.
+### Ruled List
+Hairline above, hairline under each row, 12px row padding, label left in ink (or muted in a meta list), value right with tabular numerals. Two-column variant for short name-plus-line entries from 768px.
+
+### Path Timeline
+A single hairline down the left, an 11px ink-ringed node per role (the latest filled ink), the year in soft grey at clamp 1.5rem to 1.75rem, then "Role at Company" in ink with "at" in muted, dates and place in muted, and a muted paragraph.
+
+### Copy Email
+The address set large with a hairline underline that darkens to ink on hover; clicking copies it and swaps to a check and "Email copied" for two seconds, falling back to the mail app if the clipboard is unavailable. A 15px muted hint sits beneath.
 
 ### Navigation
-Header links are 16px muted, turning ink on hover and when active. The footer repeats the wordmark beside "Navigate" and "Connect" columns of muted links. "Copy email" swaps to a check and "Email copied" for two seconds.
+The header is 64px, solid paper, sticky: wordmark left, the pill right, on the wide measure. Chapters are navigated by the rail or bar, never by header links. The footer is one hairline-topped line on the text measure: copyright left and "Back to top" right, both 15px muted.
+
+### Scrolling
+Lenis smooth scrolling on the root (lerp 0.09, wheel smoothing on) carries all in-page jumps. Under prefers-reduced-motion Lenis is not mounted, native scrolling applies and motion springs respect the user setting.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep every page a centred 720px column inside the 1120px frame, with hairlines between sections.
-- **Do** set large statements in regular weight with -0.04em tracking, ink then soft grey.
-- **Do** put work in flat tile-grey tiles with 10px corners, and say plainly when screens are not ready yet.
-- **Do** mark section titles with the thin plus and give them a muted one-line continuation.
-- **Do** use the up-right arrow link as the call to action, one per section.
+- **Do** tell a page as chapters: a hairline, a large statement, then the content, with the rail or bar tracking position.
+- **Do** keep reading on the 760px measure and work on the 960px measure, both centred.
+- **Do** open the page and home chapters with a two-tone statement in regular weight, ink then soft grey; open case chapters plain.
+- **Do** put work in flat tile-grey tiles with 10px corners, in the wide, pair, wide rhythm, and say plainly when screens are not ready yet.
 - **Do** show structured facts as ruled lists with right-aligned, tabular values.
+- **Do** switch off smooth scrolling and soften motion under prefers-reduced-motion.
 
 ### Don't:
 - **Don't** add an accent colour, gradient or tinted surface; the palette is ink, greys and white.
 - **Don't** use soft grey for text under 24px.
-- **Don't** add shadows or raised cards; depth is tone and hairlines.
+- **Don't** add shadows, glass or raised cards; depth is tone and hairlines.
 - **Don't** bold headings; the only weight above 400 is the wordmark.
-- **Don't** break the column into split heroes, stat rows or multi-column card grids.
+- **Don't** add header navigation links; chapters belong to the rail.
+- **Don't** fall back to a hero, card grid, services row and logo strip.
