@@ -7,20 +7,41 @@
 
 export const profile = {
   name: "Mathew Colin",
+  role: "Product designer",
+  availability: "Open to full-time product design roles",
+  /** Home statement: the ink part, then the soft grey continuation. */
+  statement: ["Mathew Colin is a product designer for SaaS, fintech and Web3", " — bringing brand, motion and AI-assisted workflows that help teams ship more."],
   tagline:
     "Product designer for SaaS, fintech and Web3. I also do brand and motion, and build AI workflows that help teams ship more.",
   email: "mathewcolinm@gmail.com",
   linkedin: "https://linkedin.com/in/mathew-colin/",
 };
 
-/** Pastel mats behind framed work. Picked per project so the grid has rhythm. */
-export const mats = {
-  sky: "radial-gradient(70% 60% at 15% 85%, #f6c3dc 0%, transparent 60%), radial-gradient(60% 70% at 90% 10%, #c9c2f8 0%, transparent 60%), linear-gradient(140deg, #bcd6f6, #d9e4f7)",
-  peach: "radial-gradient(60% 55% at 30% 0%, #ffb08a 0%, transparent 65%), radial-gradient(55% 60% at 85% 20%, #f7b8d4 0%, transparent 60%), linear-gradient(160deg, #f8dccd, #d6d9f6)",
-  lilac: "radial-gradient(65% 60% at 80% 85%, #ffc4b0 0%, transparent 60%), radial-gradient(60% 60% at 10% 10%, #b9c9f7 0%, transparent 60%), linear-gradient(150deg, #e2d6fa, #f3dbe8)",
-  mint: "radial-gradient(60% 60% at 15% 15%, #b5e6d8 0%, transparent 60%), radial-gradient(60% 60% at 90% 90%, #c8cdf8 0%, transparent 60%), linear-gradient(150deg, #d8eef0, #e4e2f8)",
-} as const;
-export type Mat = keyof typeof mats;
+/** Projects shown on the home page, in order. The Projects page shows all. */
+export const featured = ["tetra", "fxdx", "avitus", "certinal-brand"];
+
+export const homeAbout = {
+  statement: ["I came to design from the support desk.", " Two years solving people's internet and in-app problems taught me where products frustrate them."],
+  body: "Since 2023 I've designed across SaaS, fintech, Web3 and healthcare at Swftconnect, MATQCODE, Asva Labs and Certinal.",
+};
+
+export const services = [
+  { name: "Product & UX design", line: "Flows, wireframes and production-ready interfaces for complex products." },
+  { name: "Design systems", line: "Tokens, component libraries and patterns that keep a product consistent." },
+  { name: "User research & testing", line: "Interviews, surveys and usability tests that find friction early." },
+  { name: "Brand identity", line: "Identities rolled out from logo kit to website and event booth." },
+  { name: "Motion & video", line: "Motion graphics, social assets and product films." },
+  { name: "AI design workflows", line: "Figma and Claude Code workflows that produce on-brand work at scale." },
+];
+
+export const companies = [
+  { name: "Certinal", initials: "Ce" },
+  { name: "Asva Labs", initials: "As" },
+  { name: "MATQCODE", initials: "Mq" },
+  { name: "Swftconnect", initials: "Sw" },
+  { name: "Tech Mahindra", initials: "Tm" },
+  { name: "Jaya Television", initials: "Jt" },
+];
 
 export type Metric = { value: string; label: string; detail?: string };
 export type Shot = { label: string; src?: string };
@@ -41,7 +62,6 @@ export type Project = {
   metrics?: Metric[];
   shots: Shot[];
   cover?: string;
-  mat: Mat;
 };
 
 export const projects: Project[] = [
@@ -65,7 +85,6 @@ export const projects: Project[] = [
       "Shipped production-ready interfaces on schedule with engineering and product.",
     ],
     shots: [{ label: "Trading screen" }, { label: "Order flow" }, { label: "Cross-chain flow" }, { label: "Component library" }],
-    mat: "sky",
   },
   {
     slug: "fxdx",
@@ -87,7 +106,6 @@ export const projects: Project[] = [
       "Streamlined design-to-development handoff to cut iteration cycles.",
     ],
     shots: [{ label: "Trading interface" }, { label: "Colour and type tokens" }, { label: "Component library" }, { label: "Landing page" }],
-    mat: "peach",
   },
   {
     slug: "avitus",
@@ -113,7 +131,6 @@ export const projects: Project[] = [
       { value: "1M+", label: "Social impressions", detail: "From motion and social assets" },
     ],
     shots: [{ label: "Game lobby" }, { label: "Crash game" }, { label: "Rewards and leaderboard" }, { label: "Campaign motion" }],
-    mat: "lilac",
   },
   {
     slug: "certinal-brand",
@@ -138,7 +155,6 @@ export const projects: Project[] = [
       { value: "13", label: "Website sections", detail: "Covered by the new assets" },
     ],
     shots: [{ label: "Logo kit" }, { label: "Brand deck" }, { label: "Website sections" }, { label: "Event booth" }],
-    mat: "mint",
   },
   {
     slug: "demo-films",
@@ -159,7 +175,6 @@ export const projects: Project[] = [
       "Animated and edited the films in After Effects, delivering final 4K edits.",
     ],
     shots: [{ label: "Storyboard" }, { label: "Film stills" }, { label: "Product walkthrough" }],
-    mat: "peach",
   },
   {
     slug: "alphax",
@@ -175,19 +190,18 @@ export const projects: Project[] = [
       "AlphaX is a DeFi product. I designed its responsive, conversion-focused landing page and created all of its brand visuals.",
     did: ["Designed a responsive, conversion-focused landing page.", "Created all of the product's brand visuals."],
     shots: [{ label: "Landing page, desktop" }, { label: "Landing page, mobile" }, { label: "Brand visuals" }],
-    mat: "sky",
   },
 ];
 
-export type Experiment = { title: string; note: string; ratio: string; mat: Mat; src?: string };
+export type Experiment = { title: string; note: string; src?: string };
 
 export const experiments: Experiment[] = [
-  { title: "Avitus campaign motion", note: "Motion and social pieces for Avitus", ratio: "4 / 5", mat: "lilac" },
-  { title: "Certinal product film", note: "Frames from a product demo film", ratio: "16 / 10", mat: "peach" },
-  { title: "Certinal event booth", note: "The new identity at full scale", ratio: "4 / 3", mat: "mint" },
-  { title: "Asset workflow", note: "Website assets generated through Figma", ratio: "1 / 1", mat: "sky" },
-  { title: "Avitus pitch deck", note: "Investor pitch deck for Avitus", ratio: "16 / 10", mat: "lilac" },
-  { title: "Broadcast graphics", note: "Graphics from my time at Jaya TV", ratio: "4 / 5", mat: "peach" },
+  { title: "Avitus campaign motion", note: "Motion and social pieces for Avitus" },
+  { title: "Certinal product film", note: "Frames from a product demo film" },
+  { title: "Certinal event booth", note: "The new identity at full scale" },
+  { title: "Asset workflow", note: "Website assets generated through Figma" },
+  { title: "Avitus pitch deck", note: "Investor pitch deck for Avitus" },
+  { title: "Broadcast graphics", note: "Graphics from my time at Jaya TV" },
 ];
 
 export const about = {
@@ -265,19 +279,18 @@ export const jobs: Job[] = [
   },
 ];
 
-/** `icon` is a simple-icons export name; tools without one get a lettered tile. */
-export type Tool = { name: string; use: string; icon?: string; letters?: string };
+export type Tool = { name: string; use: string };
 
 export const tools: Tool[] = [
-  { name: "Figma", use: "UI design, design systems", icon: "siFigma" },
-  { name: "Framer", use: "Web design, prototypes", icon: "siFramer" },
-  { name: "Claude Code", use: "Building and automating", icon: "siClaude" },
-  { name: "After Effects", use: "Motion and film", letters: "Ae" },
-  { name: "ElevenLabs", use: "Voiceover", icon: "siElevenlabs" },
-  { name: "Lottie", use: "Product animation", icon: "siLottiefiles" },
-  { name: "Illustrator", use: "Brand and vector work", letters: "Ai" },
-  { name: "Maze", use: "Usability testing", icon: "siMaze" },
-  { name: "Notion", use: "Writing and planning", icon: "siNotion" },
+  { name: "Figma", use: "UI design, design systems" },
+  { name: "Framer", use: "Web design, prototypes" },
+  { name: "Claude Code", use: "Building and automating" },
+  { name: "After Effects", use: "Motion and film" },
+  { name: "ElevenLabs", use: "Voiceover" },
+  { name: "Lottie", use: "Product animation" },
+  { name: "Illustrator", use: "Brand and vector work" },
+  { name: "Maze", use: "Usability testing" },
+  { name: "Notion", use: "Writing and planning" },
 ];
 
 export const skills = [
@@ -296,12 +309,12 @@ export const skills = [
 ];
 
 export const aiWorkflow = [
-  { name: "Claude Code", use: "Builds sites, scripts and design automations", icon: "siClaude" },
-  { name: "Figma MCP", use: "Generates on-brand assets at scale", icon: "siFigma" },
-  { name: "ElevenLabs", use: "Voices product films", icon: "siElevenlabs" },
-  { name: "Higgsfield", use: "Image and video generation", letters: "Hf" },
-  { name: "Magnific", use: "Upscaling and refinement", letters: "Mg" },
-  { name: "Midjourney", use: "Early visual exploration", letters: "Mj" },
+  { name: "Claude Code", use: "Builds sites, scripts and design automations" },
+  { name: "Figma MCP", use: "Generates on-brand assets at scale" },
+  { name: "ElevenLabs", use: "Voices product films" },
+  { name: "Higgsfield", use: "Image and video generation" },
+  { name: "Magnific", use: "Upscaling and refinement" },
+  { name: "Midjourney", use: "Early visual exploration" },
 ];
 
 export const education = [

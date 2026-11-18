@@ -1,36 +1,30 @@
 @import "tailwindcss";
-@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/geist";
 
 /* ---------- Palette ----------
-   Light only: cool paper ground, navy ink, slate greys. Strong colour lives
-   in the pastel mats behind the work and the header glow. */
-
+   Light only, after the Formo reference: white ground, near-black ink and
+   two greys. `soft` is for the quiet half of large two-tone statements only
+   (24px and up); body text uses `muted`. */
 :root {
-  --bg: #f8f9fa;
-  --surface: #eef0f2;
-  --raised: #ffffff;
-  --fg: #0a1628;
-  --muted: #565e68;
-  --line: rgb(10 22 40 / 0.1);
-  --accent: #4a2fd6;
-  --primary: #0a1628;
-  --primary-fg: #f8f9fa;
-  --positive: #0f7a3d;
+  --bg: #ffffff;
+  --fg: #0a0a0a;
+  --muted: #666666;
+  --soft: #8a8a8a;
+  --line: rgb(0 0 0 / 0.08);
+  --tile: #f2f2f2;
+  --field: #f5f5f5;
   color-scheme: light;
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-raised: var(--raised);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
+  --color-soft: var(--soft);
   --color-line: var(--line);
-  --color-accent: var(--accent);
-  --color-primary: var(--primary);
-  --color-primary-fg: var(--primary-fg);
-  --color-positive: var(--positive);
-  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-tile: var(--tile);
+  --color-field: var(--field);
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -41,9 +35,9 @@ html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  scrollbar-color: color-mix(in oklab, var(--fg) 28%, transparent) var(--bg);
-  caret-color: var(--accent);
-  accent-color: var(--accent);
+  scrollbar-color: rgb(0 0 0 / 0.25) var(--bg);
+  caret-color: var(--fg);
+  accent-color: var(--fg);
 }
 
 body {
@@ -53,20 +47,30 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--accent) 28%, transparent);
+  background: rgb(0 0 0 / 0.1);
   color: var(--fg);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--fg);
   outline-offset: 3px;
+  border-radius: 4px;
 }
 
-h1, h2, h3 {
+::placeholder {
+  color: #767676;
+  opacity: 1;
+}
+
+h1,
+h2,
+h3 {
   text-wrap: balance;
 }
 
-p, li, figcaption, dd {
+p,
+li,
+dd {
   text-wrap: pretty;
 }
 

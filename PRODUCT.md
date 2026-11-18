@@ -24,7 +24,7 @@ Reviewers arrive from a job application, LinkedIn or a résumé link, mostly on 
 
 ## Capabilities and Constraints
 
-- Pages: Work (home), Experiments, About, Résumé, and one case study page per project.
+- Pages: Home, Projects (including other work), About (including the résumé), Contact, and one case study page per project.
 - Built in React + Vite + Tailwind CSS + Motion, in `site/`. Deployed as a static site.
 - The repository is public and auto-pushes after every change.
 - No photo of Mathew anywhere on the site (Mathew's explicit choice).
@@ -32,7 +32,7 @@ Reviewers arrive from a job application, LinkedIn or a résumé link, mostly on 
 
 ## Brand Commitments
 
-- Visual reference chosen by Mathew: the Tabfolio Pro Framer template (tabfoliopro.framer.ai). Follow its overall style and structure; do not copy its images, copy or template-specific artwork.
+- Visual reference chosen by Mathew: the Formo Framer template (formo.framer.media). Follow its style (white ground, black ink, Geist, two-tone headings, hairline dividers, grey work tiles) but centre the content column instead of Formo's offset right column. Do not copy its images, copy or template-specific artwork.
 - Theme: light mode only, like the reference (Mathew's explicit choice).
 
 ## Evidence on Hand
