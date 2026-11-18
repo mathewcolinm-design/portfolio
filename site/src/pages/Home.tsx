@@ -1,9 +1,8 @@
 import { Plus } from "lucide-react";
-import { Link } from "react-router";
 import { Closing } from "../components/Closing";
 import { ProjectItem } from "../components/ProjectItem";
 import { ArrowLink, Note, Section, Statement } from "../components/ui";
-import { companies, featured, homeAbout, profile, projects, services } from "../data/content";
+import { featured, homeAbout, jobs, profile, projects, services } from "../data/content";
 
 export function Home() {
   const work = featured.map((slug) => projects.find((p) => p.slug === slug)!).filter(Boolean);
@@ -12,17 +11,15 @@ export function Home() {
     <main id="main">
       <Section divider={false}>
         <div className="pt-4 md:pt-8">
-          <Note>{profile.availability}</Note>
-          <div className="mt-4">
-            <Statement as="h1" ink={profile.statement[0]} soft={profile.statement[1]} />
-          </div>
-          <div className="mt-6">
+          <Statement as="h1" ink={profile.statement[0]} soft={profile.statement[1]} />
+          <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3">
             <ArrowLink to="/contact">Get in touch</ArrowLink>
+            <Note>{profile.availability}</Note>
           </div>
         </div>
       </Section>
 
-      <Section id="work" title="Selected work" sub="The work I’m proud of">
+      <Section id="work" title="Selected work" sub="Product, brand and motion, most recent first">
         <ul className="space-y-14">
           {work.map((p) => (
             <li key={p.slug}>
@@ -35,7 +32,7 @@ export function Home() {
         </div>
       </Section>
 
-      <Section id="about" title="About me" sub="The person behind the work">
+      <Section id="about" title="About me" sub="How I got here">
         <Statement size="md" ink={homeAbout.statement[0]} soft={homeAbout.statement[1]} />
         <p className="mt-5 max-w-[54ch] text-base leading-relaxed text-muted">{homeAbout.body}</p>
         <div className="mt-6">
@@ -43,7 +40,7 @@ export function Home() {
         </div>
       </Section>
 
-      <Section id="services" title="What I do" sub="How I can help your team">
+      <Section id="services" title="What I do" sub="Where I’m most useful to a team">
         <ul className="border-t border-line">
           {services.map((s) => (
             <li key={s.name} className="border-b border-line py-4">
@@ -61,24 +58,22 @@ export function Home() {
         </div>
       </Section>
 
-      <Section id="companies" title="Where I’ve worked" sub="Teams I’ve designed with">
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3">
-          {companies.map((c) => (
-            <li key={c.name}>
-              <span
-                aria-hidden="true"
-                className="grid h-10 w-10 place-items-center rounded-[10px] bg-tile text-[15px] font-medium text-muted"
-              >
-                {c.initials}
+      <Section id="companies" title="Where I’ve worked" sub="Since 2020">
+        <ul className="border-t border-line">
+          {jobs.map((j) => (
+            <li
+              key={j.company + j.dates}
+              className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 border-b border-line py-3 text-base"
+            >
+              <span>
+                {j.company} <span className="text-muted">· {j.role}</span>
               </span>
-              <p className="mt-2.5 text-[15px]">{c.name}</p>
+              <span className="text-muted tabular-nums">{j.dates}</span>
             </li>
           ))}
         </ul>
-        <div className="mt-10">
-          <Link to="/about#experience" className="text-base text-muted underline transition-colors hover:text-fg">
-            See my full experience
-          </Link>
+        <div className="mt-6">
+          <ArrowLink to="/about#experience">See what I did at each</ArrowLink>
         </div>
       </Section>
 

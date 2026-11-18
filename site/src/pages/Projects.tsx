@@ -23,16 +23,16 @@ export function Projects() {
       </Section>
 
       <Section id="other" title="Other work" sub="Motion, brand and graphics">
-        <ul className="grid gap-x-6 gap-y-10 sm:grid-cols-2">
+        <ul className="border-t border-line">
           {experiments.map((e) => (
-            <li key={e.title}>
-              <figure>
-                <Tile src={e.src} alt={e.title} ratio="4 / 3" placeholder="Coming soon" />
-                <figcaption className="mt-2.5 text-base">
-                  {e.title}
-                  <span className="block text-muted">{e.note}</span>
-                </figcaption>
-              </figure>
+            <li key={e.title} className="border-b border-line py-4">
+              {e.src && (
+                <div className="mb-3">
+                  <Tile src={e.src} alt={e.title} ratio="4 / 3" />
+                </div>
+              )}
+              <h3 className="text-base">{e.title}</h3>
+              <p className="mt-0.5 text-base text-muted">{e.note}</p>
             </li>
           ))}
         </ul>

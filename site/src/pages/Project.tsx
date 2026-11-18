@@ -6,6 +6,8 @@ import { Section, Statement, Tile } from "../components/ui";
 import { projects } from "../data/content";
 import { NotFound } from "./NotFound";
 
+const row = "flex items-baseline justify-between gap-6 border-b border-line py-3 text-base";
+
 export function Project() {
   const { slug } = useParams();
   const index = projects.findIndex((p) => p.slug === slug);
@@ -19,6 +21,8 @@ export function Project() {
     { label: "Timeline", value: p.timeline },
     { label: "Focus", value: p.focus },
   ];
+  const ready = p.shots.filter((s) => s.src);
+  const pending = p.shots.filter((s) => !s.src);
 
   return (
     <main id="main">
@@ -37,7 +41,7 @@ export function Project() {
 
           <dl className="mt-8 border-t border-line">
             {meta.map((m) => (
-              <div key={m.label} className="flex items-baseline justify-between gap-6 border-b border-line py-3 text-base">
+              <div key={m.label} className={row}>
                 <dt className="text-muted">{m.label}</dt>
                 <dd className="text-right tabular-nums">{m.value}</dd>
               </div>
@@ -67,32 +71,48 @@ export function Project() {
 
       {p.metrics && (
         <Section id="results" title="Results" sub="What changed">
-          <ul className="grid gap-x-6 gap-y-8 border-t border-line pt-8 sm:grid-cols-3">
+          <dl className="border-t border-line">
             {p.metrics.map((m) => (
-              <li key={m.label}>
-                <p className="text-[clamp(2rem,4vw,2.5rem)] leading-none tracking-[-0.04em] tabular-nums">{m.value}</p>
-                <p className="mt-3 text-base">{m.label}</p>
-                {m.detail && <p className="text-base text-muted">{m.detail}</p>}
-              </li>
+              <div key={m.label} className={row}>
+                <dt>
+                  {m.label}
+                  {m.detail && <span className="text-muted"> · {m.detail}</span>}
+                </dt>
+                <dd className="text-right tabular-nums">{m.value}</dd>
+              </div>
             ))}
-          </ul>
+          </dl>
         </Section>
       )}
 
       <Section id="designs" title="Designs" sub="Selected screens">
-        <ul className="space-y-6">
-          {p.shots.map((s) => (
-            <li key={s.label}>
-              <figure>
-                <Tile src={s.src} alt={s.label} placeholder="Coming soon" />
-                <figcaption className="mt-2.5 text-base text-muted">{s.label}</figcaption>
-              </figure>
-            </li>
-          ))}
-        </ul>
+        {ready.length > 0 && (
+          <ul className="space-y-6">
+            {ready.map((s) => (
+              <li key={s.label}>
+                <figure>
+                  <Tile src={s.src} alt={s.label} />
+                  <figcaption className="mt-2.5 text-base text-muted">{s.label}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        )}
+        {pending.length > 0 && (
+          <div className={ready.length > 0 ? "mt-10" : ""}>
+            <p className="text-base text-muted">Screens on the way:</p>
+            <ul className="mt-3 border-t border-line">
+              {pending.map((s) => (
+                <li key={s.label} className="border-b border-line py-3 text-base">
+                  {s.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Section>
 
-      <Section id="next" title="Next project" sub={next.name}>
+      <Section id="next" title="Next project">
         <ProjectItem project={next} />
       </Section>
 

@@ -1,6 +1,6 @@
 import { Closing } from "../components/Closing";
 import { Note, Section, Statement } from "../components/ui";
-import { about, aiWorkflow, education, jobs, profile, skills, tools } from "../data/content";
+import { about, education, jobs, profile, skills, toolkit } from "../data/content";
 
 const row = "flex items-baseline justify-between gap-6 border-b border-line py-3 text-base";
 
@@ -9,14 +9,14 @@ export function About() {
     <main id="main">
       <Section divider={false}>
         <div className="pt-4 md:pt-8">
-          <Note>{profile.availability}</Note>
-          <div className="mt-4">
-            <Statement as="h1" ink={about.hello} soft={` ${about.lead}`} />
-          </div>
+          <Statement as="h1" ink={about.hello} soft={` ${about.lead}`} />
           <div className="mt-8 max-w-[54ch] space-y-4 text-base leading-relaxed text-muted">
             {about.bio.map((p) => (
               <p key={p}>{p}</p>
             ))}
+          </div>
+          <div className="mt-7">
+            <Note>{profile.availability}</Note>
           </div>
         </div>
       </Section>
@@ -40,21 +40,10 @@ export function About() {
       <Section id="workflow" title="How I work" sub="Design first, then tools that scale it">
         <p className="max-w-[54ch] text-base leading-relaxed text-muted">
           I design the system by hand, then build AI-assisted workflows around it, so a small team can produce more
-          on-brand work without the quality dropping.
+          on-brand work without the quality dropping. These are the tools I reach for.
         </p>
         <ul className="mt-6 border-t border-line">
-          {aiWorkflow.map((t) => (
-            <li key={t.name} className={row}>
-              <span>{t.name}</span>
-              <span className="text-right text-muted">{t.use}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section id="tools" title="Tools" sub="What I design with">
-        <ul className="border-t border-line">
-          {tools.map((t) => (
+          {toolkit.map((t) => (
             <li key={t.name} className={row}>
               <span>{t.name}</span>
               <span className="text-right text-muted">{t.use}</span>
@@ -76,7 +65,10 @@ export function About() {
       <Section id="education" title="Education" sub="And certification">
         <ul className="border-t border-line">
           {education.map((e) => (
-            <li key={e.name} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 border-b border-line py-3 text-base">
+            <li
+              key={e.name}
+              className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 border-b border-line py-3 text-base"
+            >
               <span>
                 {e.name} <span className="text-muted">· {e.place}</span>
               </span>

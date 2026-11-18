@@ -25,9 +25,9 @@ export function Contact() {
     <main id="main">
       <Section divider={false}>
         <div className="pt-4 md:pt-8">
-          <Note>{profile.availability}</Note>
-          <div className="mt-4">
-            <Statement as="h1" ink="Hiring a product designer?" soft=" Let’s talk." />
+          <Statement as="h1" ink="Hiring a product designer?" soft=" Let’s talk." />
+          <div className="mt-6">
+            <Note>{profile.availability}</Note>
           </div>
         </div>
       </Section>

@@ -34,14 +34,6 @@ export const services = [
   { name: "AI design workflows", line: "Figma and Claude Code workflows that produce on-brand work at scale." },
 ];
 
-export const companies = [
-  { name: "Certinal", initials: "Ce" },
-  { name: "Asva Labs", initials: "As" },
-  { name: "MATQCODE", initials: "Mq" },
-  { name: "Swftconnect", initials: "Sw" },
-  { name: "Tech Mahindra", initials: "Tm" },
-  { name: "Jaya Television", initials: "Jt" },
-];
 
 export type Metric = { value: string; label: string; detail?: string };
 export type Shot = { label: string; src?: string };
@@ -270,7 +262,7 @@ export const jobs: Job[] = [
     text: "Resolved internet and in-app issues for end users, which taught me where products frustrate people.",
   },
   {
-    role: "Graphic Design & Video Intern",
+    role: "Graphic Design & Video Editing Intern",
     company: "Jaya Television",
     initials: "Jt",
     dates: "Jan 2020 – Feb 2020",
@@ -279,19 +271,6 @@ export const jobs: Job[] = [
   },
 ];
 
-export type Tool = { name: string; use: string };
-
-export const tools: Tool[] = [
-  { name: "Figma", use: "UI design, design systems" },
-  { name: "Framer", use: "Web design, prototypes" },
-  { name: "Claude Code", use: "Building and automating" },
-  { name: "After Effects", use: "Motion and film" },
-  { name: "ElevenLabs", use: "Voiceover" },
-  { name: "Lottie", use: "Product animation" },
-  { name: "Illustrator", use: "Brand and vector work" },
-  { name: "Maze", use: "Usability testing" },
-  { name: "Notion", use: "Writing and planning" },
-];
 
 export const skills = [
   "Product design",
@@ -308,13 +287,19 @@ export const skills = [
   "Video production",
 ];
 
-export const aiWorkflow = [
-  { name: "Claude Code", use: "Builds sites, scripts and design automations" },
-  { name: "Figma MCP", use: "Generates on-brand assets at scale" },
-  { name: "ElevenLabs", use: "Voices product films" },
-  { name: "Higgsfield", use: "Image and video generation" },
-  { name: "Magnific", use: "Upscaling and refinement" },
-  { name: "Midjourney", use: "Early visual exploration" },
+/** Tools, in the order I reach for them. */
+export const toolkit = [
+  { name: "Figma", use: "UI design and design systems" },
+  { name: "Figma MCP", use: "Generating on-brand assets at scale" },
+  { name: "Claude Code", use: "Building sites, scripts and design automations" },
+  { name: "Framer", use: "Web design and prototypes" },
+  { name: "After Effects", use: "Motion and product films" },
+  { name: "ElevenLabs", use: "Voiceover for product films" },
+  { name: "Illustrator", use: "Brand and vector work" },
+  { name: "Lottie", use: "Product animation" },
+  { name: "Higgsfield, Magnific, Midjourney", use: "Image generation, upscaling and exploration" },
+  { name: "Maze", use: "Usability testing" },
+  { name: "Notion", use: "Writing and planning" },
 ];
 
 export const education = [

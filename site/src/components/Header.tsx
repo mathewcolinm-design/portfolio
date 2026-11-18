@@ -21,7 +21,7 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-[rgb(255_255_255/0.88)] backdrop-blur-md">
       <Frame>
         <div className="flex h-[72px] items-center justify-between border-b border-line">
-          <Link to="/" className="text-[26px] leading-none font-medium tracking-[-0.05em] md:text-[28px]">
+          <Link to="/" className="text-[28px] leading-none font-medium tracking-[-0.05em] md:text-[34px]">
             {profile.name}
           </Link>
 
