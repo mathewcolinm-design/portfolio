@@ -1,142 +1,206 @@
+import { ArrowLeft } from "lucide-react";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { Cover } from "../components/Cover";
-import { Reveal } from "../components/Reveal";
-import { projects } from "../data/content";
+import { ProjectCard } from "../components/ProjectCard";
+import { Container, MatFrame } from "../components/ui";
+import { projects, type Project } from "../data/content";
 import { NotFound } from "./NotFound";
+
+type Section = { id: string; label: string };
+
+/** Which section's top has passed 30% of the viewport. */
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState(ids[0]);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = window.innerHeight * 0.3;
+      let current = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      setActive(current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [ids.join()]);
+  return active;
+}
+
+function CaseNav({ sections }: { sections: Section[] }) {
+  const active = useActiveSection(sections.map((s) => s.id));
+  return (
+    <nav aria-label="Case study" className="fixed inset-x-0 top-4 z-50 flex justify-center px-3 md:top-8">
+      <div className="flex max-w-full items-center rounded-full border border-line bg-[color-mix(in_oklab,var(--surface)_82%,transparent)] p-1 shadow-[0_8px_24px_-12px_rgb(10_22_40/0.3)] backdrop-blur-xl">
+        <Link
+          to="/#work"
+          className="flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[15px] font-semibold text-fg transition-colors hover:bg-raised"
+        >
+          <ArrowLeft size={16} strokeWidth={2.2} aria-hidden="true" />
+          <span className="sr-only sm:not-sr-only">Projects</span>
+        </Link>
+        <span aria-hidden="true" className="mx-1.5 h-5 w-px shrink-0 bg-line" />
+        <ul className="flex items-center gap-0.5 overflow-x-auto [scrollbar-width:none]">
+          {sections.map((s) => (
+            <li key={s.id}>
+              <a
+                href={`#${s.id}`}
+                aria-current={active === s.id ? "location" : undefined}
+                className={`relative block whitespace-nowrap rounded-full px-3 py-2 sm:px-3.5 text-[15px] font-semibold transition-colors duration-300 ${
+                  active === s.id ? "text-fg" : "text-muted hover:text-fg"
+                }`}
+              >
+                {active === s.id && (
+                  <motion.span
+                    layoutId="case-pill"
+                    className="absolute inset-0 rounded-full bg-raised shadow-[0_2px_8px_-2px_rgb(10_22_40/0.2)]"
+                    transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                  />
+                )}
+                <span className="relative">{s.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
+}
+
+function SectionHeading({ id, children }: { id: string; children: string }) {
+  return (
+    <h2 id={id} className="text-[28px] font-medium leading-tight tracking-[-0.02em] md:text-[32px]">
+      {children}
+    </h2>
+  );
+}
 
 export function CaseStudy() {
   const { slug } = useParams();
   const index = projects.findIndex((p) => p.slug === slug);
   if (index === -1) return <NotFound />;
+  return <CaseStudyBody key={slug} project={projects[index]} next={projects[(index + 1) % projects.length]} />;
+}
 
-  const p = projects[index];
-  const next = projects[(index + 1) % projects.length];
-  const pad = (n: number) => String(n).padStart(2, "0");
+function CaseStudyBody({ project: p, next }: { project: Project; next: Project }) {
+  const sections: Section[] = [
+    { id: "overview", label: "Overview" },
+    { id: "process", label: "Process" },
+    ...(p.metrics ? [{ id: "results", label: "Results" }] : []),
+    { id: "designs", label: "Designs" },
+  ];
 
   const meta = [
-    { label: "Year", value: p.year },
     { label: "Role", value: p.role },
+    { label: "Timeline", value: p.timeline },
     { label: "Company", value: p.company },
-    { label: "Focus", value: p.focus.join(", ") },
+    { label: "Focus", value: p.focus },
   ];
 
   return (
-    <main id="main">
-      {/* Header: dark */}
-      <section data-section-theme="dark" className="pt-32 pb-16 md:pt-40 md:pb-24">
-        <div className="mx-auto max-w-6xl px-4 md:px-8">
-          <Reveal>
-            <Link to="/#work" className="text-sm text-muted transition-colors hover:text-fg">
-              ← All work
-            </Link>
-            <p className="mt-10 font-mono text-xs uppercase tracking-[0.14em] text-muted">
-              <span className="text-accent">
-                {pad(index + 1)} / {pad(projects.length)}
-              </span>{" "}
-              · Case study · {p.category}
-            </p>
-            <h1 className="mt-4 text-[clamp(2.75rem,8vw,7rem)] font-medium leading-[0.92] tracking-[-0.04em]">
-              {p.title}
+    <>
+      <CaseNav sections={sections} />
+      <main id="main">
+        <header data-section-theme="light" className="pt-32 md:pt-40">
+          <Container narrow>
+            <h1 className="text-[clamp(2rem,4.2vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.025em] text-balance">
+              {p.caption}
             </h1>
-            <p className="mt-6 max-w-2xl text-xl leading-snug text-muted md:text-2xl">{p.tagline}</p>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <dl className="theme-fade mt-12 grid grid-cols-2 gap-6 border-t border-line pt-6 md:grid-cols-4">
+            <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-muted">{p.intro}</p>
+            <MatFrame
+              mat={p.mat}
+              ratio="16 / 10"
+              src={p.cover}
+              alt={`${p.name} cover`}
+              label={p.name}
+              className="mt-10"
+              rounded="rounded-[24px]"
+            />
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-6 border-b border-line py-10 md:grid-cols-4">
               {meta.map((m) => (
                 <div key={m.label}>
-                  <dt className="font-mono text-xs uppercase tracking-[0.12em] text-muted">{m.label}</dt>
-                  <dd className="mt-2">{m.value}</dd>
+                  <dt className="text-lg font-medium">{m.label}</dt>
+                  <dd className="mt-1 text-muted tabular-nums">{m.value}</dd>
                 </div>
               ))}
             </dl>
-          </Reveal>
+          </Container>
+        </header>
 
-          <Reveal delay={0.2} className="mt-12 aspect-[16/9] overflow-hidden rounded-2xl md:mt-16">
-            <Cover project={p} large />
-          </Reveal>
-        </div>
-      </section>
+        <section data-section-theme="light" aria-labelledby="overview-h" className="pt-20">
+          <Container narrow>
+            <div id="overview" className="scroll-mt-28">
+              <SectionHeading id="overview-h">Overview</SectionHeading>
+              <p className="mt-5 max-w-[60ch] text-lg leading-relaxed text-muted">{p.overview}</p>
+            </div>
 
-      {/* Body: light */}
-      <section data-section-theme="light" className="py-24 md:py-32">
-        <div className="mx-auto max-w-6xl space-y-20 px-4 md:space-y-28 md:px-8">
-          <Reveal className="grid gap-6 md:grid-cols-[240px_1fr] md:gap-12">
-            <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted md:pt-2">Overview</h2>
-            <p className="max-w-3xl text-2xl leading-snug tracking-tight md:text-3xl">{p.overview}</p>
-          </Reveal>
-
-          {p.metrics && (
-            <Reveal className="grid gap-6 md:grid-cols-[240px_1fr] md:gap-12">
-              <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted md:pt-2">Results</h2>
-              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {p.metrics.map((m) => (
-                  <li key={m.label} className="theme-fade rounded-2xl bg-card p-6">
-                    <p className="text-5xl font-medium tracking-tight text-accent">{m.value}</p>
-                    <p className="mt-3 text-muted">{m.label}</p>
+            <div id="process" className="mt-20 scroll-mt-28 pb-24">
+              <SectionHeading id="process-h">What I did</SectionHeading>
+              <ul className="mt-6 max-w-[60ch]">
+                {p.did.map((d) => (
+                  <li key={d} className="border-t border-dashed border-line py-4 text-lg leading-relaxed text-muted first:border-t-0">
+                    {d}
                   </li>
                 ))}
               </ul>
-            </Reveal>
-          )}
+            </div>
+          </Container>
+        </section>
 
-          <Reveal className="grid gap-6 md:grid-cols-[240px_1fr] md:gap-12">
-            <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted md:pt-2">What I did</h2>
-            <ol className="max-w-3xl">
-              {p.did.map((d, i) => (
-                <li key={d} className="theme-fade flex gap-6 border-t border-line py-5 text-lg last:border-b">
-                  <span className="font-mono text-sm text-muted">{pad(i + 1)}</span>
-                  <span>{d}</span>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-
-          <div className="grid gap-6 md:grid-cols-[240px_1fr] md:gap-12">
-            <Reveal>
-              <h2 className="font-mono text-xs uppercase tracking-[0.14em] text-muted md:pt-2">Gallery</h2>
-            </Reveal>
-            <ul className="grid gap-4 sm:grid-cols-2">
-              {p.shots.map((s, i) => (
-                <li key={s} className={i === 0 ? "sm:col-span-2" : ""}>
-                  <Reveal delay={(i % 2) * 0.08}>
-                    {/* Placeholder until real screenshots are added */}
-                    <div
-                      className={`theme-fade grid place-items-center rounded-2xl border border-dashed border-line bg-card-2 p-6 text-center ${
-                        i === 0 ? "aspect-[16/8]" : "aspect-[4/3]"
-                      }`}
-                    >
-                      <div>
-                        <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted">Screenshot to add</p>
-                        <p className="mt-2 font-medium">{s}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Next project: dark */}
-      <section data-section-theme="dark" className="py-24 md:py-32">
-        <div className="mx-auto max-w-6xl px-4 md:px-8">
-          <Reveal>
-            <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Next case</p>
-            <Link to={`/work/${next.slug}`} className="group mt-6 block">
-              <div className="aspect-[16/7] overflow-hidden rounded-2xl">
-                <div className="h-full w-full transition-transform duration-700 ease-out-soft group-hover:scale-[1.03]">
-                  <Cover project={next} large />
-                </div>
+        <section data-section-theme="dark" aria-label="Results and designs" className="py-24">
+          <Container narrow>
+            {p.metrics && (
+              <div id="results" className="mb-20 scroll-mt-28">
+                <SectionHeading id="results-h">Results</SectionHeading>
+                <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {p.metrics.map((m) => (
+                    <li key={m.label} className="rounded-[20px] border border-line bg-surface p-6">
+                      <p className="text-[34px] font-semibold tracking-[-0.02em] text-positive tabular-nums">{m.value}</p>
+                      <p className="mt-3 text-lg font-medium">{m.label}</p>
+                      {m.detail && <p className="mt-0.5 text-muted">{m.detail}</p>}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="mt-5 text-muted">
-                {next.tagline} <span className="text-fg">→</span>
-              </p>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-    </main>
+            )}
+
+            <div id="designs" className="scroll-mt-28">
+              <SectionHeading id="designs-h">Designs</SectionHeading>
+              <ul className="mt-8 grid gap-6 sm:grid-cols-2">
+                {p.shots.map((s, i) => (
+                  <li key={s.label} className={i === 0 ? "sm:col-span-2" : ""}>
+                    <figure>
+                      <MatFrame mat={p.mat} ratio={i === 0 ? "16 / 9" : "4 / 3"} src={s.src} label={s.label} />
+                      <figcaption className="mt-3 text-muted">{s.label}</figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Container>
+        </section>
+
+        <section data-section-theme="light" aria-labelledby="next-h" className="pt-20 pb-6">
+          <Container narrow>
+            <h2 id="next-h" className="text-[22px] font-medium tracking-[-0.015em]">
+              Next project
+            </h2>
+            <div className="mt-6">
+              <ProjectCard project={next} />
+            </div>
+          </Container>
+        </section>
+      </main>
+    </>
   );
 }

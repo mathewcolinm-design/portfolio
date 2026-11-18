@@ -1,6 +1,7 @@
 # Mathew Colin, portfolio
 
-React + Vite + Tailwind CSS + Motion. Fonts: General Sans (Fontshare) and Geist Mono (Google Fonts).
+React + Vite + Tailwind CSS + Motion. Font: Manrope (self-hosted). Icons: Lucide and Simple Icons.
+Layout and style follow the Tabfolio reference: pill tab navigation, a shared intro header, work framed on pastel gradient mats, and case studies with a pinned section tab bar.
 
 ## Run it
 
@@ -11,14 +12,29 @@ npm run dev      # local preview at http://localhost:5173
 npm run build    # production build into site/dist
 ```
 
+## Pages
+
+| Route | File |
+|---|---|
+| `/` Work | `src/pages/Work.tsx` |
+| `/experiments` | `src/pages/Experiments.tsx` |
+| `/about` | `src/pages/About.tsx` |
+| `/resume` | `src/pages/Resume.tsx` |
+| `/work/<slug>` case study | `src/pages/CaseStudy.tsx` |
+
 ## Edit content
 
-All text lives in [`src/data/content.ts`](src/data/content.ts): profile, stats, projects, experience, tools, skills and education.
+All text lives in [`src/data/content.ts`](src/data/content.ts).
 
-**Add a project cover:** put an image in `public/work/` (for example `public/work/avitus.webp`) and set `cover: "/work/avitus.webp"` on that project. Without a cover, a tinted placeholder is drawn from the project's `hue`.
+## Add your screenshots
 
-**Case study screenshots:** each project's `shots` list shows dashed "Screenshot to add" boxes on its case study page. These are placeholders until real images are wired in.
+1. Put images in `public/work/<slug>/`, for example `public/work/tetra/cover.webp`. WebP at about 2000px wide is ideal.
+2. In `content.ts`, set the project's `cover: "/work/tetra/cover.webp"` for the grid card and case study hero.
+3. For the case study gallery, add `src` to each entry in `shots`, e.g. `{ label: "Trading screen", src: "/work/tetra/trading.webp" }`.
+4. Experiments work the same way: set `src` on each item in `experiments`.
 
-## Scroll theme
+Anything without an image shows a labelled "Screens coming soon" placeholder on its gradient mat.
 
-Each section has `data-section-theme="light"` or `"dark"`. Whichever section crosses the middle of the screen sets the theme on `<html>`, and every colour fades to the new palette over 0.7s. Palettes are the CSS variables at the top of [`src/index.css`](src/index.css). Logic: [`src/hooks/useScrollTheme.ts`](src/hooks/useScrollTheme.ts).
+## Light and dark
+
+Each section has `data-section-theme="light"` or `"dark"`. Dark is used where the work is shown and where visitors linger (project grid, results and design galleries, experiments, career history). A section takes over once its top passes 30% down the screen, and the colours cross-fade over 0.7s. Palettes are the CSS variables at the top of [`src/index.css`](src/index.css); logic is in [`src/hooks/useScrollTheme.ts`](src/hooks/useScrollTheme.ts).

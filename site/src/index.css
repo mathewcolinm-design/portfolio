@@ -1,97 +1,124 @@
 @import "tailwindcss";
+@import "@fontsource-variable/manrope";
 
-/* ---------- Theme tokens ----------
-   The page swaps between these two palettes as sections scroll past
-   (see useScrollTheme). Everything colour-related reads from these vars. */
+/* ---------- Theme ----------
+   Light is home. Dark navy takes over where the work is shown and where
+   visitors linger (see useScrollTheme). The colour variables are registered
+   with @property so the browser can animate them: every element that reads
+   a token fades with the page, with no per-element transitions. */
+
+@property --bg { syntax: "<color>"; inherits: true; initial-value: #f8f9fa; }
+@property --surface { syntax: "<color>"; inherits: true; initial-value: #eef0f2; }
+@property --raised { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
+@property --fg { syntax: "<color>"; inherits: true; initial-value: #0a1628; }
+@property --muted { syntax: "<color>"; inherits: true; initial-value: #565e68; }
+@property --line { syntax: "<color>"; inherits: true; initial-value: rgb(10 22 40 / 0.1); }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #4a2fd6; }
+@property --primary { syntax: "<color>"; inherits: true; initial-value: #0a1628; }
+@property --primary-fg { syntax: "<color>"; inherits: true; initial-value: #f8f9fa; }
+@property --positive { syntax: "<color>"; inherits: true; initial-value: #0f7a3d; }
+@property --glow { syntax: "<number>"; inherits: true; initial-value: 1; }
+
 :root,
-[data-theme="dark"] {
-  --bg: #0e0e0c;
-  --fg: #f2f0ea;
-  --muted: #9a978f;
-  --line: rgb(242 240 234 / 0.12);
-  --card: #181816;
-  --card-2: #22221f;
-  --accent: #ff7a50;
-  --accent-ink: #0e0e0c;
+[data-theme="light"] {
+  --bg: #f8f9fa;
+  --surface: #eef0f2;
+  --raised: #ffffff;
+  --fg: #0a1628;
+  --muted: #565e68;
+  --line: rgb(10 22 40 / 0.1);
+  --accent: #4a2fd6;
+  --primary: #0a1628;
+  --primary-fg: #f8f9fa;
+  --positive: #0f7a3d;
+  --glow: 1;
 }
 
-[data-theme="light"] {
-  --bg: #f4f2ec;
-  --fg: #141412;
-  --muted: #625f58;
-  --line: rgb(20 20 18 / 0.12);
-  --card: #ffffff;
-  --card-2: #eae7df;
-  --accent: #c73c14;
-  --accent-ink: #ffffff;
+[data-theme="dark"] {
+  --bg: #0b1322;
+  --surface: #16213a;
+  --raised: #1d2a45;
+  --fg: #eef1f6;
+  --muted: #a4adbb;
+  --line: rgb(238 241 246 / 0.12);
+  --accent: #b2a6ff;
+  --primary: #eef1f6;
+  --primary-fg: #0b1322;
+  --positive: #7ee2a8;
+  --glow: 0;
 }
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-line: var(--line);
-  --color-card: var(--card);
-  --color-card-2: var(--card-2);
   --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
-  --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Smooth palette change while scrolling. Every element that paints
-   with a token gets the same timing so nothing lags behind. */
-html,
-body,
-.theme-fade {
-  transition:
-    background-color 700ms var(--ease-out-soft),
-    color 700ms var(--ease-out-soft),
-    border-color 700ms var(--ease-out-soft);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-positive: var(--positive);
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
   background: var(--bg);
   color: var(--fg);
-  scroll-behavior: smooth;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scrollbar-color: color-mix(in oklab, var(--fg) 28%, transparent) var(--bg);
+  caret-color: var(--accent);
+  accent-color: var(--accent);
+  transition:
+    --bg 700ms var(--ease-out-expo),
+    --surface 700ms var(--ease-out-expo),
+    --raised 700ms var(--ease-out-expo),
+    --fg 700ms var(--ease-out-expo),
+    --muted 700ms var(--ease-out-expo),
+    --line 700ms var(--ease-out-expo),
+    --accent 700ms var(--ease-out-expo),
+    --primary 700ms var(--ease-out-expo),
+    --primary-fg 700ms var(--ease-out-expo),
+    --positive 700ms var(--ease-out-expo),
+    --glow 700ms var(--ease-out-expo);
 }
 
 body {
   margin: 0;
   background: var(--bg);
-  font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: color-mix(in oklab, var(--accent) 28%, transparent);
+  color: var(--fg);
 }
 
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p, li, figcaption, dd {
+  text-wrap: pretty;
+}
+
+a {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  html,
-  body,
-  .theme-fade {
     transition: none;
   }
-}
-
-/* Fine grid used on project covers */
-.cover-grid {
-  background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.07) 1px, transparent 1px);
-  background-size: 28px 28px;
 }

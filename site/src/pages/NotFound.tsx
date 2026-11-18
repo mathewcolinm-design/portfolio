@@ -1,13 +1,14 @@
 import { Link } from "react-router";
+import { buttonPrimary } from "../components/ui";
 
 export function NotFound() {
   return (
-    <main id="main" data-section-theme="dark" className="grid min-h-[100svh] place-items-center px-4">
+    <main id="main" data-section-theme="light" className="grid min-h-[80svh] place-items-center px-5 pt-24">
       <div className="text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">404</p>
-        <h1 className="mt-4 text-5xl font-medium tracking-tight">This page doesn’t exist.</h1>
-        <Link to="/" className="mt-8 inline-block rounded-full bg-fg px-5 py-3 text-sm font-medium text-bg">
-          Back home
+        <h1 className="text-[clamp(2rem,4vw,2.75rem)] font-medium tracking-[-0.025em]">This page doesn’t exist.</h1>
+        <p className="mt-3 text-lg text-muted">The link may be old, or the project may have moved.</p>
+        <Link to="/" className={`${buttonPrimary} mt-8`}>
+          Back to my work
         </Link>
       </div>
     </main>

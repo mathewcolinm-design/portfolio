@@ -1,38 +1,45 @@
-import { Link } from "react-router";
-import { profile } from "../data/content";
+import { motion } from "motion/react";
+import { NavLink } from "react-router";
 
-const links = [
-  { to: "/#work", label: "Work" },
-  { to: "/#experience", label: "Experience" },
-  { to: "/#about", label: "About" },
+const tabs = [
+  { to: "/", label: "Work" },
+  { to: "/experiments", label: "Experiments" },
+  { to: "/about", label: "About" },
+  { to: "/resume", label: "Résumé" },
 ];
 
+/** Pill tab bar, fixed at the top centre. The white pill glides to the active tab. */
 export function Nav() {
   return (
-    <header className="theme-fade fixed inset-x-0 top-0 z-50 border-b border-line bg-[color-mix(in_oklab,var(--bg)_82%,transparent)] backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 md:px-8" aria-label="Main">
-        <Link to="/" className="flex items-center gap-2 font-medium tracking-tight">
-          <span className="inline-block h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-          {profile.name}
-        </Link>
-        <div className="flex items-center gap-1 md:gap-2">
-          <ul className="hidden items-center gap-1 sm:flex">
-            {links.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="rounded-full px-3 py-2 text-sm text-muted transition-colors hover:text-fg">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <a
-            href={`mailto:${profile.email}`}
-            className="rounded-full bg-fg px-4 py-2 text-sm font-medium text-bg transition-transform duration-300 hover:-translate-y-0.5"
-          >
-            Say hello
-          </a>
-        </div>
-      </nav>
-    </header>
+    <nav aria-label="Main" className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 md:top-8">
+      <ul className="flex items-center gap-0.5 rounded-full border border-line bg-[color-mix(in_oklab,var(--surface)_82%,transparent)] p-1 shadow-[0_8px_24px_-12px_rgb(10_22_40/0.3)] backdrop-blur-xl">
+        {tabs.map((t) => (
+          <li key={t.to}>
+            <NavLink
+              to={t.to}
+              end={t.to === "/"}
+              className={({ isActive }) =>
+                `relative block rounded-full px-3.5 py-2 text-[15px] font-semibold transition-colors duration-300 sm:px-4 ${
+                  isActive ? "text-fg" : "text-muted hover:text-fg"
+                }`
+              }
+            >
+              {({ isActive }) => (
+                <>
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full bg-raised shadow-[0_2px_8px_-2px_rgb(10_22_40/0.2)]"
+                      transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                    />
+                  )}
+                  <span className="relative">{t.label}</span>
+                </>
+              )}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

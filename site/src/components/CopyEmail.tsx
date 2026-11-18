@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { Check } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
 import { profile } from "../data/content";
 
-/** Copies the email address on click; falls back to opening the mail app. */
-export function CopyEmail({ className = "", label }: { className?: string; label?: string }) {
+/**
+ * Copies the email address. If the clipboard is unavailable it opens the
+ * mail app instead, so the button always does something useful.
+ */
+export function CopyEmail({ className = "", children }: { className?: string; children?: ReactNode }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -21,8 +25,16 @@ export function CopyEmail({ className = "", label }: { className?: string; label
   };
 
   return (
-    <button type="button" onClick={onClick} className={className}>
-      <span aria-live="polite">{copied ? "Copied to clipboard" : (label ?? profile.email)}</span>
+    <button type="button" onClick={onClick} className={className} title={`Copy ${profile.email}`}>
+      <span aria-live="polite" className="inline-flex items-center gap-1.5">
+        {copied ? (
+          <>
+            <Check size={16} strokeWidth={2.2} aria-hidden="true" /> Email copied
+          </>
+        ) : (
+          (children ?? profile.email)
+        )}
+      </span>
     </button>
   );
 }
