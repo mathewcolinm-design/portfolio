@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* ---------- Theme tokens ----------
+   The page swaps between these two palettes as sections scroll past
+   (see useScrollTheme). Everything colour-related reads from these vars. */
+:root,
+[data-theme="dark"] {
+  --bg: #0e0e0c;
+  --fg: #f2f0ea;
+  --muted: #9a978f;
+  --line: rgb(242 240 234 / 0.12);
+  --card: #181816;
+  --card-2: #22221f;
+  --accent: #ff7a50;
+  --accent-ink: #0e0e0c;
+}
+
+[data-theme="light"] {
+  --bg: #f4f2ec;
+  --fg: #141412;
+  --muted: #625f58;
+  --line: rgb(20 20 18 / 0.12);
+  --card: #ffffff;
+  --card-2: #eae7df;
+  --accent: #c73c14;
+  --accent-ink: #ffffff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth palette change while scrolling. Every element that paints
+   with a token gets the same timing so nothing lags behind. */
+html,
+body,
+.theme-fade {
+  transition:
+    background-color 700ms var(--ease-out-soft),
+    color 700ms var(--ease-out-soft),
+    border-color 700ms var(--ease-out-soft);
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html,
+  body,
+  .theme-fade {
+    transition: none;
+  }
+}
+
+/* Fine grid used on project covers */
+.cover-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
