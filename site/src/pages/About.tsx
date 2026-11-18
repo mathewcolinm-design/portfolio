@@ -1,65 +1,92 @@
-import { CopyEmail } from "../components/CopyEmail";
-import { PageHeader } from "../components/PageHeader";
-import { Container, ToolIcon, buttonSecondary } from "../components/ui";
-import { about, aiWorkflow } from "../data/content";
+import { Closing } from "../components/Closing";
+import { Note, Section, Statement } from "../components/ui";
+import { about, aiWorkflow, education, jobs, profile, skills, tools } from "../data/content";
+
+const row = "flex items-baseline justify-between gap-6 border-b border-line py-3 text-base";
 
 export function About() {
   return (
-    <>
-      <PageHeader />
-      <main id="main">
-        <section aria-labelledby="about-heading" className="pb-24">
-          <Container className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-            <dl className="h-fit divide-y divide-line rounded-[20px] border border-line bg-surface px-6 md:sticky md:top-28">
-              {about.facts.map((f) => (
-                <div key={f.label} className="py-5">
-                  <dt className="text-sm font-semibold text-muted">{f.label}</dt>
-                  <dd className="mt-1 text-lg font-medium">{f.value}</dd>
-                </div>
-              ))}
-            </dl>
+    <main id="main">
+      <Section divider={false}>
+        <div className="pt-4 md:pt-8">
+          <Note>{profile.availability}</Note>
+          <div className="mt-4">
+            <Statement as="h1" ink={about.hello} soft={` ${about.lead}`} />
+          </div>
+          <div className="mt-8 max-w-[54ch] space-y-4 text-base leading-relaxed text-muted">
+            {about.bio.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+        </div>
+      </Section>
 
-            <div>
-              <h2 id="about-heading" className="text-[28px] font-medium leading-tight tracking-[-0.02em] md:text-[32px]">
-                {about.hello}
-                <span className="block text-muted">{about.lead}</span>
-              </h2>
-              <div className="mt-8 max-w-[62ch] space-y-5 text-lg leading-relaxed text-muted">
-                {about.bio.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
+      <Section id="experience" title="Experience" sub="Where I’ve worked since 2020">
+        <ol className="border-t border-line">
+          {jobs.map((j) => (
+            <li key={j.company + j.dates} className="border-b border-line py-5">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-base">
+                <h3>
+                  {j.role} <span className="text-muted">at</span> {j.company}
+                </h3>
+                <p className="text-muted tabular-nums">{j.dates}</p>
               </div>
-              <CopyEmail className={`${buttonSecondary} mt-8`}>Email me</CopyEmail>
-            </div>
-          </Container>
-        </section>
+              <p className="mt-2 max-w-[54ch] text-base leading-relaxed text-muted">{j.text}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
-        <section aria-labelledby="workflow-heading" className="pb-24 md:pb-28">
-          <Container className="grid gap-12 border-t border-line pt-20 md:grid-cols-[0.85fr_1.15fr] md:gap-16 md:pt-24">
-            <div>
-              <h2 id="workflow-heading" className="text-[28px] font-medium leading-tight tracking-[-0.02em] md:text-[32px]">
-                How I work
-                <span className="block text-muted">Design first, then tools that scale it.</span>
-              </h2>
-              <p className="mt-6 max-w-[46ch] text-lg leading-relaxed text-muted">
-                I design the system by hand, then build AI-assisted workflows around it, so the team can produce
-                more on-brand work without the quality dropping.
-              </p>
-            </div>
-            <ul className="divide-y divide-line border-y border-line">
-              {aiWorkflow.map((t) => (
-                <li key={t.name} className="flex items-center gap-4 py-4">
-                  <ToolIcon icon={t.icon} letters={t.letters} size={40} />
-                  <div>
-                    <p className="font-semibold">{t.name}</p>
-                    <p className="text-muted">{t.use}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </section>
-      </main>
-    </>
+      <Section id="workflow" title="How I work" sub="Design first, then tools that scale it">
+        <p className="max-w-[54ch] text-base leading-relaxed text-muted">
+          I design the system by hand, then build AI-assisted workflows around it, so a small team can produce more
+          on-brand work without the quality dropping.
+        </p>
+        <ul className="mt-6 border-t border-line">
+          {aiWorkflow.map((t) => (
+            <li key={t.name} className={row}>
+              <span>{t.name}</span>
+              <span className="text-right text-muted">{t.use}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="tools" title="Tools" sub="What I design with">
+        <ul className="border-t border-line">
+          {tools.map((t) => (
+            <li key={t.name} className={row}>
+              <span>{t.name}</span>
+              <span className="text-right text-muted">{t.use}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="skills" title="Skills" sub="What I bring">
+        <ul className="flex flex-wrap gap-2">
+          {skills.map((s) => (
+            <li key={s} className="rounded-[10px] bg-tile px-3.5 py-2 text-[15px]">
+              {s}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="education" title="Education" sub="And certification">
+        <ul className="border-t border-line">
+          {education.map((e) => (
+            <li key={e.name} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 border-b border-line py-3 text-base">
+              <span>
+                {e.name} <span className="text-muted">· {e.place}</span>
+              </span>
+              <span className="text-muted tabular-nums">{e.dates}</span>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Closing />
+    </main>
   );
 }

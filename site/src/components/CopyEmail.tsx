@@ -29,7 +29,7 @@ export function CopyEmail({ className = "", children }: { className?: string; ch
       <span aria-live="polite" className="inline-flex items-center gap-1.5">
         {copied ? (
           <>
-            <Check size={16} strokeWidth={2.2} aria-hidden="true" /> Email copied
+            <Check size={16} strokeWidth={1.5} aria-hidden="true" /> Email copied
           </>
         ) : (
           (children ?? profile.email)

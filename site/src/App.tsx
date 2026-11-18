@@ -1,14 +1,14 @@
 import { MotionConfig } from "motion/react";
 import { useEffect } from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { Footer } from "./components/Footer";
-import { Nav } from "./components/Nav";
+import { Header } from "./components/Header";
 import { About } from "./pages/About";
-import { CaseStudy } from "./pages/CaseStudy";
-import { Experiments } from "./pages/Experiments";
+import { Contact } from "./pages/Contact";
+import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
-import { Resume } from "./pages/Resume";
-import { Work } from "./pages/Work";
+import { Project } from "./pages/Project";
+import { Projects } from "./pages/Projects";
 
 /** Scrolls to #hash targets, or to the top on a new page. */
 function ScrollManager() {
@@ -23,26 +23,32 @@ function ScrollManager() {
   return null;
 }
 
-function Layout() {
-  const { pathname } = useLocation();
-  const isCase = pathname.startsWith("/work/");
+/** Old case study links (/work/<slug>) keep working. */
+function OldProjectLink() {
+  const { slug } = useParams();
+  return <Navigate to={`/projects/${slug}`} replace />;
+}
 
+function Layout() {
   return (
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-fg"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-[10px] focus:bg-fg focus:px-4 focus:py-2 focus:text-white"
       >
         Skip to content
       </a>
       <ScrollManager />
-      {!isCase && <Nav />}
+      <Header />
       <Routes>
-        <Route path="/" element={<Work />} />
-        <Route path="/experiments" element={<Experiments />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<Project />} />
         <Route path="/about" element={<About />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="/work/:slug" element={<CaseStudy />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/work/:slug" element={<OldProjectLink />} />
+        <Route path="/resume" element={<Navigate to="/about#experience" replace />} />
+        <Route path="/experiments" element={<Navigate to="/projects#other" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
