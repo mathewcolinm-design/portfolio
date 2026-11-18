@@ -7,22 +7,22 @@ related_targets: []
 
 # Portfolio site (all routes in site/src)
 
-Scope: whole site. Home, Projects, About (with résumé), Contact, and case studies. Visitor mode: Persuade for Home and Contact, Read for case studies and About.
+Scope: whole site. One long home page told in chapters, plus one case study page per project. Visitor mode: Persuade for the home opening and closing, Read for the chapters and case studies.
 
-Audience and job: hiring managers judging a product designer quickly, then reading one or two case studies. Action: open a case study, then get in touch.
+Audience and job: hiring managers judging a product designer quickly, then reading one or two case studies. Action: open a case study, then email.
 
-Constraints: no photo of Mathew; no phone number; light mode only; every claim from the résumé or supplied assets; project visuals arrive later, so placeholders must read as placeholders; no testimonials or client logos (none supplied).
+Constraints: no photo of Mathew; no phone number; light mode only; every claim from the résumé or supplied assets; placeholders must read as placeholders; no testimonials or client logos; smooth scrolling requested by Mathew (must respect reduced motion).
 
 ## Direction contract
 
-THESIS: A quiet, white, single-column portfolio in the Formo manner, centred on the page instead of Formo's offset right column. Words and framed work carry it; refuses a split hero, stat rows and card grids.
+THESIS: The portfolio is a single story read in chapters (Work, How I work, Path, Say hello), with a progress rail that tells you where you are in it. Refuses the template stack of hero, card grid, services and logos, and refuses copying the reference's layout.
 
-OWN-WORLD: Pure white ground, near-black ink, two greys (body grey, and a lighter grey for the soft half of large two-tone statements). Geist throughout, regular weight, tight negative tracking on large text. Hairline dividers between sections across a 1120px frame. Flat light-grey tiles hold the work with small radii. Small thin plus marks beside section titles, thin up-right arrows on text links, one grey pill call to action in the header.
+OWN-WORLD: The settled Formo-derived world: pure white ground, near-black ink, body grey and a soft grey for the quiet half of large statements, Geist regular, hairline dividers, flat grey tiles with 10px radius, thin Lucide strokes, no accent colour and no shadows.
 
-STORY: The visitor reads one two-tone sentence that says what Mathew is, sees four framed projects, learns he came from the support desk, scans what he does and where he has worked, and gets in touch.
+STORY: The opening says who Mathew is in one sentence; Work shows six projects in a wide, pair, wide rhythm; How I work names what he does and the tools; Path walks up from the Jaya TV internship and the Tech Mahindra support desk to Certinal; Say hello ends on the email address.
 
-FIRST VIEWPORT: Header with the name wordmark left, three links and a grey "Get in touch" pill right, hairline below. Centred 720px column: plus mark with "Open to full-time product design roles", a 40px two-tone statement, a "Get in touch" arrow link. Hairline, then the "Selected work" title and the top of the first tile.
+FIRST VIEWPORT: Slim header (wordmark left, "Get in touch" right). An oversized two-tone opening statement across the centred content column, about 5rem on desktop, with availability and a "Start with the work" link beneath. On desktop the chapter rail sits in the right margin: four chapter names, the first active, a hairline beside them that fills as you read.
 
-FORM: Formo-style minimal portfolio, centred. seed: none (pinned) "Use this as style reference and recreate my portfolio [formo.framer.media]" with "I want them center". Signature interaction: text-link arrows travel up-right on hover, and work tiles ease their image in on hover.
+FORM: Chapters with a progress rail, list position 5 of 7. seed:c2be6b296eaa8b9b. Signature interaction: the rail's hairline fills with scroll progress and the active chapter name steps forward; on phones a thin bar under the header does the same with the chapter name. Smooth (Lenis) scrolling throughout, off under reduced motion.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

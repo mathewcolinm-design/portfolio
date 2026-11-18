@@ -1,59 +1,24 @@
-import { Link } from "react-router";
+import { ArrowUp } from "lucide-react";
+import { useLenis } from "lenis/react";
 import { profile } from "../data/content";
-import { CopyEmail } from "./CopyEmail";
-import { Column, Frame } from "./ui";
-
-const navigate = [
-  { to: "/", label: "Home" },
-  { to: "/projects", label: "Projects" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
-];
-
-const linkClass = "text-base text-muted transition-colors duration-300 hover:text-fg";
+import { Column } from "./ui";
 
 export function Footer() {
+  const lenis = useLenis();
+  const toTop = () => (lenis ? lenis.scrollTo(0) : window.scrollTo({ top: 0 }));
+
   return (
     <footer>
-      <Frame>
-        <div className="border-t border-line py-14">
-          <Column className="grid gap-10 sm:grid-cols-[1.4fr_1fr_1fr]">
-            <p className="text-[26px] leading-none font-medium tracking-[-0.05em]">{profile.name}</p>
-            <div>
-              <h2 className="text-base">Navigate</h2>
-              <ul className="mt-3 space-y-1.5">
-                {navigate.map((l) => (
-                  <li key={l.to}>
-                    <Link to={l.to} className={linkClass}>
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-base">Connect</h2>
-              <ul className="mt-3 space-y-1.5">
-                <li>
-                  <a href={profile.linkedin} target="_blank" rel="noreferrer" className={linkClass}>
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <CopyEmail className={`${linkClass} text-left`}>Copy email</CopyEmail>
-                </li>
-              </ul>
-            </div>
-          </Column>
+      <Column>
+        <div className="flex items-center justify-between gap-4 border-t border-line py-6 text-[15px] text-muted">
+          <p>
+            © {new Date().getFullYear()} {profile.name}
+          </p>
+          <button type="button" onClick={toTop} className="inline-flex items-center gap-1.5 transition-colors hover:text-fg">
+            Back to top <ArrowUp size={15} strokeWidth={1.5} aria-hidden="true" />
+          </button>
         </div>
-        <div className="border-t border-line py-5">
-          <Column>
-            <p className="text-[15px] text-muted">
-              © {new Date().getFullYear()} {profile.name}
-            </p>
-          </Column>
-        </div>
-      </Frame>
+      </Column>
     </footer>
   );
 }

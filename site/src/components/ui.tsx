@@ -2,55 +2,25 @@ import { ArrowUpRight, Plus } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 
-/** Outer 1120px frame. Hairline dividers and the header span this width. */
+/** Outer 1120px frame for the header, footer and hairlines. */
 export function Frame({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-[1120px] px-5 md:px-6 ${className}`}>{children}</div>;
 }
 
-/** The centred reading column every page's content sits in. */
-export function Column({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-[720px] ${className}`}>{children}</div>;
-}
-
-/** A page section: hairline on top, generous rest, content in the centred column. */
-export function Section({
-  id,
-  title,
-  sub,
+/** Centred column. `text` for reading (760px), `wide` for work (960px). */
+export function Column({
   children,
-  divider = true,
+  className = "",
+  width = "text",
 }: {
-  id?: string;
-  title?: string;
-  sub?: string;
   children: ReactNode;
-  divider?: boolean;
+  className?: string;
+  width?: "text" | "wide";
 }) {
-  const headingId = id ? `${id}-h` : undefined;
   return (
-    <section id={id} aria-labelledby={title ? headingId : undefined} className="scroll-mt-24">
-      <Frame>
-        <div className={`${divider ? "border-t border-line" : ""} py-20 md:py-24`}>
-          <Column>
-            {title && <SectionTitle id={headingId} title={title} sub={sub} />}
-            <div className={title ? "mt-9" : ""}>{children}</div>
-          </Column>
-        </div>
-      </Frame>
-    </section>
-  );
-}
-
-/** Thin plus mark, ink title, grey continuation underneath. */
-export function SectionTitle({ id, title, sub }: { id?: string; title: string; sub?: string }) {
-  return (
-    <h2 id={id} className="flex gap-2.5 text-base leading-snug">
-      <Plus size={14} strokeWidth={1.25} aria-hidden="true" className="mt-[5px] shrink-0" />
-      <span>
-        <span className="block">{title}</span>
-        {sub && <span className="block text-muted">{sub}</span>}
-      </span>
-    </h2>
+    <div className={`mx-auto w-full px-5 md:px-6 ${width === "wide" ? "max-w-[1008px]" : "max-w-[808px]"} ${className}`}>
+      {children}
+    </div>
   );
 }
 
@@ -64,24 +34,28 @@ export function Note({ children }: { children: ReactNode }) {
   );
 }
 
+const statementScale = {
+  xl: "text-[clamp(2.25rem,4.4vw,3.75rem)] leading-[1.04] tracking-[-0.045em]",
+  lg: "text-[clamp(2rem,4.4vw,3rem)] leading-[1.06] tracking-[-0.04em]",
+  md: "text-[clamp(1.6rem,3.2vw,2.1rem)] leading-[1.12] tracking-[-0.035em]",
+};
+
 /** Large two-tone statement: ink, then a softer grey continuation. */
 export function Statement({
   as: Tag = "p",
   ink,
   soft,
   size = "lg",
+  id,
 }: {
   as?: "h1" | "h2" | "p";
   ink: string;
   soft?: string;
-  size?: "lg" | "md";
+  size?: keyof typeof statementScale;
+  id?: string;
 }) {
-  const scale =
-    size === "lg"
-      ? "text-[clamp(2rem,4.4vw,2.5rem)] leading-[1.08] tracking-[-0.04em]"
-      : "text-[clamp(1.75rem,3.6vw,2.25rem)] leading-[1.1] tracking-[-0.04em]";
   return (
-    <Tag className={`${scale} font-normal`}>
+    <Tag id={id} className={`${statementScale[size]} font-normal`}>
       {ink}
       {soft && <span className="text-soft">{soft}</span>}
     </Tag>
@@ -124,7 +98,7 @@ export function ArrowLink({ to, children, external = false }: { to: string; chil
 export function Tile({
   src,
   alt,
-  ratio = "720 / 590",
+  ratio = "16 / 9",
   zoom = false,
   placeholder = "Screens coming soon",
 }: {
@@ -152,8 +126,8 @@ export function Tile({
   );
 }
 
-export const pillButton =
-  "inline-flex h-[42px] items-center gap-1.5 rounded-[10px] bg-tile px-4 text-base text-fg transition-colors duration-300 hover:bg-[#e8e8e8]";
+/** Hairline row: label left, value right. */
+export const ruledRow = "flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 border-b border-line py-3 text-base";
 
-export const solidButton =
-  "inline-flex h-12 w-full items-center justify-center rounded-[10px] bg-fg px-5 text-base text-white transition-opacity duration-300 hover:opacity-85 disabled:opacity-40";
+export const pillButton =
+  "inline-flex h-10 items-center gap-1.5 rounded-[10px] bg-tile px-4 text-base text-fg transition-colors duration-300 hover:bg-[#e8e8e8]";

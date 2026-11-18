@@ -10,20 +10,20 @@ export const profile = {
   role: "Product designer",
   availability: "Open to full-time product design roles",
   /** Home statement: the ink part, then the soft grey continuation. */
-  statement: ["Mathew Colin is a product designer for SaaS, fintech and Web3", " — bringing brand, motion and AI-assisted workflows that help teams ship more."],
+  statement: ["Mathew Colin designs complex products so they feel clear.", " A product designer for SaaS, fintech and Web3, with brand and motion in the toolkit."],
   tagline:
     "Product designer for SaaS, fintech and Web3. I also do brand and motion, and build AI workflows that help teams ship more.",
   email: "mathewcolinm@gmail.com",
   linkedin: "https://linkedin.com/in/mathew-colin/",
 };
 
-/** Projects shown on the home page, in order. The Projects page shows all. */
-export const featured = ["tetra", "fxdx", "avitus", "certinal-brand"];
-
-export const homeAbout = {
-  statement: ["I came to design from the support desk.", " Two years solving people's internet and in-app problems taught me where products frustrate them."],
-  body: "Since 2023 I've designed across SaaS, fintech, Web3 and healthcare at Swftconnect, MATQCODE, Asva Labs and Certinal.",
+export const chapters = {
+  work: { title: "Work.", soft: " Six projects across trading platforms, a Web3 game, a rebrand and product films." },
+  how: { title: "How I work.", soft: " I design the system by hand, then build the tools that scale it." },
+  path: { title: "Path.", soft: " From a support desk in Chennai to leading UI/UX for a trading platform." },
+  hello: { title: "Say hello.", soft: " I’m open to full-time product design roles." },
 };
+
 
 export const services = [
   { name: "Product & UX design", line: "Flows, wireframes and production-ready interfaces for complex products." },

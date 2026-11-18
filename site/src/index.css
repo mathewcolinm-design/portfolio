@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource-variable/geist";
+@import "lenis/dist/lenis.css";
 
 /* ---------- Palette ----------
    Light only, after the Formo reference: white ground, near-black ink and
@@ -34,7 +35,6 @@ html {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
   scrollbar-color: rgb(0 0 0 / 0.25) var(--bg);
   caret-color: var(--fg);
   accent-color: var(--fg);
@@ -79,8 +79,3 @@ a {
   text-decoration-thickness: 1px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}

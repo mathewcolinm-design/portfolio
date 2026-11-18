@@ -1,32 +1,48 @@
+import { ReactLenis, useLenis } from "lenis/react";
 import { MotionConfig } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
-import { About } from "./pages/About";
-import { Contact } from "./pages/Contact";
-import { Home } from "./pages/Home";
+import { Case } from "./pages/Case";
 import { NotFound } from "./pages/NotFound";
-import { Project } from "./pages/Project";
-import { Projects } from "./pages/Projects";
+import { Story } from "./pages/Story";
 
-/** Scrolls to #hash targets, or to the top on a new page. */
+/** Scrolls to #hash targets, or jumps to the top on a new page. */
 function ScrollManager() {
   const { pathname, hash } = useLocation();
+  const lenis = useLenis();
   useEffect(() => {
-    if (hash) {
-      requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView());
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [pathname, hash]);
+    const id = hash.slice(1);
+    requestAnimationFrame(() => {
+      const el = id ? document.getElementById(id) : null;
+      const offset = window.innerWidth >= 1280 ? -72 : -112;
+      if (el) {
+        if (lenis) lenis.scrollTo(el, { offset, immediate: true });
+        else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset });
+      } else if (lenis) lenis.scrollTo(0, { immediate: true });
+      else window.scrollTo(0, 0);
+    });
+  }, [pathname, hash, lenis]);
   return null;
 }
 
-/** Old case study links (/work/<slug>) keep working. */
+/** Old links from earlier versions of the site keep working. */
 function OldProjectLink() {
   const { slug } = useParams();
-  return <Navigate to={`/projects/${slug}`} replace />;
+  return <Navigate to={`/work/${slug}`} replace />;
+}
+
+function usePrefersReducedMotion() {
+  const query = "(prefers-reduced-motion: reduce)";
+  const [reduced, setReduced] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = () => setReduced(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+  return reduced;
 }
 
 function Layout() {
@@ -41,14 +57,14 @@ function Layout() {
       <ScrollManager />
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:slug" element={<Project />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/work/:slug" element={<OldProjectLink />} />
-        <Route path="/resume" element={<Navigate to="/about#experience" replace />} />
-        <Route path="/experiments" element={<Navigate to="/projects#other" replace />} />
+        <Route path="/" element={<Story />} />
+        <Route path="/work/:slug" element={<Case />} />
+        <Route path="/projects/:slug" element={<OldProjectLink />} />
+        <Route path="/projects" element={<Navigate to="/#work" replace />} />
+        <Route path="/experiments" element={<Navigate to="/#work" replace />} />
+        <Route path="/about" element={<Navigate to="/#path" replace />} />
+        <Route path="/resume" element={<Navigate to="/#path" replace />} />
+        <Route path="/contact" element={<Navigate to="/#hello" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
@@ -57,11 +73,20 @@ function Layout() {
 }
 
 export default function App() {
-  return (
+  const reduced = usePrefersReducedMotion();
+  const site = (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <MotionConfig reducedMotion="user">
         <Layout />
       </MotionConfig>
     </BrowserRouter>
+  );
+
+  // Smooth, eased scrolling, unless the visitor has asked for less motion.
+  if (reduced) return site;
+  return (
+    <ReactLenis root options={{ lerp: 0.09, smoothWheel: true }}>
+      {site}
+    </ReactLenis>
   );
 }

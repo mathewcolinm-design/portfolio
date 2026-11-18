@@ -1,84 +1,34 @@
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router";
+import { ArrowUpRight } from "lucide-react";
+import type { MouseEvent } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { profile } from "../data/content";
+import { useScrollToId } from "./chapters";
 import { Frame, pillButton } from "./ui";
 
-const links = [
-  { to: "/projects", label: "Projects" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
-];
-
+/** Slim header: the name, and one way to get in touch. Chapters live in the rail. */
 export function Header() {
-  const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const scrollTo = useScrollToId();
 
-  useEffect(() => setOpen(false), [pathname]);
+  const toHello = (e: MouseEvent) => {
+    e.preventDefault();
+    if (pathname === "/") scrollTo("hello");
+    else navigate("/#hello");
+  };
 
   return (
-    <header className="sticky top-0 z-50 bg-[rgb(255_255_255/0.88)] backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-[rgb(255_255_255/0.9)] backdrop-blur-md">
       <Frame>
-        <div className="flex h-[72px] items-center justify-between border-b border-line">
-          <Link to="/" className="text-[28px] leading-none font-medium tracking-[-0.05em] md:text-[34px]">
+        <div className="flex h-16 items-center justify-between">
+          <Link to="/" className="text-[26px] leading-none font-medium tracking-[-0.05em] md:text-[30px]">
             {profile.name}
           </Link>
-
-          <nav aria-label="Main" className="hidden items-center gap-6 md:flex">
-            {links.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                className={({ isActive }) =>
-                  `text-base transition-colors duration-300 ${isActive ? "text-fg" : "text-muted hover:text-fg"}`
-                }
-              >
-                {l.label}
-              </NavLink>
-            ))}
-            <Link to="/contact" className={`${pillButton} ml-1`}>
-              Get in touch <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
-            </Link>
-          </nav>
-
-          <button
-            type="button"
-            className="-mr-2 grid h-10 w-10 place-items-center rounded-[10px] md:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
-          </button>
+          <a href="/#hello" onClick={toHello} className={pillButton}>
+            Get in touch <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
+          </a>
         </div>
       </Frame>
-
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            id="mobile-menu"
-            aria-label="Main"
-            className="border-b border-line bg-bg md:hidden"
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Frame className="flex flex-col gap-1 py-4">
-              {links.map((l) => (
-                <NavLink key={l.to} to={l.to} className="py-2 text-[22px] tracking-[-0.03em]">
-                  {l.label}
-                </NavLink>
-              ))}
-              <Link to="/contact" className={`${pillButton} mt-3 w-fit`}>
-                Get in touch <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
-              </Link>
-            </Frame>
-          </motion.nav>
-        )}
-      </AnimatePresence>
     </header>
   );
 }
