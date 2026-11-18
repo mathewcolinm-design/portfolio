@@ -186,7 +186,7 @@ export const experiments: Experiment[] = [
   { title: "Certinal product film", note: "Frames from a product demo film", ratio: "16 / 10", mat: "peach" },
   { title: "Certinal event booth", note: "The new identity at full scale", ratio: "4 / 3", mat: "mint" },
   { title: "Asset workflow", note: "Website assets generated through Figma", ratio: "1 / 1", mat: "sky" },
-  { title: "Avitus pitch deck", note: "Investor deck for the beta", ratio: "16 / 10", mat: "lilac" },
+  { title: "Avitus pitch deck", note: "Investor pitch deck for Avitus", ratio: "16 / 10", mat: "lilac" },
   { title: "Broadcast graphics", note: "Graphics from my time at Jaya TV", ratio: "4 / 5", mat: "peach" },
 ];
 
