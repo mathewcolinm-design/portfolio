@@ -111,7 +111,7 @@ function CaseStudyBody({ project: p, next }: { project: Project; next: Project }
     <>
       <CaseNav sections={sections} />
       <main id="main">
-        <header data-section-theme="light" className="pt-32 md:pt-40">
+        <header className="pt-32 md:pt-40">
           <Container narrow>
             <h1 className="text-[clamp(2rem,4.2vw,2.75rem)] font-medium leading-[1.1] tracking-[-0.025em] text-balance">
               {p.caption}
@@ -137,7 +137,7 @@ function CaseStudyBody({ project: p, next }: { project: Project; next: Project }
           </Container>
         </header>
 
-        <section data-section-theme="light" aria-labelledby="overview-h" className="pt-20">
+        <section aria-labelledby="overview-h" className="pt-20">
           <Container narrow>
             <div id="overview" className="scroll-mt-28">
               <SectionHeading id="overview-h">Overview</SectionHeading>
@@ -157,8 +157,8 @@ function CaseStudyBody({ project: p, next }: { project: Project; next: Project }
           </Container>
         </section>
 
-        <section data-section-theme="dark" aria-label="Results and designs" className="py-24">
-          <Container narrow>
+        <section aria-label="Results and designs" className="pb-24">
+          <Container narrow className="border-t border-line pt-20">
             {p.metrics && (
               <div id="results" className="mb-20 scroll-mt-28">
                 <SectionHeading id="results-h">Results</SectionHeading>
@@ -193,7 +193,7 @@ function CaseStudyBody({ project: p, next }: { project: Project; next: Project }
           </Container>
         </section>
 
-        <section data-section-theme="light" aria-labelledby="next-h" className="pt-20 pb-6">
+        <section aria-labelledby="next-h" className="pt-20 pb-6">
           <Container narrow>
             <h2 id="next-h" className="text-[22px] font-medium tracking-[-0.015em]">
               Next project

@@ -1,6 +1,6 @@
 ---
 name: Mathew Colin Portfolio
-description: A calm, light, tabbed product-design portfolio where framed work carries every page and the palette turns navy where visitors linger.
+description: A calm, light, tabbed product-design portfolio where framed work carries every page. Light mode only.
 colors:
   paper: "#f8f9fa"
   paper-surface: "#eef0f2"
@@ -10,14 +10,6 @@ colors:
   ink-line: "rgb(10 22 40 / 0.1)"
   focus-violet: "#4a2fd6"
   positive-green: "#0f7a3d"
-  night-bg: "#0b1322"
-  night-surface: "#16213a"
-  night-raised: "#1d2a45"
-  night-ink: "#eef1f6"
-  night-muted: "#a4adbb"
-  night-line: "rgb(238 241 246 / 0.12)"
-  night-focus: "#b2a6ff"
-  night-positive: "#7ee2a8"
   mat-caption: "#3a4250"
 typography:
   display:
@@ -106,8 +98,8 @@ components:
     rounded: "{rounded.chip}"
     padding: "10px 16px"
   metric-card:
-    backgroundColor: "{colors.night-surface}"
-    textColor: "{colors.night-positive}"
+    backgroundColor: "{colors.paper-surface}"
+    textColor: "{colors.positive-green}"
     typography: "{typography.metric}"
     rounded: "{rounded.card}"
     padding: "24px"
@@ -122,37 +114,37 @@ components:
 
 ## Overview
 
-**Creative North Star: "The Framed Gallery at Dusk"**
+**Creative North Star: "The Framed Gallery"**
 
-A quiet, cool-white gallery where every piece of work hangs on a soft pastel mat, and the room dims to deep navy as you walk in to look closely. The page is the wall, not the exhibit: chrome is small, type is modest, and colour belongs to the mats. Light is home; the navy night takes over only in the sections where people spend time with the work (project grid, design galleries, experiments, career history, the "how I work" band), and every token crossfades between the two over 700ms so the shift reads as lighting, not as a page change.
+A quiet, cool-white gallery where every piece of work hangs on a soft pastel mat. The page is the wall, not the exhibit: chrome is small, type is modest, and colour belongs to the mats. The site is light mode only; sections are separated by 1px dividers and vertical rest, never by a change of ground colour.
 
-Density is low and calm. One 1152px column, two-up framed cards with long captions underneath, generous vertical rest between sections. Navigation lives in a single floating frosted pill at the top centre with a white pill that glides between tabs. The only saturated light on the page is the violet-periwinkle-pink light leak behind the header, which fades out entirely in navy sections.
+Density is low and calm. One 1152px column, two-up framed cards with long captions underneath, generous vertical rest between sections. Navigation lives in a single floating frosted pill at the top centre with a white pill that glides between tabs. The only saturated light on the page is the violet-periwinkle-pink light leak behind the header, behind the header.
 
 **Key Characteristics:**
-- Cool near-white ground, deep navy ink, slate greys; a navy night palette that mirrors every role.
-- Work sits on pastel gradient mats with large soft radii (20 to 24px); the mats stay light in both themes.
+- Cool near-white ground, deep navy ink, slate greys. Light mode only.
+- Work sits on pastel gradient mats with large soft radii (20 to 24px).
 - Manrope throughout at modest sizes, medium weight for headings, tight negative tracking.
 - Frosted pill navigation with a spring-gliding active pill.
-- Scroll-driven theme: sections declare light or dark, the page follows.
+- Thin 1px dividers between major sections, as in the reference.
 
 ## Colors
 
-A two-state palette: a cool paper day and a navy night, each with the same six roles, plus four pastel mats that never change.
+A single light palette with six roles, plus four pastel mats.
 
 ### Primary
-- **Navy Ink** (paper theme `navy-ink`): text, primary button fill, monogram base. Becomes **Night Ink** (`night-ink`) in dark sections, and the primary button inverts to light-on-navy.
+- **Navy Ink** (paper theme `navy-ink`): text, primary button fill, monogram base.
 
 ### Tertiary
-- **Focus Violet** (`focus-violet`; `night-focus` in dark): reserved for focus rings, text selection (28% mix), caret and native form accents. It appears nowhere as decoration.
-- **Positive Green** (`positive-green`; `night-positive` in dark): metric values on case-study result cards, and nothing else.
+- **Focus Violet** (`focus-violet`): reserved for focus rings, text selection (28% mix), caret and native form accents. It appears nowhere as decoration.
+- **Positive Green** (`positive-green`): metric values on case-study result cards, and nothing else.
 
 ### Neutral
-- **Paper** (`paper` / `night-bg`): page background.
-- **Paper Surface** (`paper-surface` / `night-surface`): secondary buttons, chips, tool rows, info panels, metric cards, the nav track (at 82% with backdrop blur).
-- **Paper Raised** (`paper-raised` / `night-raised`): the active nav pill, secondary-button hover, job-initial tiles.
-- **Slate Muted** (`slate-muted` / `night-muted`): body copy, captions, metadata, inactive tabs, the soft half of split headings.
-- **Ink Line** (`ink-line` / `night-line`): 1px borders, dividers, dashed list rules.
-- **Mat Caption** (`mat-caption`): fixed dark slate for text set on a pastel mat, which stays light in both themes.
+- **Paper** (`paper`): page background.
+- **Paper Surface** (`paper-surface`): secondary buttons, chips, tool rows, info panels, metric cards, the nav track (at 82% with backdrop blur).
+- **Paper Raised** (`paper-raised`): the active nav pill, secondary-button hover, job-initial tiles.
+- **Slate Muted** (`slate-muted`): body copy, captions, metadata, inactive tabs, the soft half of split headings.
+- **Ink Line** (`ink-line`): 1px borders, dividers, dashed list rules.
+- **Mat Caption** (`mat-caption`): fixed dark slate for text set on a pastel mat.
 
 ### Pastel Mats
 Four layered gradients (two radial blooms over a linear base), chosen per project so the grid has rhythm: **sky** (blue to lilac with a pink bloom), **peach** (apricot and rose over peach-to-periwinkle), **lilac** (lavender with coral and periwinkle blooms), **mint** (sea-glass with a periwinkle bloom). Exact stops live in the sidecar.
@@ -160,7 +152,7 @@ Four layered gradients (two radial blooms over a linear base), chosen per projec
 ### Named Rules
 **The Mats Hold the Colour Rule.** Saturated colour lives in the mats and the header light leak only. UI chrome stays navy, slate and paper.
 
-**The Mirrored Night Rule.** Every colour role has a night twin, and components read roles, never hard values, so a section flips theme without per-element overrides. The only exceptions are things sitting on a mat (Mat Caption, navy ink) because the mat itself does not flip.
+**The Light Only Rule.** The site has one theme. Components read colour roles, never hard values, and no section changes the page ground; emphasis comes from the mats, type and dividers.
 
 **The Violet Means Focus Rule.** The violet accent marks keyboard focus and selection. It is not a link colour, highlight, or brand stripe.
 
@@ -189,8 +181,6 @@ Four layered gradients (two radial blooms over a linear base), chosen per projec
 ## Layout
 
 A single centred column of 1152px (narrow variant 948px for case studies), with 20px side gutters on mobile and 32px from md up. The work grid is two columns from md with a 24px column gap and 48 to 56px row gap; experiments use a 2 to 3 column masonry. About uses an asymmetric 0.85fr / 1.15fr split with a sticky facts panel. Sections breathe on roughly 96px vertical rest (`py-24`, up to 112px). The header sits below a fixed nav (pt 96px on mobile so the floating pill never overlaps the monogram). Captions sit under frames, metadata right-aligned on desktop and stacked below on phones. Breakpoints follow Tailwind defaults (sm 640, md 768, lg 1024).
-
-Theme switching is spatial: any section marked light or dark claims the page theme once its top edge passes 30% of the viewport (the last section claims at 75%), and the browser theme-color follows.
 
 ## Elevation & Depth
 
@@ -239,8 +229,8 @@ The MC tile used instead of a portrait: navy diagonal gradient with a violet blo
 ## Do's and Don'ts
 
 ### Do:
-- **Do** put every piece of work on a pastel mat at 20px radius (24px for a case-study hero), and keep the mats light in both themes.
-- **Do** mark long-dwell sections `dark` and let the page crossfade; read colour roles, never hard theme values.
+- **Do** put every piece of work on a pastel mat at 20px radius (24px for a case-study hero).
+- **Do** separate major sections with a 1px Ink Line divider and vertical rest; read colour roles, never hard values.
 - **Do** keep headings at weight 500 with negative tracking, and use the two-tone ink/muted pairing for section titles.
 - **Do** keep reading text at 18px with relaxed leading and a 60 to 62ch measure, in Slate Muted.
 - **Do** use the frosted pill track with the gliding active pill for any tabbed navigation.
@@ -251,4 +241,4 @@ The MC tile used instead of a portrait: navy diagonal gradient with a violet blo
 - **Don't** put shadows on mats or content cards; shadows are for floating and pressable elements only.
 - **Don't** introduce bold display weights or a second typeface.
 - **Don't** use saturated colour in UI chrome; colour belongs to the mats and the header light leak.
-- **Don't** show the header light leak in navy sections (it is tied to the glow token, 0 in dark).
+- **Don't** add dark sections or a dark theme; the site is light mode only.

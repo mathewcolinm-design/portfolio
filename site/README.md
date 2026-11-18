@@ -35,6 +35,6 @@ All text lives in [`src/data/content.ts`](src/data/content.ts).
 
 Anything without an image shows a labelled "Screens coming soon" placeholder on its gradient mat.
 
-## Light and dark
+## Theme
 
-Each section has `data-section-theme="light"` or `"dark"`. Dark is used where the work is shown and where visitors linger (project grid, results and design galleries, experiments, career history). A section takes over once its top passes 30% down the screen, and the colours cross-fade over 0.7s. Palettes are the CSS variables at the top of [`src/index.css`](src/index.css); logic is in [`src/hooks/useScrollTheme.ts`](src/hooks/useScrollTheme.ts).
+Light mode only. Colours are the CSS variables at the top of [`src/index.css`](src/index.css).

@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import { Footer } from "./components/Footer";
 import { Nav } from "./components/Nav";
-import { useScrollTheme } from "./hooks/useScrollTheme";
 import { About } from "./pages/About";
 import { CaseStudy } from "./pages/CaseStudy";
 import { Experiments } from "./pages/Experiments";
@@ -26,7 +25,6 @@ function ScrollManager() {
 
 function Layout() {
   const { pathname } = useLocation();
-  useScrollTheme(pathname);
   const isCase = pathname.startsWith("/work/");
 
   return (

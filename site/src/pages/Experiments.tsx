@@ -7,7 +7,7 @@ export function Experiments() {
     <>
       <PageHeader />
       <main id="main">
-        <section data-section-theme="dark" aria-label="Experiments" className="pb-24">
+        <section aria-label="Experiments" className="pb-24">
           <Container>
             <ul className="gap-6 sm:columns-2 lg:columns-3">
               {experiments.map((e) => (

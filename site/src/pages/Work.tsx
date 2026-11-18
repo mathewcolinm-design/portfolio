@@ -8,7 +8,7 @@ export function Work() {
     <>
       <PageHeader />
       <main id="main">
-        <section id="work" data-section-theme="dark" aria-labelledby="work-h" className="scroll-mt-24 pb-24">
+        <section id="work" aria-labelledby="work-h" className="scroll-mt-24 pb-24">
           <Container>
             <h2 id="work-h" className="sr-only">
               Selected work

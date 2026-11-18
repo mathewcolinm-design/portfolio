@@ -5,7 +5,7 @@ import { Container, Monogram, buttonPrimary, buttonSecondary } from "./ui";
 
 /**
  * Intro block shared by the four main tabs: monogram, name, one-line pitch and
- * two actions. A soft light leak sits behind it and fades out in dark sections.
+ * two actions. A soft light leak sits behind it.
  */
 export function PageHeader() {
   const { pathname } = useLocation();
@@ -17,11 +17,10 @@ export function PageHeader() {
   };
 
   return (
-    <header data-section-theme="light" className="relative">
+    <header className="relative">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 -top-24 h-[560px] overflow-hidden"
-        style={{ opacity: "var(--glow)" }}
       >
         <div
           className="absolute -top-16 left-1/2 h-[560px] w-[1300px] -translate-x-[32%] blur-[56px]"

@@ -17,8 +17,8 @@ export function Resume() {
     <>
       <PageHeader />
       <main id="main">
-        <section data-section-theme="dark" aria-labelledby="exp-heading" className="pt-4 pb-20">
-          <Container>
+        <section aria-labelledby="exp-heading" className="pb-20">
+          <Container className="border-t border-line pt-14">
             <SplitHeading id="exp-heading" strong="Experience" soft="since 2020" />
             <ol className="mt-8">
               {jobs.map((j) => (
@@ -54,8 +54,8 @@ export function Resume() {
           </Container>
         </section>
 
-        <section data-section-theme="light" aria-labelledby="tools-heading" className="pt-24 pb-10">
-          <Container>
+        <section aria-labelledby="tools-heading" className="pb-10">
+          <Container className="border-t border-line pt-16">
             <SplitHeading id="tools-heading" strong="Tools" soft="powering my work" />
             <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {tools.map((t) => (

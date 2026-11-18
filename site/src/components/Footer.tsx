@@ -12,7 +12,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer data-section-theme="light" className="pt-6 pb-16">
+    <footer className="pt-6 pb-16">
       <Container>
         <div className="grid gap-12 border-t border-line pt-14 md:grid-cols-[1.6fr_0.8fr_1fr]">
           <div>

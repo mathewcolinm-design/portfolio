@@ -27,13 +27,13 @@ Reviewers arrive from a job application, LinkedIn or a résumé link, mostly on 
 - Pages: Work (home), Experiments, About, Résumé, and one case study page per project.
 - Built in React + Vite + Tailwind CSS + Motion, in `site/`. Deployed as a static site.
 - The repository is public and auto-pushes after every change.
-- No photo of Mathew anywhere on the site (his explicit choice).
+- No photo of Mathew anywhere on the site (Mathew's explicit choice).
 - No phone number on the site; contact is email and LinkedIn.
 
 ## Brand Commitments
 
 - Visual reference chosen by Mathew: the Tabfolio Pro Framer template (tabfoliopro.framer.ai). Follow its overall style and structure; do not copy its images, copy or template-specific artwork.
-- Theme: light like the reference, but key sections and anywhere visitors spend more time (long reading, galleries, résumé history) turn dark as they scroll in.
+- Theme: light mode only, like the reference (Mathew's explicit choice).
 
 ## Evidence on Hand
 

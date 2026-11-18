@@ -8,7 +8,7 @@ export function About() {
     <>
       <PageHeader />
       <main id="main">
-        <section data-section-theme="light" aria-labelledby="about-heading" className="pb-24">
+        <section aria-labelledby="about-heading" className="pb-24">
           <Container className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
             <dl className="h-fit divide-y divide-line rounded-[20px] border border-line bg-surface px-6 md:sticky md:top-28">
               {about.facts.map((f) => (
@@ -34,8 +34,8 @@ export function About() {
           </Container>
         </section>
 
-        <section data-section-theme="dark" aria-labelledby="workflow-heading" className="py-24 md:py-28">
-          <Container className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+        <section aria-labelledby="workflow-heading" className="pb-24 md:pb-28">
+          <Container className="grid gap-12 border-t border-line pt-20 md:grid-cols-[0.85fr_1.15fr] md:gap-16 md:pt-24">
             <div>
               <h2 id="workflow-heading" className="text-[28px] font-medium leading-tight tracking-[-0.02em] md:text-[32px]">
                 How I work

@@ -1,26 +1,11 @@
 @import "tailwindcss";
 @import "@fontsource-variable/manrope";
 
-/* ---------- Theme ----------
-   Light is home. Dark navy takes over where the work is shown and where
-   visitors linger (see useScrollTheme). The colour variables are registered
-   with @property so the browser can animate them: every element that reads
-   a token fades with the page, with no per-element transitions. */
+/* ---------- Palette ----------
+   Light only: cool paper ground, navy ink, slate greys. Strong colour lives
+   in the pastel mats behind the work and the header glow. */
 
-@property --bg { syntax: "<color>"; inherits: true; initial-value: #f8f9fa; }
-@property --surface { syntax: "<color>"; inherits: true; initial-value: #eef0f2; }
-@property --raised { syntax: "<color>"; inherits: true; initial-value: #ffffff; }
-@property --fg { syntax: "<color>"; inherits: true; initial-value: #0a1628; }
-@property --muted { syntax: "<color>"; inherits: true; initial-value: #565e68; }
-@property --line { syntax: "<color>"; inherits: true; initial-value: rgb(10 22 40 / 0.1); }
-@property --accent { syntax: "<color>"; inherits: true; initial-value: #4a2fd6; }
-@property --primary { syntax: "<color>"; inherits: true; initial-value: #0a1628; }
-@property --primary-fg { syntax: "<color>"; inherits: true; initial-value: #f8f9fa; }
-@property --positive { syntax: "<color>"; inherits: true; initial-value: #0f7a3d; }
-@property --glow { syntax: "<number>"; inherits: true; initial-value: 1; }
-
-:root,
-[data-theme="light"] {
+:root {
   --bg: #f8f9fa;
   --surface: #eef0f2;
   --raised: #ffffff;
@@ -31,21 +16,7 @@
   --primary: #0a1628;
   --primary-fg: #f8f9fa;
   --positive: #0f7a3d;
-  --glow: 1;
-}
-
-[data-theme="dark"] {
-  --bg: #0b1322;
-  --surface: #16213a;
-  --raised: #1d2a45;
-  --fg: #eef1f6;
-  --muted: #a4adbb;
-  --line: rgb(238 241 246 / 0.12);
-  --accent: #b2a6ff;
-  --primary: #eef1f6;
-  --primary-fg: #0b1322;
-  --positive: #7ee2a8;
-  --glow: 0;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -73,18 +44,6 @@ html {
   scrollbar-color: color-mix(in oklab, var(--fg) 28%, transparent) var(--bg);
   caret-color: var(--accent);
   accent-color: var(--accent);
-  transition:
-    --bg 700ms var(--ease-out-expo),
-    --surface 700ms var(--ease-out-expo),
-    --raised 700ms var(--ease-out-expo),
-    --fg 700ms var(--ease-out-expo),
-    --muted 700ms var(--ease-out-expo),
-    --line 700ms var(--ease-out-expo),
-    --accent 700ms var(--ease-out-expo),
-    --primary 700ms var(--ease-out-expo),
-    --primary-fg 700ms var(--ease-out-expo),
-    --positive 700ms var(--ease-out-expo),
-    --glow 700ms var(--ease-out-expo);
 }
 
 body {
@@ -119,6 +78,5 @@ a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-    transition: none;
   }
 }
