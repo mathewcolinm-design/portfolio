@@ -100,7 +100,7 @@ export function Tile({
   alt,
   ratio = "16 / 9",
   zoom = false,
-  placeholder = "Screens coming soon",
+  placeholder = "Screens on the way",
 }: {
   src?: string;
   alt: string;

@@ -12,12 +12,11 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
         ratio={shape === "wide" ? (project.cover ? "16 / 9" : "16 / 7") : "4 / 5"}
         zoom
         placeholder={
-          <div aria-hidden="true" className="flex h-full flex-col justify-between p-6 md:p-8">
-            <p className="text-[clamp(1.5rem,2.6vw,2.25rem)] leading-none tracking-[-0.04em]">{project.name}</p>
-            <div className="text-[15px] text-muted">
-              <p className="text-fg">Screens on the way</p>
-              <p className="mt-0.5 max-w-[40ch]">{project.shots.map((s) => s.label).join(" · ")}</p>
-            </div>
+          <div className="flex h-full flex-col justify-between p-6 md:p-8">
+            <p className="text-[15px]">Screens on the way</p>
+            <p className="max-w-[24ch] text-[clamp(1.25rem,2.2vw,1.75rem)] leading-[1.15] tracking-[-0.03em] text-muted">
+              {project.shots.map((s) => s.label).join(", ")}
+            </p>
           </div>
         }
       />
