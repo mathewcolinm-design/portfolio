@@ -1,383 +1,355 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-18T19:08:57.544Z",
+  "generatedAt": "2026-11-18T19:27:50.581343Z",
   "title": "Design System: Mathew Colin Portfolio",
   "extensions": {
     "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "canonical": "#0a0a0a",
+        "cssVar": "--fg",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#262626",
+          "#3d3d3d",
+          "#555555",
+          "#707070",
+          "#959595",
+          "#c2c2c2",
+          "#ededed"
+        ]
+      },
       "paper": {
         "role": "neutral",
         "displayName": "Paper",
-        "canonical": "#f8f9fa",
+        "canonical": "#ffffff",
         "cssVar": "--bg",
         "tonalRamp": [
-          "#1b1d1f",
-          "#33363a",
-          "#4c5056",
-          "#6a6f76",
-          "#8d9299",
-          "#b4b8bd",
-          "#d9dcdf",
-          "#f8f9fa"
-        ]
-      },
-      "paper-surface": {
-        "role": "neutral",
-        "displayName": "Paper Surface",
-        "canonical": "#eef0f2",
-        "cssVar": "--surface",
-        "tonalRamp": [
-          "#1a1d20",
-          "#31353a",
-          "#4a4f55",
-          "#676d74",
-          "#8a9097",
-          "#afb4ba",
-          "#d2d6da",
-          "#eef0f2"
-        ]
-      },
-      "paper-raised": {
-        "role": "neutral",
-        "displayName": "Paper Raised",
-        "canonical": "#ffffff",
-        "cssVar": "--raised",
-        "tonalRamp": [
-          "#1c1c1c",
-          "#353535",
-          "#4f4f4f",
-          "#6c6c6c",
-          "#8f8f8f",
-          "#b5b5b5",
-          "#dadada",
+          "#1a1a1a",
+          "#2e2e2e",
+          "#444444",
+          "#5c5c5c",
+          "#777777",
+          "#9a9a9a",
+          "#c4c4c4",
           "#ffffff"
         ]
       },
-      "navy-ink": {
-        "role": "primary",
-        "displayName": "Navy Ink",
-        "canonical": "#0a1628",
-        "cssVar": "--fg / --primary",
-        "tonalRamp": [
-          "#0a1628",
-          "#1a2a44",
-          "#2c3f5f",
-          "#43577a",
-          "#617496",
-          "#8797b3",
-          "#b3bfd1",
-          "#e2e7ee"
-        ]
-      },
-      "slate-muted": {
+      "muted": {
         "role": "neutral",
-        "displayName": "Slate Muted",
-        "canonical": "#565e68",
+        "displayName": "Muted Grey",
+        "canonical": "#666666",
         "cssVar": "--muted",
         "tonalRamp": [
-          "#1d2024",
-          "#2f3339",
-          "#434950",
-          "#565e68",
-          "#737b85",
-          "#959ca5",
-          "#bcc1c7",
-          "#e3e6e9"
+          "#1f1f1f",
+          "#333333",
+          "#4d4d4d",
+          "#666666",
+          "#808080",
+          "#a3a3a3",
+          "#cccccc",
+          "#ebebeb"
         ]
       },
-      "ink-line": {
+      "soft": {
         "role": "neutral",
-        "displayName": "Ink Line",
-        "canonical": "rgb(10 22 40 / 0.1)",
+        "displayName": "Soft Grey",
+        "canonical": "#8a8a8a",
+        "cssVar": "--soft",
+        "note": "About 3.4:1 on white; large text (24px+) only.",
+        "tonalRamp": [
+          "#262626",
+          "#3d3d3d",
+          "#575757",
+          "#707070",
+          "#8a8a8a",
+          "#a8a8a8",
+          "#cfcfcf",
+          "#f0f0f0"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(0 0 0 / 0.08)",
         "cssVar": "--line"
       },
-      "focus-violet": {
-        "role": "tertiary",
-        "displayName": "Focus Violet",
-        "canonical": "#4a2fd6",
-        "cssVar": "--accent",
-        "tonalRamp": [
-          "#1a0f52",
-          "#2a1a85",
-          "#3a24b3",
-          "#4a2fd6",
-          "#6e58e6",
-          "#9585f0",
-          "#bdb3f7",
-          "#e4e0fc"
-        ]
-      },
-      "positive-green": {
-        "role": "tertiary",
-        "displayName": "Positive Green",
-        "canonical": "#0f7a3d",
-        "cssVar": "--positive",
-        "tonalRamp": [
-          "#05301a",
-          "#0a4a27",
-          "#0c6232",
-          "#0f7a3d",
-          "#2f9a5c",
-          "#5cbc82",
-          "#9cdcb3",
-          "#d6f3e1"
-        ]
-      },
-      "mat-caption": {
+      "tile": {
         "role": "neutral",
-        "displayName": "Mat Caption",
-        "canonical": "#3a4250",
-        "note": "Fixed slate for text set on pastel mats."
+        "displayName": "Tile Grey",
+        "canonical": "#f2f2f2",
+        "cssVar": "--tile",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#2e2e2e",
+          "#444444",
+          "#5c5c5c",
+          "#777777",
+          "#9a9a9a",
+          "#c4c4c4",
+          "#f2f2f2"
+        ]
+      },
+      "tile-hover": {
+        "role": "neutral",
+        "displayName": "Tile Pressed",
+        "canonical": "#e8e8e8",
+        "note": "Pill button hover fill; literal in source.",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#2e2e2e",
+          "#444444",
+          "#5c5c5c",
+          "#777777",
+          "#9a9a9a",
+          "#c4c4c4",
+          "#e8e8e8"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Field Grey",
+        "canonical": "#f5f5f5",
+        "cssVar": "--field",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#2e2e2e",
+          "#444444",
+          "#5c5c5c",
+          "#777777",
+          "#9a9a9a",
+          "#c4c4c4",
+          "#f5f5f5"
+        ]
       }
-    },
-    "mats": [
-      {
-        "name": "sky",
-        "value": "radial-gradient(70% 60% at 15% 85%, #f6c3dc 0%, transparent 60%), radial-gradient(60% 70% at 90% 10%, #c9c2f8 0%, transparent 60%), linear-gradient(140deg, #bcd6f6, #d9e4f7)"
-      },
-      {
-        "name": "peach",
-        "value": "radial-gradient(60% 55% at 30% 0%, #ffb08a 0%, transparent 65%), radial-gradient(55% 60% at 85% 20%, #f7b8d4 0%, transparent 60%), linear-gradient(160deg, #f8dccd, #d6d9f6)"
-      },
-      {
-        "name": "lilac",
-        "value": "radial-gradient(65% 60% at 80% 85%, #ffc4b0 0%, transparent 60%), radial-gradient(60% 60% at 10% 10%, #b9c9f7 0%, transparent 60%), linear-gradient(150deg, #e2d6fa, #f3dbe8)"
-      },
-      {
-        "name": "mint",
-        "value": "radial-gradient(60% 60% at 15% 15%, #b5e6d8 0%, transparent 60%), radial-gradient(60% 60% at 90% 90%, #c8cdf8 0%, transparent 60%), linear-gradient(150deg, #d8eef0, #e4e2f8)"
-      }
-    ],
-    "lightLeak": {
-      "value": "radial-gradient(34% 44% at 34% 26%, rgb(136 92 255 / 0.8), transparent 70%), radial-gradient(30% 42% at 66% 20%, rgb(120 146 255 / 0.75), transparent 70%), radial-gradient(24% 32% at 52% 60%, rgb(255 170 205 / 0.5), transparent 70%)",
-      "blur": "56px",
-      "opacity": "var(--glow)",
-      "purpose": "Header-only violet-periwinkle-pink bloom behind the intro and nav."
     },
     "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The name in the header (28px below 768px) and footer (26px). Only weight-500 text."
+      },
       "display": {
         "displayName": "Display",
-        "purpose": "Name on tab pages and case-study titles."
+        "purpose": "Opening two-tone statements and case-study titles."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Case-study and About section heads, 28px mobile / 32px desktop, often two-tone."
-      },
-      "title": {
-        "displayName": "Title",
-        "purpose": "Two-tone split headings and Next project."
+        "purpose": "Secondary two-tone statements inside sections."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Reading text in Slate Muted, 60-62ch."
+        "purpose": "Titles, list rows, nav, buttons, links, labels."
       },
-      "body-small": {
-        "displayName": "Body Small",
-        "purpose": "Captions, job text, metadata, footer links (16-17px)."
+      "body-reading": {
+        "displayName": "Body Reading",
+        "purpose": "Muted paragraphs, max 54ch."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Nav tabs, buttons, chips, footer column heads."
-      },
-      "metric": {
-        "displayName": "Metric",
-        "purpose": "Result values only, tabular, in Positive."
+        "purpose": "Footnotes, tile placeholders, copyright, skill chips."
       }
     },
-    "shadows": [
+    "shadows": [],
+    "materials": [
       {
-        "name": "float",
-        "value": "0 8px 24px -12px rgb(10 22 40 / 0.3)",
-        "purpose": "Frosted nav track."
-      },
-      {
-        "name": "pill",
-        "value": "0 2px 8px -2px rgb(10 22 40 / 0.2)",
-        "purpose": "Active nav pill."
-      },
-      {
-        "name": "press",
-        "value": "0 4px 12px -4px rgb(10 22 40 / 0.35)",
-        "purpose": "Primary button at rest."
-      },
-      {
-        "name": "press-hover",
-        "value": "0 8px 18px -6px rgb(10 22 40 / 0.4)",
-        "purpose": "Primary button hover."
-      },
-      {
-        "name": "tile",
-        "value": "0 2px 6px -2px rgb(10 22 40 / 0.25)",
-        "purpose": "White tool-icon tiles."
-      },
-      {
-        "name": "monogram",
-        "value": "0 6px 16px -6px rgb(10 22 40 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.18)",
-        "purpose": "MC monogram tile."
+        "name": "header-glass",
+        "value": "background: rgb(255 255 255 / 0.88); backdrop-filter: blur(12px)",
+        "purpose": "Sticky header only."
       }
     ],
+    "focus": {
+      "value": "outline: 2px solid #0a0a0a; outline-offset: 3px; border-radius: 4px",
+      "fieldFocus": "1px ink ring, 300ms"
+    },
     "motion": [
       {
         "name": "ease-out-expo",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Default easing for every transition."
+        "purpose": "Arrow travel, tile image zoom, mobile menu."
       },
       {
-        "name": "frame-hover",
-        "value": "scale 1.025, 700ms ease-out-expo",
-        "purpose": "Project mat on card hover, clipped by its radius."
+        "name": "fade-color",
+        "value": "300ms",
+        "purpose": "Colour and fill changes on links, nav, pill, fields."
       },
       {
-        "name": "button-lift",
-        "value": "translateY(-1px), 300ms ease-out-expo",
-        "purpose": "Button hover; returns on active."
+        "name": "arrow-travel",
+        "value": "translate(2px, -2px) over 300ms ease-out-expo",
+        "purpose": "Up-right arrow on hover."
       },
       {
-        "name": "nav-pill-spring",
-        "value": "spring stiffness 420, damping 36 (motion layoutId)",
-        "purpose": "Active tab pill glides between tabs."
+        "name": "tile-zoom",
+        "value": "scale(1.02) over 700ms ease-out-expo",
+        "purpose": "Work image on item hover."
+      },
+      {
+        "name": "menu-drop",
+        "value": "opacity 0 to 1, y -6px to 0, 250ms ease-out-expo",
+        "purpose": "Mobile menu panel."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "scroll-behavior: auto",
+        "purpose": "Honour prefers-reduced-motion."
       }
     ],
     "breakpoints": [
       {
         "name": "sm",
-        "value": "640px"
+        "value": "640px",
+        "purpose": "Footer becomes three columns."
       },
       {
         "name": "md",
-        "value": "768px"
-      },
-      {
-        "name": "lg",
-        "value": "1024px"
+        "value": "768px",
+        "purpose": "Desktop nav, wider gutters, 96px sections."
       }
     ],
-    "focus": {
-      "value": "outline: 2px solid var(--accent); outline-offset: 3px",
-      "purpose": "Global :focus-visible."
+    "layout": {
+      "frame": "1120px",
+      "column": "720px",
+      "header": "72px sticky"
     }
   },
   "components": [
     {
-      "name": "Primary Button",
+      "name": "Pill Button",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Navy pill-rect for the one main action (See my work).",
-      "html": "<button class=\"ds-btn-primary\">See my work</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 16px; border: none; border-radius: 14px; background: var(--primary, #0a1628); color: var(--primary-fg, #f8f9fa); font: 600 15px/1 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; box-shadow: 0 4px 12px -4px rgb(10 22 40 / 0.35); transition: translate 300ms cubic-bezier(0.16,1,0.3,1), box-shadow 300ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; } .ds-btn-primary:hover { translate: 0 -1px; box-shadow: 0 8px 18px -6px rgb(10 22 40 / 0.4); } .ds-btn-primary:active { translate: 0 0; } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #4a2fd6); outline-offset: 3px; }"
+      "refersTo": "button-pill",
+      "description": "The header 'Get in touch' pill: tile grey, ink label, up-right arrow.",
+      "html": "<a class=\"ds-btn-pill\" href=\"#\">Get in touch <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-btn-pill{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 16px;border-radius:10px;background:var(--tile,#f2f2f2);color:var(--fg,#0a0a0a);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;text-decoration:none;transition:background-color .3s;} .ds-btn-pill:hover{background:#e8e8e8;} .ds-btn-pill:focus-visible{outline:2px solid var(--fg,#0a0a0a);outline-offset:3px;}"
     },
     {
-      "name": "Secondary Button",
+      "name": "Solid Button",
       "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Grey surface button beside the primary (Email me, copies the address).",
-      "html": "<button class=\"ds-btn-secondary\">Email me</button>",
-      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 16px; border: 1px solid var(--line, rgb(10 22 40 / 0.1)); border-radius: 14px; background: var(--surface, #eef0f2); color: var(--fg, #0a1628); font: 600 15px/1 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; transition: translate 300ms cubic-bezier(0.16,1,0.3,1), background-color 300ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; } .ds-btn-secondary:hover { translate: 0 -1px; background: var(--raised, #ffffff); } .ds-btn-secondary:active { translate: 0 0; } .ds-btn-secondary:focus-visible { outline: 2px solid var(--accent, #4a2fd6); outline-offset: 3px; }"
+      "refersTo": "button-solid",
+      "description": "Full-width ink submit button on the contact form.",
+      "html": "<button class=\"ds-btn-solid\" type=\"button\">Write the email</button>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-btn-solid{display:inline-flex;align-items:center;justify-content:center;width:100%;height:48px;padding:0 20px;border:0;border-radius:10px;background:var(--fg,#0a0a0a);color:#fff;font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;cursor:pointer;transition:opacity .3s;} .ds-btn-solid:hover{opacity:.85;} .ds-btn-solid:disabled{opacity:.4;} .ds-btn-solid:focus-visible{outline:2px solid var(--fg,#0a0a0a);outline-offset:3px;}"
     },
     {
-      "name": "Pill Tab Navigation",
-      "kind": "nav",
-      "refersTo": "nav-tab",
-      "description": "Frosted floating pill track; the active tab sits on a raised pill that glides on a spring.",
-      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-tab is-active\" href=\"#\">Work</a><a class=\"ds-nav-tab\" href=\"#\">Experiments</a><a class=\"ds-nav-tab\" href=\"#\">About</a><a class=\"ds-nav-tab\" href=\"#\">Résumé</a></nav>",
-      "css": ".ds-nav { display: inline-flex; gap: 2px; padding: 4px; border: 1px solid var(--line, rgb(10 22 40 / 0.1)); border-radius: 9999px; background: color-mix(in oklab, var(--surface, #eef0f2) 82%, transparent); backdrop-filter: blur(24px); box-shadow: 0 8px 24px -12px rgb(10 22 40 / 0.3); font-family: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; } .ds-nav-tab { display: block; padding: 8px 16px; border-radius: 9999px; color: var(--muted, #565e68); font-size: 15px; font-weight: 600; text-decoration: none; transition: color 300ms; } .ds-nav-tab:hover { color: var(--fg, #0a1628); } .ds-nav-tab.is-active { color: var(--fg, #0a1628); background: var(--raised, #ffffff); box-shadow: 0 2px 8px -2px rgb(10 22 40 / 0.2); } .ds-nav-tab:focus-visible { outline: 2px solid var(--accent, #4a2fd6); outline-offset: 3px; }"
+      "name": "Arrow Link",
+      "kind": "custom",
+      "refersTo": "link-arrow",
+      "description": "The main call to action: ink text, thin up-right arrow that travels 2px on hover.",
+      "html": "<a class=\"ds-arrow-link\" href=\"#\">Get in touch <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-arrow-link{display:inline-flex;align-items:center;gap:6px;color:var(--fg,#0a0a0a);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;text-decoration:none;transition:color .3s;} .ds-arrow-link svg{transition:transform .3s var(--ease-out-expo,cubic-bezier(0.16,1,0.3,1));} .ds-arrow-link:hover{color:var(--muted,#666);} .ds-arrow-link:hover svg{transform:translate(2px,-2px);} .ds-arrow-link:focus-visible{outline:2px solid var(--fg,#0a0a0a);outline-offset:3px;border-radius:4px;}"
+    },
+    {
+      "name": "Section Title",
+      "kind": "custom",
+      "refersTo": "section-title",
+      "description": "Thin plus mark, ink title, muted continuation beneath.",
+      "html": "<h2 class=\"ds-section-title\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"M12 5v14\"/></svg><span><span class=\"ds-t\">Selected work</span><span class=\"ds-s\">Product work first, then brand</span></span></h2>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-section-title{display:flex;gap:10px;margin:0;font:400 16px/1.375 'Geist Variable', ui-sans-serif, system-ui, sans-serif;color:var(--fg,#0a0a0a);} .ds-section-title svg{margin-top:5px;flex-shrink:0;} .ds-section-title .ds-t,.ds-section-title .ds-s{display:block;} .ds-section-title .ds-s{color:var(--muted,#666);}"
+    },
+    {
+      "name": "Two-Tone Statement",
+      "kind": "custom",
+      "refersTo": "display",
+      "description": "Large regular-weight sentence: claim in ink, continuation in soft grey.",
+      "html": "<p class=\"ds-statement\">Hiring a product designer?<span> Let’s talk.</span></p>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-statement{margin:0;font:400 clamp(2rem,4.4vw,2.5rem)/1.08 'Geist Variable', ui-sans-serif, system-ui, sans-serif;letter-spacing:-0.04em;color:var(--fg,#0a0a0a);} .ds-statement span{color:var(--soft,#8a8a8a);}"
+    },
+    {
+      "name": "Work Item",
+      "kind": "card",
+      "refersTo": "work-tile",
+      "description": "Name and focus/year above a flat grey tile, muted caption below; image eases in on hover.",
+      "html": "<a class=\"ds-work\" href=\"#\"><div class=\"ds-work-head\"><h3>Tetra</h3><p>Trading platform <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"M12 5v14\"/></svg> 2025</p></div><div class=\"ds-tile\"><p>Screens coming soon</p></div><p class=\"ds-cap\">Caption for the project</p></a>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-work{display:block;color:var(--fg,#0a0a0a);text-decoration:none;font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;max-width:720px;} .ds-work-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:10px;} .ds-work-head h3{margin:0;font:inherit;transition:color .3s;} .ds-work-head p{margin:0;display:flex;align-items:center;gap:8px;color:var(--muted,#666);font-variant-numeric:tabular-nums;} .ds-tile{position:relative;aspect-ratio:720/590;border-radius:10px;background:var(--tile,#f2f2f2);display:grid;place-items:center;overflow:hidden;} .ds-tile p{margin:0;font-size:15px;color:var(--muted,#666);} .ds-cap{margin:12px 0 0;color:var(--muted,#666);} .ds-work:hover h3{color:var(--muted,#666);} .ds-work:focus-visible{outline:2px solid var(--fg,#0a0a0a);outline-offset:3px;border-radius:4px;}"
+    },
+    {
+      "name": "Ruled List",
+      "kind": "custom",
+      "refersTo": "ruled-list",
+      "description": "Hairline-ruled rows, label left, tabular value right.",
+      "html": "<dl class=\"ds-ruled\"><div><dt>Company</dt><dd>Certinal</dd></div><div><dt>Timeline</dt><dd>2023 – 2025</dd></div></dl>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-ruled{margin:0;border-top:1px solid var(--line,rgb(0 0 0 / .08));font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;color:var(--fg,#0a0a0a);} .ds-ruled div{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:12px 0;border-bottom:1px solid var(--line,rgb(0 0 0 / .08));} .ds-ruled dt{color:var(--muted,#666);} .ds-ruled dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Field-grey input, no border, ink ring on focus.",
+      "html": "<label class=\"ds-label\">Email<input class=\"ds-input\" type=\"email\" placeholder=\"you@company.com\"></label>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-label{display:block;font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;color:var(--fg,#0a0a0a);} .ds-input{display:block;width:100%;margin-top:8px;padding:12px 16px;border:0;border-radius:10px;background:var(--field,#f5f5f5);color:var(--fg,#0a0a0a);font:inherit;outline:none;box-shadow:0 0 0 1px transparent;transition:box-shadow .3s;} .ds-input::placeholder{color:#6b6b6b;} .ds-input:focus{box-shadow:0 0 0 1px var(--fg,#0a0a0a);}"
     },
     {
       "name": "Skill Chip",
       "kind": "chip",
-      "refersTo": "skill-chip",
-      "description": "Static surface chip for the skills list.",
-      "html": "<span class=\"ds-chip\">Design systems</span>",
-      "css": ".ds-chip { display: inline-block; padding: 10px 16px; border: 1px solid var(--line, rgb(10 22 40 / 0.1)); border-radius: 12px; background: var(--surface, #eef0f2); color: var(--fg, #0a1628); font: 500 15px/1.2 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; }"
+      "refersTo": "chip-skill",
+      "description": "Non-interactive tile-grey tag.",
+      "html": "<ul class=\"ds-chips\"><li>Product design</li><li>Design systems</li><li>Motion</li></ul>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none;} .ds-chips li{padding:8px 14px;border-radius:10px;background:var(--tile,#f2f2f2);color:var(--fg,#0a0a0a);font:400 15px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;}"
     },
     {
-      "name": "Project Card",
-      "kind": "card",
-      "refersTo": "project-card",
-      "description": "Signature: work on a pastel mat at 20px radius with caption and company/year beneath; mat scales on hover.",
-      "html": "<a class=\"ds-project\" href=\"#\"><div class=\"ds-project-clip\"><div class=\"ds-project-mat\"><p class=\"ds-project-name\">Tetra</p><p class=\"ds-project-sub\">Screens coming soon</p></div></div><div class=\"ds-project-meta\"><h3>Designing one exchange for crypto, forex, stocks and commodities</h3><p>Asva Labs · 2025</p></div></a>",
-      "css": ".ds-project { display: block; width: 360px; color: inherit; text-decoration: none; font-family: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; border-radius: 22px; } .ds-project-clip { overflow: hidden; border-radius: 20px; } .ds-project-mat { aspect-ratio: 564 / 423; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 20px; color: #0a1628; background: radial-gradient(70% 60% at 15% 85%, #f6c3dc 0%, transparent 60%), radial-gradient(60% 70% at 90% 10%, #c9c2f8 0%, transparent 60%), linear-gradient(140deg, #bcd6f6, #d9e4f7); transition: transform 700ms cubic-bezier(0.16,1,0.3,1); } .ds-project:hover .ds-project-mat { transform: scale(1.025); } .ds-project-name { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.025em; } .ds-project-sub { margin: 6px 0 0; font-size: 15px; font-weight: 500; color: #3a4250; } .ds-project-meta { display: flex; justify-content: space-between; gap: 16px; margin-top: 14px; font-size: 16px; color: var(--muted, #565e68); } .ds-project-meta h3 { margin: 0; font-size: inherit; font-weight: 500; transition: color 300ms; } .ds-project-meta p { margin: 0; flex-shrink: 0; font-variant-numeric: tabular-nums; } .ds-project:hover h3 { color: var(--fg, #0a1628); } .ds-project:focus-visible { outline: 2px solid var(--accent, #4a2fd6); outline-offset: 4px; }"
-    },
-    {
-      "name": "Metric Card",
-      "kind": "card",
-      "refersTo": "metric-card",
-      "description": "Case-study result: tabular positive value, ink label, muted detail, on a paper-surface card.",
-      "html": "<div class=\"ds-metric\"><p class=\"ds-metric-value\">142,000+</p><p class=\"ds-metric-label\">Waitlist signups</p><p class=\"ds-metric-detail\">For the beta</p></div>",
-      "css": ".ds-metric { width: 260px; padding: 24px; border: 1px solid var(--line, rgb(238 241 246 / 0.12)); border-radius: 20px; background: var(--surface, #16213a); font-family: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; } .ds-metric-value { margin: 0; font-size: 34px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--positive, #7ee2a8); } .ds-metric-label { margin: 12px 0 0; font-size: 18px; font-weight: 500; color: var(--fg, #eef1f6); } .ds-metric-detail { margin: 2px 0 0; color: var(--muted, #a4adbb); }"
-    },
-    {
-      "name": "Tool Row",
-      "kind": "custom",
-      "refersTo": "tool-row",
-      "description": "Surface row with a white squircle brand tile, tool name and use.",
-      "html": "<div class=\"ds-tool\"><span class=\"ds-tool-icon\">Fi</span><div><p class=\"ds-tool-name\">Figma</p><p class=\"ds-tool-use\">Interface design</p></div></div>",
-      "css": ".ds-tool { display: flex; align-items: center; gap: 14px; width: 300px; padding: 10px 16px 10px 10px; border: 1px solid var(--line, rgb(10 22 40 / 0.1)); border-radius: 18px; background: var(--surface, #eef0f2); font-family: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; line-height: 1.35; } .ds-tool-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #ffffff; color: #0a1628; font-weight: 700; font-size: 15px; box-shadow: 0 2px 6px -2px rgb(10 22 40 / 0.25); } .ds-tool-name { margin: 0; font-size: 17px; font-weight: 500; color: var(--fg, #0a1628); } .ds-tool-use { margin: 0; color: var(--muted, #565e68); }"
-    },
-    {
-      "name": "Monogram",
-      "kind": "custom",
-      "refersTo": "monogram",
-      "description": "MC tile standing in for a portrait.",
-      "html": "<span class=\"ds-monogram\">MC</span>",
-      "css": ".ds-monogram { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 18px; color: #ffffff; font: 700 21.6px/1 'Manrope Variable', ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.04em; background: radial-gradient(90% 90% at 80% 10%, #8c7bff 0%, transparent 60%), linear-gradient(150deg, #24315a, #0a1628); box-shadow: 0 6px 16px -6px rgb(10 22 40 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.18); }"
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Wordmark left; muted links turning ink, plus the pill, right; hairline below.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-mark\" href=\"#\">Mathew Colin</a><nav><a href=\"#\" aria-current=\"page\">Projects</a><a href=\"#\">About</a><a href=\"#\">Contact</a><a class=\"ds-pill\" href=\"#\">Get in touch <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a></nav></header>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-nav{display:flex;align-items:center;justify-content:space-between;height:72px;border-bottom:1px solid var(--line,rgb(0 0 0 / .08));background:rgb(255 255 255 / .88);backdrop-filter:blur(12px);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-mark{font-size:34px;line-height:1;font-weight:500;letter-spacing:-0.05em;color:var(--fg,#0a0a0a);text-decoration:none;} .ds-nav nav{display:flex;align-items:center;gap:24px;} .ds-nav nav a{color:var(--muted,#666);text-decoration:none;transition:color .3s;} .ds-nav nav a:hover,.ds-nav nav a[aria-current]{color:var(--fg,#0a0a0a);} .ds-nav .ds-pill{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 16px;margin-left:4px;border-radius:10px;background:var(--tile,#f2f2f2);color:var(--fg,#0a0a0a);transition:background-color .3s;} .ds-nav .ds-pill:hover{background:#e8e8e8;}"
     }
   ],
   "narrative": {
-    "northStar": "The Framed Gallery",
-    "overview": "A quiet, cool-white gallery where every piece of work hangs on a soft pastel mat. The page is the wall, not the exhibit: chrome is small, type is modest, and colour belongs to the mats. The site is light mode only; sections are separated by 1px dividers and vertical rest, never by a change of ground colour.",
+    "northStar": "The Quiet Column",
+    "overview": "A white page, one centred reading column, and nothing raised off the ground. Every page is a stack of sections separated by full-frame hairlines; inside each, a 720px column holds a plus-marked title, a two-tone statement or a ruled list, and at most one up-right arrow link. The work sits in flat light-grey tiles with small corners, and the tiles do the only \"framing\" on the page. There is no accent hue: the system is ink, two greys, white, and one tile grey.\n\nDensity is low and the rhythm is generous: 80 to 96px between hairlines, 56px between stacked works. Hierarchy comes from size and tone, never weight: large text is set regular with tight negative tracking, and the second half of a large statement drops to a softer grey so one sentence reads as claim then context. Motion is small and slow-settling: an arrow that travels two pixels up-right, an image that eases in by 2%, colour that fades over 300ms.",
     "keyCharacteristics": [
-      "Cool near-white ground, deep navy ink, slate greys. Light mode only.",
-      "Work sits on pastel gradient mats with large soft radii (20 to 24px).",
-      "Manrope throughout at modest sizes, medium weight for headings, tight negative tracking.",
-      "Frosted pill navigation with a spring-gliding active pill.",
-      "Thin 1px dividers between major sections, as in the reference."
+      "Pure white ground, near-black ink, body grey, and a soft grey reserved for large text.",
+      "Geist everywhere, regular weight; medium only for the name wordmark.",
+      "Centred 720px column inside a 1120px frame; hairlines span the frame, content stays in the column.",
+      "Flat grey tiles with 10px corners hold the work; no shadows anywhere.",
+      "Thin plus marks beside section titles and metadata; thin up-right arrows on text links."
     ],
     "rules": [
       {
-        "name": "The Mats Hold the Colour Rule",
-        "body": "Saturated colour lives in the mats and the header light leak only. UI chrome stays navy, slate and paper.",
+        "name": "The No-Accent Rule",
+        "body": "The palette is ink and greys. Emphasis comes from tone (ink against muted) and size, never from a hue.",
         "section": "colors"
       },
       {
-        "name": "The Light Only Rule",
-        "body": "The site has one theme. Components read colour roles, never hard values, and no section changes the page ground; emphasis comes from the mats, type and dividers.",
+        "name": "The Soft-Is-Large Rule",
+        "body": "Soft grey appears only in statements of 24px and up, as the second half of a sentence. Body text that needs to recede uses muted, never soft.",
         "section": "colors"
       },
       {
-        "name": "The Violet Means Focus Rule",
-        "body": "The violet accent marks keyboard focus and selection. It is not a link colour, highlight, or brand stripe.",
-        "section": "colors"
-      },
-      {
-        "name": "The Two-Tone Heading Rule",
-        "body": "Section headings pair an ink phrase with a muted continuation in the same size and weight (\"Tools\" / \"powering my work\"). Contrast does the work that a label above the heading would otherwise do.",
+        "name": "The One Weight Rule",
+        "body": "Everything is 400 except the wordmark at 500. Hierarchy is size and ink-versus-grey, never bold.",
         "section": "typography"
       },
       {
-        "name": "The Medium Not Bold Rule",
-        "body": "Headings sit at weight 500. 600 is for labels and metrics; 700 only inside the monogram and initial tiles.",
+        "name": "The Two-Tone Sentence Rule",
+        "body": "A large statement is one sentence: the claim in ink, the continuation in soft grey, in the same size and line.",
         "section": "typography"
       },
       {
-        "name": "The Frames Sit Flat Rule",
-        "body": "Work mats never cast shadows. Depth on a frame comes from a slow 1.025 scale on hover inside its clipping radius.",
+        "name": "The Centre Column Rule",
+        "body": "Content never leaves the 720px column; only hairlines, the header and the footer span the full frame.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Ground Rule",
+        "body": "Depth is tone and line, never shadow. If something needs to stand apart, give it a tile fill or a hairline.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "Do put every piece of work on a pastel mat at 20px radius (24px for a case-study hero).",
-      "Do separate major sections with a 1px Ink Line divider and vertical rest; read colour roles, never hard values.",
-      "Do keep headings at weight 500 with negative tracking, and use the two-tone ink/muted pairing for section titles.",
-      "Do keep reading text at 18px with relaxed leading and a 60 to 62ch measure, in Slate Muted.",
-      "Do use the frosted pill track with the gliding active pill for any tabbed navigation.",
-      "Do keep violet for focus, selection and caret only."
+      "Do keep every page a centred 720px column inside the 1120px frame, with hairlines between sections.",
+      "Do set large statements in regular weight with -0.04em tracking, ink then soft grey.",
+      "Do put work in flat tile-grey tiles with 10px corners, and say plainly when screens are not ready yet.",
+      "Do mark section titles with the thin plus and give them a muted one-line continuation.",
+      "Do use the up-right arrow link as the call to action, one per section.",
+      "Do show structured facts as ruled lists with right-aligned, tabular values."
     ],
     "donts": [
-      "Don't add a photo of Mathew or a portrait tile; the monogram stands in.",
-      "Don't put shadows on mats or content cards; shadows are for floating and pressable elements only.",
-      "Don't introduce bold display weights or a second typeface.",
-      "Don't use saturated colour in UI chrome; colour belongs to the mats and the header light leak.",
-      "Don't add dark sections or a dark theme; the site is light mode only."
+      "Don't add an accent colour, gradient or tinted surface; the palette is ink, greys and white.",
+      "Don't use soft grey for text under 24px.",
+      "Don't add shadows or raised cards; depth is tone and hairlines.",
+      "Don't bold headings; the only weight above 400 is the wordmark.",
+      "Don't break the column into split heroes, stat rows or multi-column card grids."
     ]
   }
 }
