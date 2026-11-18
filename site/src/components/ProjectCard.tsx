@@ -15,7 +15,7 @@ export function ProjectCard({ project }: { project: Project }) {
           className="transition-transform duration-700 ease-out-expo group-hover:scale-[1.025]"
         />
       </div>
-      <div className="mt-3.5 flex items-baseline justify-between gap-4 text-[16px]">
+      <div className="mt-3.5 flex items-baseline justify-between gap-4 text-[16px] max-sm:flex-col max-sm:gap-1">
         <h3 className="font-medium text-muted transition-colors duration-300 group-hover:text-fg">
           {project.caption}
         </h3>

@@ -52,7 +52,7 @@ function CaseNav({ sections }: { sections: Section[] }) {
         <span aria-hidden="true" className="mx-1.5 h-5 w-px shrink-0 bg-line" />
         <ul className="flex items-center gap-0.5 overflow-x-auto [scrollbar-width:none]">
           {sections.map((s) => (
-            <li key={s.id}>
+            <li key={s.id} className={s.id === "overview" ? "max-sm:hidden" : undefined}>
               <a
                 href={`#${s.id}`}
                 aria-current={active === s.id ? "location" : undefined}
@@ -145,7 +145,7 @@ function CaseStudyBody({ project: p, next }: { project: Project; next: Project }
             </div>
 
             <div id="process" className="mt-20 scroll-mt-28 pb-24">
-              <SectionHeading id="process-h">What I did</SectionHeading>
+              <SectionHeading id="process-h">Process</SectionHeading>
               <ul className="mt-6 max-w-[60ch]">
                 {p.did.map((d) => (
                   <li key={d} className="border-t border-dashed border-line py-4 text-lg leading-relaxed text-muted first:border-t-0">
@@ -177,14 +177,17 @@ function CaseStudyBody({ project: p, next }: { project: Project; next: Project }
             <div id="designs" className="scroll-mt-28">
               <SectionHeading id="designs-h">Designs</SectionHeading>
               <ul className="mt-8 grid gap-6 sm:grid-cols-2">
-                {p.shots.map((s, i) => (
-                  <li key={s.label} className={i === 0 ? "sm:col-span-2" : ""}>
+                {p.shots.map((s, i) => {
+                  const wide = i === 0 || (i === p.shots.length - 1 && (p.shots.length - 1) % 2 === 1);
+                  return (
+                  <li key={s.label} className={wide ? "sm:col-span-2" : ""}>
                     <figure>
-                      <MatFrame mat={p.mat} ratio={i === 0 ? "16 / 9" : "4 / 3"} src={s.src} label={s.label} />
+                      <MatFrame mat={p.mat} ratio={wide ? "16 / 9" : "4 / 3"} src={s.src} label={s.label} sub={s.src ? undefined : null} />
                       <figcaption className="mt-3 text-muted">{s.label}</figcaption>
                     </figure>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </div>
           </Container>

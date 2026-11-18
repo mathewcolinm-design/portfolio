@@ -24,10 +24,10 @@ export function PageHeader() {
         style={{ opacity: "var(--glow)" }}
       >
         <div
-          className="absolute -top-10 left-1/2 h-[520px] w-[1100px] -translate-x-[20%] blur-[60px]"
+          className="absolute -top-16 left-1/2 h-[560px] w-[1300px] -translate-x-[32%] blur-[56px]"
           style={{
             background:
-              "radial-gradient(38% 46% at 42% 30%, rgb(136 92 255 / 0.55), transparent 70%), radial-gradient(30% 40% at 72% 22%, rgb(120 146 255 / 0.5), transparent 70%), radial-gradient(26% 34% at 58% 62%, rgb(255 170 205 / 0.35), transparent 70%)",
+              "radial-gradient(34% 44% at 34% 26%, rgb(136 92 255 / 0.8), transparent 70%), radial-gradient(30% 42% at 66% 20%, rgb(120 146 255 / 0.75), transparent 70%), radial-gradient(24% 32% at 52% 60%, rgb(255 170 205 / 0.5), transparent 70%)",
           }}
         />
       </div>

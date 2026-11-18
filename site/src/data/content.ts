@@ -53,7 +53,7 @@ export const projects: Project[] = [
     caption: "Designing one exchange for crypto, forex, stocks and commodities",
     intro:
       "I led the UI/UX design of Tetra, a multi-asset decentralized exchange, from user flows to the production interface and the design system behind it.",
-    role: "Lead UI/UX designer",
+    role: "UI/UX designer",
     timeline: "Aug 2025 – Jan 2026",
     focus: "Trading platform",
     overview:
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     slug: "fxdx",
     name: "FXDX",
     company: "MATQCODE",
-    year: "2024",
+    year: "2024–25",
     caption: "Rebuilding a trading platform around a new design system",
     intro:
       "I redesigned the information architecture and visual design of FXDX, a decentralized exchange, and built its design system from scratch.",
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     slug: "avitus",
     name: "Avitus",
     company: "MATQCODE",
-    year: "2025",
+    year: "2024–25",
     caption: "Designing a Web3 gaming platform whose beta drew 142K+ signups",
     intro:
       "I designed the full experience of Avitus, a crypto gaming platform, plus its motion graphics, social assets and investor pitch deck.",
@@ -165,11 +165,11 @@ export const projects: Project[] = [
     slug: "alphax",
     name: "AlphaX",
     company: "MATQCODE",
-    year: "2024",
+    year: "2024–25",
     caption: "A conversion-focused landing page for a DeFi product",
     intro: "I designed a responsive landing page for AlphaX, a DeFi product, along with all of its brand visuals.",
     role: "Web & brand designer",
-    timeline: "2024",
+    timeline: "2024 – 2025",
     focus: "Landing page",
     overview:
       "AlphaX is a DeFi product. I designed its responsive, conversion-focused landing page and created all of its brand visuals.",

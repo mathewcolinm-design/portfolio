@@ -95,7 +95,7 @@ export function ToolIcon({ icon, letters, size = 44 }: { icon?: string; letters?
   return (
     <span
       aria-hidden="true"
-      className="grid shrink-0 place-items-center bg-[#0a1628] font-bold text-white shadow-[0_2px_6px_-2px_rgb(10_22_40/0.35)]"
+      className="grid shrink-0 place-items-center bg-white font-bold text-[#0a1628] shadow-[0_2px_6px_-2px_rgb(10_22_40/0.25)]"
       style={{ width: size, height: size, borderRadius: radius, fontSize: size * 0.34 }}
     >
       {letters}
