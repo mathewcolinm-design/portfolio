@@ -17,7 +17,7 @@ export function Case() {
   const pending = p.shots.filter((s) => !s.src);
   const rail = [
     { id: "overview", label: "Overview" },
-    { id: "process", label: "Process" },
+    { id: "process", label: "What I did" },
     ...(p.metrics ? [{ id: "results", label: "Results" }] : []),
     { id: "designs", label: "Designs" },
     { id: "next", label: "Next" },
@@ -53,13 +53,13 @@ export function Case() {
           <Tile src={p.cover} alt={`${p.name} cover`} />
         </Column>
 
-        <Chapter id="overview" title="Overview." soft={` ${p.intro}`}>
+        <Chapter id="overview" title="Overview" plain>
           <Column>
-            <p className="max-w-[54ch] text-base leading-relaxed text-muted">{p.overview}</p>
+            <p className="max-w-[54ch] text-lg leading-relaxed">{p.overview}</p>
           </Column>
         </Chapter>
 
-        <Chapter id="process" title="Process." soft=" What I did.">
+        <Chapter id="process" title="What I did" plain>
           <Column>
             <ul className="border-t border-line">
               {p.did.map((d) => (
@@ -72,16 +72,21 @@ export function Case() {
         </Chapter>
 
         {p.metrics && (
-          <Chapter id="results" title="Results." soft=" What changed.">
+          <Chapter id="results" title="Results" plain>
             <Column>
               <dl className="border-t border-line">
                 {p.metrics.map((m) => (
-                  <div key={m.label} className={ruledRow}>
+                  <div key={m.label} className="grid grid-cols-[1fr_auto] items-start gap-x-6 border-b border-line py-3 text-base">
                     <dt>
                       {m.label}
-                      {m.detail && <span className="text-muted"> · {m.detail}</span>}
+                      {m.detail && (
+                        <span className="block text-muted sm:inline">
+                          <span className="hidden sm:inline"> · </span>
+                          {m.detail}
+                        </span>
+                      )}
                     </dt>
-                    <dd className="tabular-nums">{m.value}</dd>
+                    <dd className="text-right tabular-nums">{m.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -89,7 +94,7 @@ export function Case() {
           </Chapter>
         )}
 
-        <Chapter id="designs" title="Designs." soft={ready.length > 0 ? " Selected screens." : " Added as screens arrive."}>
+        <Chapter id="designs" title="Designs" plain>
           {ready.length > 0 && (
             <Column width="wide">
               <ul className="space-y-10">
@@ -106,7 +111,7 @@ export function Case() {
           )}
           {pending.length > 0 && (
             <Column className={ready.length > 0 ? "mt-12" : ""}>
-              <p className="text-base text-muted">Screens on the way:</p>
+              <p className="text-base text-muted">Screens on the way, added as they arrive:</p>
               <ul className="mt-3 border-t border-line">
                 {pending.map((s) => (
                   <li key={s.label} className="border-b border-line py-3 text-base">
@@ -118,7 +123,7 @@ export function Case() {
           )}
         </Chapter>
 
-        <Chapter id="next" title="Next." soft={` ${next.name}.`}>
+        <Chapter id="next" title="Next project" plain>
           <Column width="wide">
             <WorkFigure project={next} />
           </Column>

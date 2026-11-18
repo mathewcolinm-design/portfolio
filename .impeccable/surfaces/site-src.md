@@ -21,7 +21,7 @@ OWN-WORLD: The settled Formo-derived world: pure white ground, near-black ink, b
 
 STORY: The opening says who Mathew is in one sentence; Work shows six projects in a wide, pair, wide rhythm; How I work names what he does and the tools; Path walks up from the Jaya TV internship and the Tech Mahindra support desk to Certinal; Say hello ends on the email address.
 
-FIRST VIEWPORT: Slim header (wordmark left, "Get in touch" right). An oversized two-tone opening statement across the centred content column, about 5rem on desktop, with availability and a "Start with the work" link beneath. On desktop the chapter rail sits in the right margin: four chapter names, the first active, a hairline beside them that fills as you read.
+FIRST VIEWPORT: Slim solid header on the 960px work measure (wordmark left, "Get in touch" right; hairline appears once scrolled). An oversized two-tone opening statement across the centred content column, about 5rem on desktop, with availability and a "Start with the work" link beneath. On desktop the chapter rail sits in the right margin: four chapter names, none active until Work is reached, a hairline beside them that fills as you read.
 
 FORM: Chapters with a progress rail, list position 5 of 7. seed:c2be6b296eaa8b9b. Signature interaction: the rail's hairline fills with scroll progress and the active chapter name steps forward; on phones a thin bar under the header does the same with the chapter name. Smooth (Lenis) scrolling throughout, off under reduced motion.
 

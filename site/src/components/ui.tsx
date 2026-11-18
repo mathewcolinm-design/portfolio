@@ -35,8 +35,8 @@ export function Note({ children }: { children: ReactNode }) {
 }
 
 const statementScale = {
-  xl: "text-[clamp(2.25rem,4.4vw,3.75rem)] leading-[1.04] tracking-[-0.045em]",
-  lg: "text-[clamp(2rem,4.4vw,3rem)] leading-[1.06] tracking-[-0.04em]",
+  xl: "text-[clamp(2.5rem,4.4vw,3.75rem)] leading-[1.04] tracking-[-0.045em]",
+  lg: "text-[clamp(1.625rem,2.8vw,2.5rem)] leading-[1.08] tracking-[-0.035em]",
   md: "text-[clamp(1.6rem,3.2vw,2.1rem)] leading-[1.12] tracking-[-0.035em]",
 };
 
@@ -106,7 +106,7 @@ export function Tile({
   alt: string;
   ratio?: string;
   zoom?: boolean;
-  placeholder?: string;
+  placeholder?: ReactNode;
 }) {
   return (
     <div className="relative overflow-hidden rounded-[10px] bg-tile" style={{ aspectRatio: ratio }}>
@@ -120,7 +120,11 @@ export function Tile({
           }`}
         />
       ) : (
-        <p className="absolute inset-0 grid place-items-center text-[15px] text-muted">{placeholder}</p>
+        typeof placeholder === "string" ? (
+          <p className="absolute inset-0 grid place-items-center text-[15px] text-muted">{placeholder}</p>
+        ) : (
+          <div className="absolute inset-0">{placeholder}</div>
+        )
       )}
     </div>
   );

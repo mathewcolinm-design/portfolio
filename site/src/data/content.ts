@@ -69,7 +69,7 @@ export const projects: Project[] = [
     timeline: "Aug 2025 – Jan 2026",
     focus: "Trading platform",
     overview:
-      "Tetra lets traders work across crypto, forex, stocks and commodities in one decentralized exchange, with cross-chain trading on Hyperliquid, Solana and Arbitrum. I owned the experience end to end, working with engineering and product in an Agile team.",
+      "Tetra lets traders work across crypto, forex, stocks and commodities in one decentralized exchange, with cross-chain trading on Hyperliquid, Solana and Arbitrum.",
     did: [
       "Designed user flows, wireframes and high-fidelity prototypes for cross-chain trading on Hyperliquid, Solana and Arbitrum.",
       "Built and maintained a Figma design system and component library that kept the product consistent and sped up developer handoff.",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     timeline: "2024 – 2025",
     focus: "Design system",
     overview:
-      "FXDX is a decentralized exchange. The redesign set out to make core trading tasks quicker and easier, and to give the team a design system they could build on.",
+      "FXDX is a decentralized exchange. The redesign set out to make core trading tasks quicker and easier, and to give the team a design system it could build on.",
     did: [
       "Redesigned the platform's information architecture and visual design so core trading tasks take fewer steps.",
       "Built a design system from scratch: typography, colour tokens, component libraries and interaction patterns.",
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     timeline: "2024 – 2025",
     focus: "Web3 gaming",
     overview:
-      "Avitus is a Web3 casino platform with Crash, Coinflip and Dice games, token wagering, rewards and leaderboards. Alongside the product, I created its motion graphics and social media assets and designed the investor pitch deck.",
+      "Avitus is a Web3 casino platform with Crash, Coinflip and Dice games, token wagering, rewards and leaderboards.",
     did: [
       "Designed the full user experience: Crash, Coinflip and Dice games, token wagering, rewards and leaderboards.",
       "Created motion graphics and social media assets that generated 1M+ impressions.",
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     timeline: "Jun 2026 – Nov 2026",
     focus: "Brand identity",
     overview:
-      "Certinal is an eSignature and compliance company. Working with marketing and leadership, I took the new identity from the logo kit through the brand deck, website and event booths.",
+      "Certinal is an eSignature and compliance company whose brand shows up in decks, on its website and at events.",
     did: [
       "Led the brand revamp end to end with marketing and leadership.",
       "Rolled the identity out across the logo kit, brand deck, website and event booths.",
@@ -160,7 +160,7 @@ export const projects: Project[] = [
     timeline: "2026",
     focus: "Motion & video",
     overview:
-      "These are product demo films for Certinal's sales team. I wrote the scripts, built storyboards, produced voiceover with ElevenLabs and animated the films in After Effects. The sales team now uses them in its outreach to hospitals.",
+      "These are product demo films for Certinal's sales team, which now uses them when reaching out to hospitals.",
     did: [
       "Wrote the scripts and built the storyboards.",
       "Produced the voiceover with ElevenLabs.",
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     timeline: "2024 – 2025",
     focus: "Landing page",
     overview:
-      "AlphaX is a DeFi product. I designed its responsive, conversion-focused landing page and created all of its brand visuals.",
+      "AlphaX is a DeFi product that needed a single page to explain itself and convert visitors.",
     did: ["Designed a responsive, conversion-focused landing page.", "Created all of the product's brand visuals."],
     shots: [{ label: "Landing page, desktop" }, { label: "Landing page, mobile" }, { label: "Brand visuals" }],
   },

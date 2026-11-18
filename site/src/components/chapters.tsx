@@ -93,11 +93,11 @@ export function ProgressRail({ chapters, label = "Chapters" }: { chapters: Chapt
 
       <div
         aria-hidden={active < 0}
-        className={`fixed inset-x-0 top-16 z-40 border-b border-line bg-[rgb(255_255_255/0.9)] backdrop-blur-md transition-opacity duration-300 xl:hidden ${
+        className={`fixed inset-x-0 top-16 z-40 border-b border-line bg-bg transition-opacity duration-300 xl:hidden ${
           active < 0 ? "pointer-events-none opacity-0" : "opacity-100"
         }`}
       >
-        <div className="mx-auto flex h-10 max-w-[1120px] items-center justify-between px-5 text-[15px] md:px-6">
+        <div className="mx-auto flex h-10 max-w-[1008px] items-center justify-between px-5 text-[15px] md:px-6">
           <span>{chapters[Math.max(active, 0)].label}</span>
           <span className="text-muted tabular-nums">
             {Math.max(active, 0) + 1} / {chapters.length}
@@ -114,21 +114,24 @@ export function Chapter({
   id,
   title,
   soft,
+  plain = false,
   children,
 }: {
   id: string;
   title: string;
   soft?: string;
+  /** Ink-only, smaller heading: two-tone is kept for the chapters that open a page's story. */
+  plain?: boolean;
   children: ReactNode;
 }) {
   return (
     <section id={id} aria-labelledby={`${id}-h`} className="scroll-mt-28">
       <Column>
         <div className="border-t border-line pt-16 md:pt-24">
-          <Statement as="h2" id={`${id}-h`} size="lg" ink={title} soft={soft} />
+          <Statement as="h2" id={`${id}-h`} size={plain ? "md" : "lg"} ink={title} soft={plain ? undefined : soft} />
         </div>
       </Column>
-      <div className="mt-12 pb-24 md:mt-16 md:pb-32">{children}</div>
+      <div className={`${plain ? "mt-8 md:mt-10" : "mt-12 md:mt-16"} pb-24 md:pb-32`}>{children}</div>
     </section>
   );
 }
