@@ -19,7 +19,7 @@ export function Home() {
         </div>
       </Section>
 
-      <Section id="work" title="Selected work" sub="Product, brand and motion, most recent first">
+      <Section id="work" title="Selected work" sub="Product work first, then brand">
         <ul className="space-y-14">
           {work.map((p) => (
             <li key={p.slug}>

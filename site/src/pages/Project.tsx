@@ -85,7 +85,7 @@ export function Project() {
         </Section>
       )}
 
-      <Section id="designs" title="Designs" sub="Selected screens">
+      <Section id="designs" title="Designs" sub={ready.length > 0 ? "Selected screens" : "Added as screens arrive"}>
         {ready.length > 0 && (
           <ul className="space-y-6">
             {ready.map((s) => (
