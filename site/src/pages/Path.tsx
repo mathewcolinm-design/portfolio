@@ -1,4 +1,5 @@
 import { Page } from "../components/chapters";
+import { CompanyLogo } from "../components/icons";
 import { Column, ruledRow } from "../components/ui";
 import { chapters, education, jobs, skills } from "../data/content";
 
@@ -27,7 +28,11 @@ export function Path() {
               </p>
               <div className="mt-2 md:mt-0">
                 <h3 className="text-base">
-                  {j.role} <span className="text-muted">at</span> {j.company}
+                  {j.role} <span className="text-muted">at</span>{" "}
+                  <span className="inline-flex items-center gap-1.5 align-bottom whitespace-nowrap">
+                    <CompanyLogo company={j.company} size={18} />
+                    {j.company}
+                  </span>
                 </h3>
                 <p className="text-base text-muted tabular-nums">
                   {j.dates}

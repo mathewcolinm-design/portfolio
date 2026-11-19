@@ -10,7 +10,7 @@ order: 6
 company: MATQCODE
 year: 2024–25
 # One line under the tile, and the case study's grey headline.
-caption: A conversion-focused landing page for a DeFi product
+caption: "One page, one job: explain a DeFi product and win the click"
 role: Web & brand designer
 timeline: 2024 – 2025
 focus: Landing page

@@ -10,7 +10,7 @@ order: 1
 company: Asva Labs
 year: "2025"
 # One line under the tile, and the case study's grey headline.
-caption: Designing one exchange for crypto, forex, stocks and commodities
+caption: One exchange for crypto, forex, stocks and commodities, across three chains
 role: UI/UX designer
 timeline: Aug 2025 – Jan 2026
 focus: Trading platform

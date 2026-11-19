@@ -10,7 +10,7 @@ order: 2
 company: MATQCODE
 year: 2024–25
 # One line under the tile, and the case study's grey headline.
-caption: Rebuilding a trading platform around a new design system
+caption: Untangling a trading platform and giving it a design system to stand on
 role: UI/UX designer
 timeline: 2024 – 2025
 focus: Design system

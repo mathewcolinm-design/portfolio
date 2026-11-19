@@ -15,44 +15,53 @@ email: mathewcolinm@gmail.com
 linkedin: https://linkedin.com/in/mathew-colin/
 
 # The small line with a + mark under the opening statement.
-availability: Open to full-time product design roles
+availability: Looking for my next full-time product role
 
 # Opening statement on the Work page.
 # "bold" is the black part, "soft" is the grey part that follows it.
 intro:
-  bold: Mathew Colin designs complex products so they feel clear.
-  soft: A product designer for SaaS, fintech and Web3, with brand and motion in the toolkit.
+  bold: I make high-stakes products feel calm.
+  soft: Product designer for fintech, Web3 and SaaS. Brand, motion and AI workflows come with it.
 
 # Page headings ─────────────────────────────────────────────────────
 # Each page opens with a black word and a grey sentence.
 pages:
   work:
-    bold: Work.
-    soft: Six projects across trading platforms, a Web3 game, a rebrand and product films.
+    bold: Six projects.
+    soft: Two trading platforms, a Web3 casino, a rebrand, a landing page and a set of product films.
   how:
     bold: How I work.
-    soft: I design the system by hand, then build the tools that scale it.
+    soft: Design it properly by hand. Then build the machine that makes more of it.
   path:
-    bold: Path.
-    soft: From a support desk in Chennai to leading UI/UX for a trading platform.
+    bold: The path.
+    soft: I started on a support desk, hearing every way an app can confuse people. Now I design those problems out before they ship.
   hello:
     bold: Say hello.
-    soft: I’m open to full-time product design roles.
+    soft: I’m looking for my next full-time product role, and my inbox is open.
 
 # How I work page ───────────────────────────────────────────────────
+# Each item can have an icon. Available icons: interface, layout, system,
+# layers, research, search, people, brand, palette, shapes, motion, film,
+# workflow, code, mail.
 what_i_do:
   - name: Product & UX design
-    line: Flows, wireframes and production-ready interfaces for complex products.
+    line: Flows, wireframes and shipped interfaces for products with a lot going on.
+    icon: interface
   - name: Design systems
-    line: Tokens, component libraries and patterns that keep a product consistent.
+    line: Tokens, components and patterns, so the hundredth screen looks like the first.
+    icon: system
   - name: User research & testing
-    line: Interviews, surveys and usability tests that find friction early.
+    line: Interviews, surveys and usability tests that find the friction before users do.
+    icon: research
   - name: Brand identity
-    line: Identities rolled out from logo kit to website and event booth.
+    line: Identities that hold up everywhere, from the logo kit to the event booth.
+    icon: brand
   - name: Motion & video
-    line: Motion graphics, social assets and product films.
+    line: Motion graphics, social pieces and product films, from script to final cut.
+    icon: motion
   - name: AI design workflows
-    line: Figma and Claude Code workflows that produce on-brand work at scale.
+    line: Figma and Claude Code workflows that turn one good design into hundreds of on-brand assets.
+    icon: workflow
 
 toolkit:
   - name: Figma
@@ -79,6 +88,7 @@ toolkit:
     use: Writing and planning
 
 # Path page ─────────────────────────────────────────────────────────
+# Company logos come from content/logos/ (e.g. tech-mahindra.png).
 # Newest first. The page shows them oldest to newest as a timeline,
 # with the first entry here marked as your current role.
 career:

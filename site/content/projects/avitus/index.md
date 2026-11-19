@@ -10,7 +10,7 @@ order: 3
 company: MATQCODE
 year: 2024–25
 # One line under the tile, and the case study's grey headline.
-caption: Designing a Web3 gaming platform whose beta drew 142K+ signups
+caption: A Web3 casino whose beta waitlist passed 142,000
 role: Product & motion designer
 timeline: 2024 – 2025
 focus: Web3 gaming

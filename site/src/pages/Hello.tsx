@@ -1,7 +1,19 @@
+import { ArrowUpRight, Mail } from "lucide-react";
 import { Page } from "../components/chapters";
 import { CopyEmail } from "../components/CopyEmail";
-import { ArrowLink, Column } from "../components/ui";
+import { LinkedInIcon } from "../components/icons";
+import { Column } from "../components/ui";
 import { chapters, profile } from "../data/content";
+
+const linkClass = "group inline-flex items-center gap-2 text-base transition-colors hover:text-muted";
+const arrow = (
+  <ArrowUpRight
+    size={16}
+    strokeWidth={1.5}
+    aria-hidden="true"
+    className="transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+  />
+);
 
 export function Hello() {
   return (
@@ -11,10 +23,16 @@ export function Hello() {
         <CopyEmail className="text-left text-[clamp(1.5rem,4vw,2.5rem)] tracking-[-0.035em] underline decoration-line decoration-1 underline-offset-[0.18em] transition-colors hover:decoration-fg" />
         <p className="mt-3 text-[15px] text-muted">Click the address to copy it.</p>
         <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
-          <ArrowLink to={`mailto:${profile.email}`}>Open in your email app</ArrowLink>
-          <ArrowLink to={profile.linkedin} external>
+          <a href={`mailto:${profile.email}`} className={linkClass}>
+            <Mail size={18} strokeWidth={1.25} aria-hidden="true" />
+            Open in your email app
+            {arrow}
+          </a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" className={linkClass}>
+            <LinkedInIcon />
             LinkedIn
-          </ArrowLink>
+            {arrow}
+          </a>
         </div>
       </Column>
     </Page>

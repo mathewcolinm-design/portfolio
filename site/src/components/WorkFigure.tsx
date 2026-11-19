@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import type { Project } from "../data/content";
+import { CompanyLogo } from "./icons";
 import { Tile } from "./ui";
 
 /** A project as it appears in the Work chapter: the tile, then name, caption and meta. */
@@ -22,7 +23,8 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
       />
       <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 text-base">
         <h3 className="transition-colors duration-300 group-hover:text-muted">{project.name}</h3>
-        <p className="text-muted tabular-nums">
+        <p className="inline-flex items-center gap-1.5 text-muted tabular-nums">
+          <CompanyLogo company={project.company} size={16} />
           {project.company} · {project.year}
         </p>
       </div>

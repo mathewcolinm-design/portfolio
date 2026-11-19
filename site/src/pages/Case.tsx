@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { Chapter, SectionBar } from "../components/chapters";
 import { Prose } from "../components/Prose";
+import { CompanyLogo } from "../components/icons";
 import { Column, Statement, Tile, ruledRow } from "../components/ui";
 import { WorkFigure } from "../components/WorkFigure";
 import { projects, type Metric, type StorySection } from "../data/content";
@@ -100,7 +101,10 @@ export function Case() {
             {meta.map((m) => (
               <div key={m.label} className={ruledRow}>
                 <dt className="text-muted">{m.label}</dt>
-                <dd className="tabular-nums">{m.value}</dd>
+                <dd className="inline-flex items-center gap-2 tabular-nums">
+                  {m.label === "Company" && <CompanyLogo company={m.value} size={18} />}
+                  {m.value}
+                </dd>
               </div>
             ))}
           </dl>

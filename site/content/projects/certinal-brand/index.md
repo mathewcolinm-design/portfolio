@@ -10,7 +10,7 @@ order: 4
 company: Certinal
 year: "2026"
 # One line under the tile, and the case study's grey headline.
-caption: Revamping Certinal's brand, from logo kit to event booth
+caption: A new identity for an eSignature company, from logo kit to event booth
 role: Brand & creative designer
 timeline: Jun 2026 – Nov 2026
 focus: Brand identity

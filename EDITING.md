@@ -163,6 +163,16 @@ other_work:
 
 ---
 
+### Logos and icons
+
+- **Company logos:** put the file in `site/content/logos/`, named after the company in lower case with dashes: `tech-mahindra.png`, `asva-labs.svg`, `matqcode.png`. It appears automatically on the Path page, on work tiles and in case studies, inside a small white frame. Square images around 128px or SVGs look best.
+- **Tool icons:** Figma, Framer, Claude, ElevenLabs, Lottie, Maze and Notion have built-in icons. For any other tool, add a file named after it to `site/content/logos/`, for example `after-effects.svg`.
+- **"What I do" icons:** set `icon:` on an item in `site.yml`. The available names are listed in a comment above `what_i_do:`.
+
+Logos are included for Certinal, Tech Mahindra and Swftconnect. Asva Labs, MATQCODE and Jaya Television don't have one yet: add those files when you have them.
+
+---
+
 ## 5. Add, hide or remove a project
 
 - **Add:** copy a whole project folder (for example `tetra`), rename the copy (lower case, dashes, such as `new-project`), then edit its `index.md` and swap the images. The folder name becomes the web address: `/work/new-project`.

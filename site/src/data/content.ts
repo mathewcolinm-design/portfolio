@@ -72,6 +72,21 @@ const slugify = (s: string) =>
 
 const fileName = (p: string) => p.split("/").pop()!.replace(/\.[^.]+$/, "");
 
+// ---------- Logos ----------
+
+// Company and tool logos live in content/logos/, named after the company or
+// tool in lower case with dashes: "Tech Mahindra" → tech-mahindra.png.
+const logoFiles = import.meta.glob<string>("../../content/logos/*.{svg,png,webp,jpg,jpeg,avif}", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+export function logoFor(name: string): string | undefined {
+  const key = slugify(name);
+  return Object.entries(logoFiles).find(([p]) => slugify(fileName(p)) === key)?.[1];
+}
+
 // ---------- Site text ----------
 
 const SITE = "content/site.yml";
@@ -102,7 +117,11 @@ export const chapters = {
 
 export const services = list(SITE, site, "what_i_do").map((item, i) => {
   const r = record(SITE, item, `item ${i + 1} in "what_i_do"`);
-  return { name: text(SITE, r, "name", ` (what_i_do item ${i + 1})`), line: text(SITE, r, "line", ` (what_i_do item ${i + 1})`) };
+  return {
+    name: text(SITE, r, "name", ` (what_i_do item ${i + 1})`),
+    line: text(SITE, r, "line", ` (what_i_do item ${i + 1})`),
+    icon: optionalText(r, "icon"),
+  };
 });
 
 export const toolkit = list(SITE, site, "toolkit").map((item, i) => {

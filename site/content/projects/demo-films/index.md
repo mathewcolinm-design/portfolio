@@ -10,7 +10,7 @@ order: 5
 company: Certinal
 year: "2026"
 # One line under the tile, and the case study's grey headline.
-caption: Producing product films with an AI-assisted pipeline
+caption: Product films for hospital sales, scripted, voiced and cut end to end
 role: Writer, designer & editor
 timeline: 2026
 focus: Motion & video
