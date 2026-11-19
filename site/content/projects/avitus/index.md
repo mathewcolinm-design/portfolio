@@ -5,8 +5,8 @@
 # the screens/ folder. See EDITING.md.
 
 name: Avitus
-# Position on the Work page (1 = first).
-order: 3
+# Position on the Work page (1 = first; keep the newest first).
+order: 5
 company: MATQCODE
 year: 2024–25
 # One line under the tile, and the case study's grey headline.

@@ -5,8 +5,8 @@
 # the screens/ folder. See EDITING.md.
 
 name: Tetra
-# Position on the Work page (1 = first).
-order: 1
+# Position on the Work page (1 = first; keep the newest first).
+order: 3
 company: Asva Labs
 year: "2025"
 # One line under the tile, and the case study's grey headline.

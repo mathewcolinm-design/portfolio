@@ -58,6 +58,14 @@ const brandMarks: { match: RegExp; path: string }[] = [
   { match: /notion/i, path: siNotion.path },
 ];
 
+const adobeApps = [
+  { match: /after effects/i, letters: "Ae" },
+  { match: /illustrator/i, letters: "Ai" },
+  { match: /photoshop/i, letters: "Ps" },
+  { match: /premiere/i, letters: "Pr" },
+  { match: /indesign/i, letters: "Id" },
+];
+
 /**
  * A tool's mark: your own file in content/logos/ if there is one (named after
  * the tool, e.g. after-effects.svg), otherwise a built-in monochrome brand
@@ -67,6 +75,18 @@ export function ToolMark({ name, size = 18 }: { name: string; size?: number }) {
   const custom = logoFor(name);
   if (custom) return <img src={custom} alt="" width={size} height={size} className="shrink-0 rounded-[4px] object-contain grayscale" />;
   const mark = brandMarks.find((m) => m.match.test(name));
+  const letters = adobeApps.find((a) => a.match.test(name))?.letters;
+  if (!mark && letters) {
+    // Adobe's app marks are two letters in a rounded square; drawn here in one colour.
+    return (
+      <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" className="shrink-0">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="4.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <text x="12" y="15.6" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="currentColor" style={{ fontFamily: "inherit", letterSpacing: "-0.02em" }}>
+          {letters}
+        </text>
+      </svg>
+    );
+  }
   if (!mark) return <span aria-hidden="true" className="shrink-0" style={{ width: size, height: size }} />;
   return (
     <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true" className="shrink-0">

@@ -27,8 +27,8 @@ intro:
 # Each page opens with a black word and a grey sentence.
 pages:
   work:
-    bold: Six projects.
-    soft: Two trading platforms, a Web3 casino, a rebrand, a landing page and a set of product films.
+    bold: Selected work.
+    soft: Products, brands and films I’ve designed recently.
   how:
     bold: How I work.
     soft: Design it properly by hand. Then build the machine that makes more of it.
@@ -80,12 +80,46 @@ toolkit:
     use: Brand and vector work
   - name: Lottie
     use: Product animation
-  - name: Higgsfield, Magnific, Midjourney
-    use: Image generation, upscaling and exploration
+  - name: Higgsfield
+    use: Image and video generation
+  - name: Magnific
+    use: Upscaling and image refinement
+  - name: Midjourney
+    use: Early visual exploration
   - name: Maze
     use: Usability testing
   - name: Notion
     use: Writing and planning
+
+# Design process (How I work page) ─────────────────────────────────
+# The stages, in order. "loop: true" marks the stages that repeat until
+# the design holds up; they're drawn together as one loop.
+process_intro: Every project starts with a problem, not a screen. I work in rounds, and the rounds only stop when real people can use the thing without help.
+process:
+  - name: Understand the problem
+    line: Who is this for, what are they trying to do, and where does it hurt? I talk to users and map the journey as it is today, friction and all.
+    methods: [User interviews, Surveys, Journey mapping]
+  - name: Define what matters
+    line: I turn what I learned into a clear problem statement and a few rules the design has to meet, and agree them with product and engineering before drawing anything.
+    methods: [Problem framing, Information architecture]
+  - name: Explore ideas
+    line: Many rough options before one polished one. Sketches, flows and wireframes, compared side by side so the best idea wins, not the first.
+    methods: [User flows, Wireframing]
+  - name: Design
+    line: The chosen direction becomes real screens, built on a design system so every state, edge case and screen size holds together.
+    methods: [Visual design, Design systems, Accessibility]
+    loop: true
+  - name: Prototype
+    line: Interactive prototypes in Figma or Framer, close enough to the real thing that people react honestly.
+    methods: [Prototyping, Interaction design]
+    loop: true
+  - name: Test
+    line: Usability tests with real people. Wherever they hesitate, I go back to the design and try again.
+    methods: [Usability testing, Maze]
+    loop: true
+  - name: Ship and hand off
+    line: Clean specs and components engineering can build from directly, then I watch how it's used and feed that into the next round.
+    methods: [Design-to-dev handoff, Agile]
 
 # Path page ─────────────────────────────────────────────────────────
 # Company logos come from content/logos/ (e.g. tech-mahindra.png).
@@ -116,6 +150,9 @@ career:
     dates: Feb 2021 – May 2023
     place: Chennai
     summary: Resolved internet and in-app issues for end users, which taught me where products frustrate people.
+
+# Internships, shown in their own section under the career path.
+internships:
   - role: Graphic Design & Video Editing Intern
     company: Jaya Television
     dates: Jan 2020 – Feb 2020

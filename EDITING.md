@@ -82,7 +82,7 @@ screens:
 ---
 ```
 
-**Reorder projects** by changing the `order` numbers.
+**Reorder projects** by changing the `order` numbers. Keep the newest project as `1`.
 
 ### The story (everything below the second `---`)
 
@@ -181,9 +181,14 @@ Logos are included for Certinal, Tech Mahindra and Swftconnect. Asva Labs, MATQC
 
 ---
 
-## 6. Add a job, course or skill
+## 6. Add a job, internship, course or skill
 
-In `site.yml`, copy an existing entry under `career:`, `education:` or `skills:` and edit it. Career entries go **newest first**. The Path page shows them oldest to newest, and the first entry is marked as your current role.
+In `site.yml`, copy an existing entry under `career:`, `internships:`, `education:` or `skills:` and edit it. Internships are listed separately from the career timeline. Career entries go **newest first**. The Path page shows them oldest to newest, and the first entry is marked as your current role.
+
+
+### Your design process
+
+The **Design process** section on the How I work page comes from `process_intro:` and `process:` in `site.yml`. Each stage has a `name`, a `line` and a list of `methods`. Stages with `loop: true` that sit next to each other are drawn inside one frame marked as repeating. Add, remove or reorder stages freely.
 
 ---
 

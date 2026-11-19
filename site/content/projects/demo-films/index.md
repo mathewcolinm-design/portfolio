@@ -5,8 +5,8 @@
 # the screens/ folder. See EDITING.md.
 
 name: Certinal films
-# Position on the Work page (1 = first).
-order: 5
+# Position on the Work page (1 = first; keep the newest first).
+order: 2
 company: Certinal
 year: "2026"
 # One line under the tile, and the case study's grey headline.

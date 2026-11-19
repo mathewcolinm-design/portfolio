@@ -5,7 +5,7 @@
 # the screens/ folder. See EDITING.md.
 
 name: AlphaX
-# Position on the Work page (1 = first).
+# Position on the Work page (1 = first; keep the newest first).
 order: 6
 company: MATQCODE
 year: 2024–25

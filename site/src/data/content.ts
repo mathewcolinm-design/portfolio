@@ -131,16 +131,38 @@ export const toolkit = list(SITE, site, "toolkit").map((item, i) => {
 
 export type Job = { role: string; company: string; dates: string; place?: string; text: string };
 
+function toJob(listName: string) {
+  return (item: unknown, i: number): Job => {
+    const r = record(SITE, item, `item ${i + 1} in "${listName}"`);
+    const where = ` (${listName} item ${i + 1})`;
+    return {
+      role: text(SITE, r, "role", where),
+      company: text(SITE, r, "company", where),
+      dates: text(SITE, r, "dates", where),
+      place: optionalText(r, "place"),
+      text: text(SITE, r, "summary", where),
+    };
+  };
+}
+
 /** Newest first, as written in site.yml. */
-export const jobs: Job[] = list(SITE, site, "career").map((item, i) => {
-  const r = record(SITE, item, `item ${i + 1} in "career"`);
-  const where = ` (career item ${i + 1})`;
+export const jobs: Job[] = list(SITE, site, "career").map(toJob("career"));
+
+/** Shown separately from the career path. */
+export const internships: Job[] = list(SITE, site, "internships", { optional: true }).map(toJob("internships"));
+
+export type ProcessStage = { name: string; line: string; methods: string[]; loop: boolean };
+
+export const processIntro = optionalText(site, "process_intro");
+
+export const designProcess: ProcessStage[] = list(SITE, site, "process", { optional: true }).map((item, i) => {
+  const r = record(SITE, item, `item ${i + 1} in "process"`);
+  const where = ` (process item ${i + 1})`;
   return {
-    role: text(SITE, r, "role", where),
-    company: text(SITE, r, "company", where),
-    dates: text(SITE, r, "dates", where),
-    place: optionalText(r, "place"),
-    text: text(SITE, r, "summary", where),
+    name: text(SITE, r, "name", where),
+    line: text(SITE, r, "line", where),
+    methods: list(SITE, r, "methods", { optional: true }).map((m) => String(m).trim()),
+    loop: r.loop === true,
   };
 });
 

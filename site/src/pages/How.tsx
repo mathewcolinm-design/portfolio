@@ -1,7 +1,8 @@
 import { Page } from "../components/chapters";
 import { LineIcon, ToolMark } from "../components/icons";
+import { Process } from "../components/Process";
 import { Column, ruledRow } from "../components/ui";
-import { chapters, services, toolkit } from "../data/content";
+import { chapters, designProcess, processIntro, services, toolkit } from "../data/content";
 
 export function How() {
   return (
@@ -22,7 +23,16 @@ export function How() {
           ))}
         </ul>
 
-        <h2 className="mt-16 text-base">Toolkit</h2>
+        {designProcess.length > 0 && (
+          <>
+            <h2 className="mt-20 text-base">Design process</h2>
+            <div className="mt-4">
+              <Process stages={designProcess} intro={processIntro} />
+            </div>
+          </>
+        )}
+
+        <h2 className="mt-20 text-base">Toolkit</h2>
         <ul className="mt-4 border-t border-line">
           {toolkit.map((t) => (
             <li key={t.name} className={ruledRow}>

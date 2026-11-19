@@ -5,8 +5,8 @@
 # the screens/ folder. See EDITING.md.
 
 name: FXDX
-# Position on the Work page (1 = first).
-order: 2
+# Position on the Work page (1 = first; keep the newest first).
+order: 4
 company: MATQCODE
 year: 2024–25
 # One line under the tile, and the case study's grey headline.
