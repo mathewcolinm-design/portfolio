@@ -1,6 +1,6 @@
 ---
 name: Mathew Colin Portfolio
-description: A quiet, white portfolio told as one story in chapters, with a progress rail; words and flat grey tiles carry the work. Light mode only.
+description: A quiet, white portfolio of four focused pages (Work, How I work, Path, Say hello) linked by a reading rail; words and flat grey tiles carry the work. Light mode only.
 colors:
   ink: "#0a0a0a"
   paper: "#ffffff"
@@ -120,7 +120,7 @@ components:
 
 **Creative North Star: "The Quiet Column"**
 
-A white page, centred columns, and nothing raised off the ground. The site is one story read in chapters: the home page opens on an oversized two-tone sentence, then runs Work, How I work, Path and Say hello; each case page runs Overview, What I did, Results, Designs and Next project. Every chapter starts at a hairline with a large statement and then gives way to its content: flat grey work tiles on a wider measure, ruled lists and short muted paragraphs on a narrower reading measure. A progress rail in the right margin (a thin bar under the header on smaller screens) says where you are in the story. There is no accent hue: the system is ink, two greys, white and one tile grey.
+A white page, centred columns, and nothing raised off the ground. The site is four pages, each about one thing, read in order: Work (which opens on an oversized two-tone sentence), How I work, Path and Say hello. Each page ends by pointing to the next. Each case page runs as chapters: Overview, What I did, Results, Designs and Next project. Every chapter starts at a hairline with a large statement and then gives way to its content: flat grey work tiles on a wider measure, ruled lists and short muted paragraphs on a narrower reading measure. A rail in the right margin (a slim page bar under the header on smaller screens) names the four pages, marks the current one and fills as you scroll it; on case pages the same rail tracks the chapters. There is no accent hue: the system is ink, two greys, white and one tile grey.
 
 Density is low and the rhythm is long: 96 to 128px of air closes each chapter, 64 to 96px opens the next. Hierarchy comes from size and tone, never weight: large text is regular with tight negative tracking, and the second half of a large statement drops to a softer grey so one sentence reads as claim then context. Motion is slow-settling and small: Lenis-eased scrolling, a rail hairline that fills with reading progress, an active chapter name that steps 6px forward, an arrow that travels 2px, an image that eases in by 2%. All of it stands down under reduced motion.
 
@@ -188,7 +188,7 @@ Ruled lists are the default way to show structured facts (toolkit, education, ca
 
 The Path is a vertical timeline on the text measure: one hairline the steps hang from, an 11px node per job, a 96px year column from 768px, and the entry beside it.
 
-The progress rail appears from 1280px, fixed in the right margin and vertically centred. Below 1280px it becomes a 40px chapter bar fixed under the 64px header, which fades in once the first chapter is reached. Anchor scrolling offsets by 72px with the rail and 112px with the bar.
+The rail appears from 1280px, fixed in the right margin and vertically centred. Below 1280px, site pages show a 44px sticky page bar under the 64px header (all four page links, current in ink, progress line along its bottom); case pages show a 40px chapter bar that fades in once the first chapter is reached. Anchor scrolling offsets by 72px with the rail and 112px with the bar.
 
 **The Two Measures Rule.** Reading lives on the 760px measure, work on the 960px measure. Only the header and the rail sit outside them.
 
@@ -205,7 +205,7 @@ One corner radius, small and soft (10px), on everything with a fill: work tiles,
 ## Components
 
 ### Buttons
-- **Pill ("Get in touch", header):** tile-grey fill, ink text, 10px corners, 40px tall, 16px side padding, a 16px up-right arrow after the label. Hover fades to the pressed grey over 300ms. It scrolls to Say hello (or routes there from a case page). It is the only filled button.
+- **Pill ("Get in touch", header):** tile-grey fill, ink text, 10px corners, 40px tall, 16px side padding, a 16px up-right arrow after the label. Hover fades to the pressed grey over 300ms. It routes to the Say hello page. It is the only filled button.
 
 ### Arrow Link
 The site's call to action. Ink 16px text followed by a thin arrow; on hover the text fades to muted and the arrow travels 2px in its direction on the expo-out ease over 300ms. Up-right for leaving or opening ("Open in your email app", "LinkedIn", "Back to the start"), down for "Start with the work". Quiet muted variants with a left or up arrow serve "All work" and "Back to top".
@@ -213,8 +213,8 @@ The site's call to action. Ink 16px text followed by a thin arrow; on hover the 
 ### Chapter Opener
 A hairline on the text measure, then a large statement as the chapter heading. Home chapters use the two-tone headline; case chapters use the plain, ink-only title. It is the only section heading device; smaller subheads inside a chapter are plain 16px ink.
 
-### Progress Rail and Chapter Bar
-- **Rail (1280px and up):** chapter names right-aligned in 15px muted, 12px apart, beside a 1px hairline track. The track fills top-down in ink with scroll progress (spring-smoothed). The active name turns ink and steps 6px toward the page over 500ms on the expo-out ease; no name is active until the first chapter is reached. Names are links that scroll to their chapter.
+### Rail, Page Bar and Chapter Bar
+- **Rail (1280px and up):** chapter names right-aligned in 15px muted, 12px apart, beside a 1px hairline track. The track fills top-down in ink with scroll progress (spring-smoothed). The active name turns ink and steps 6px toward the page over 500ms on the expo-out ease; no name is active until the first chapter is reached. On site pages the names are the four page links (current page active, track filling with that page's scroll); on case pages they scroll to their chapter.
 - **Bar (below 1280px):** a 40px paper strip under the header with a hairline beneath: the current chapter name left in ink, "n / total" right in muted tabular numerals, and a 1px ink line along its bottom that fills left to right with progress. Hidden until the first chapter.
 
 ### Work Figure and Tile
@@ -232,7 +232,7 @@ A single hairline down the left, an 11px ink-ringed node per role (the latest fi
 The address set large with a hairline underline that darkens to ink on hover; clicking copies it and swaps to a check and "Email copied" for two seconds, falling back to the mail app if the clipboard is unavailable. A 15px muted hint sits beneath.
 
 ### Navigation
-The header is 64px, solid paper, sticky: wordmark left, the pill right, on the wide measure. Chapters are navigated by the rail or bar, never by header links. The footer is one hairline-topped line on the text measure: copyright left and "Back to top" right, both 15px muted.
+The header is 64px, solid paper, sticky: wordmark left, the pill right, on the wide measure. Pages and chapters are navigated by the rail or bar, never by header links. Every site page ends with a hairline and a large "Next" link to the following page (the last points back to Work). The footer is one hairline-topped line on the text measure: copyright left and "Back to top" right, both 15px muted.
 
 ### Scrolling
 Lenis smooth scrolling on the root (lerp 0.09, wheel smoothing on) carries all in-page jumps. Under prefers-reduced-motion Lenis is not mounted, native scrolling applies and motion springs respect the user setting.

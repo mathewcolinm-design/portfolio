@@ -1,7 +1,7 @@
 # Mathew Colin, portfolio
 
 React + Vite + Tailwind CSS + Motion + Lenis. Font: Geist (self-hosted). Icons: Lucide.
-The site is one story told in chapters, with a progress rail that shows where you are. Style: white ground, near-black ink, two-tone statements, hairline dividers, flat grey work tiles. Light mode only.
+The site is four focused pages (Work, How I work, Path, Say hello) read in order, with a rail that shows where you are. Style: white ground, near-black ink, two-tone statements, hairline dividers, flat grey work tiles. Light mode only.
 
 ## Run it
 
@@ -14,14 +14,17 @@ npm run build    # production build into site/dist
 
 ## Structure
 
-| Route | File | Chapters |
+| Route | File | What's on it |
 |---|---|---|
-| `/` | `src/pages/Story.tsx` | Work, How I work, Path, Say hello |
-| `/work/<slug>` | `src/pages/Case.tsx` | Overview, Process, Results, Designs, Next |
+| `/` | `src/pages/Work.tsx` | Opening statement, projects, other work |
+| `/how` | `src/pages/How.tsx` | What I do, toolkit |
+| `/path` | `src/pages/Path.tsx` | Career timeline, education, skills |
+| `/hello` | `src/pages/Hello.tsx` | Email and LinkedIn |
+| `/work/<slug>` | `src/pages/Case.tsx` | Case study chapters: Overview, What I did, Results, Designs, Next project |
 
-- **Progress rail:** `src/components/chapters.tsx`. On desktop it sits in the right margin; its hairline fills as you scroll and the current chapter steps forward. On phones it becomes a slim bar under the header with the chapter name and "2 / 4".
+- **Rail:** `src/components/chapters.tsx`. On desktop it lists the four pages in the right margin; the current one steps forward and its line fills as you scroll. On phones the pages sit in a slim bar under the header. On case studies the rail tracks the chapters instead. Each page ends with a "Next" link.
 - **Smooth scrolling:** Lenis, set up in `src/App.tsx` (`lerp: 0.09`; lower is smoother and slower). It is switched off for visitors whose device asks for reduced motion.
-- **Old links:** `/projects`, `/about`, `/contact`, `/resume`, `/experiments` and `/projects/<slug>` redirect to the matching chapter or case study.
+- **Old links:** `/projects`, `/about`, `/contact`, `/resume`, `/experiments` and `/projects/<slug>` redirect to the matching page or case study.
 
 ## Edit content
 

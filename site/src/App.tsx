@@ -3,10 +3,14 @@ import { MotionConfig } from "motion/react";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { Footer } from "./components/Footer";
+import { SitePageBar, SiteRail, sitePages } from "./components/chapters";
 import { Header } from "./components/Header";
 import { Case } from "./pages/Case";
+import { Hello } from "./pages/Hello";
+import { How } from "./pages/How";
 import { NotFound } from "./pages/NotFound";
-import { Story } from "./pages/Story";
+import { Path } from "./pages/Path";
+import { Work } from "./pages/Work";
 
 /** Scrolls to #hash targets, or jumps to the top on a new page. */
 function ScrollManager() {
@@ -46,6 +50,8 @@ function usePrefersReducedMotion() {
 }
 
 function Layout() {
+  const { pathname } = useLocation();
+  const onSitePage = sitePages.some((p) => p.to === pathname);
   return (
     <>
       <a
@@ -56,15 +62,24 @@ function Layout() {
       </a>
       <ScrollManager />
       <Header />
+      {onSitePage && (
+        <>
+          <SitePageBar />
+          <SiteRail />
+        </>
+      )}
       <Routes>
-        <Route path="/" element={<Story />} />
+        <Route path="/" element={<Work />} />
+        <Route path="/how" element={<How />} />
+        <Route path="/path" element={<Path />} />
+        <Route path="/hello" element={<Hello />} />
         <Route path="/work/:slug" element={<Case />} />
         <Route path="/projects/:slug" element={<OldProjectLink />} />
         <Route path="/projects" element={<Navigate to="/#work" replace />} />
         <Route path="/experiments" element={<Navigate to="/#work" replace />} />
-        <Route path="/about" element={<Navigate to="/#path" replace />} />
-        <Route path="/resume" element={<Navigate to="/#path" replace />} />
-        <Route path="/contact" element={<Navigate to="/#hello" replace />} />
+        <Route path="/about" element={<Navigate to="/path" replace />} />
+        <Route path="/resume" element={<Navigate to="/path" replace />} />
+        <Route path="/contact" element={<Navigate to="/hello" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

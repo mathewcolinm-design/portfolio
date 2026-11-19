@@ -24,7 +24,7 @@ Reviewers arrive from a job application, LinkedIn or a résumé link, mostly on 
 
 ## Capabilities and Constraints
 
-- Pages: one home page in chapters (Work, How I work, Path, Say hello) and one case study page per project.
+- Pages: four focused pages (Work, How I work, Path, Say hello) and one case study page per project.
 - Built in React + Vite + Tailwind CSS + Motion, in `site/`. Deployed as a static site.
 - The repository is public and auto-pushes after every change.
 - No photo of Mathew anywhere on the site (Mathew's explicit choice).

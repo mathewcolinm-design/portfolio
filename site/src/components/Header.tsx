@@ -1,15 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useState, type MouseEvent } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { profile } from "../data/content";
-import { useScrollToId } from "./chapters";
 import { pillButton } from "./ui";
 
-/** Slim header: the name, and one way to get in touch. Chapters live in the rail. */
+/** Slim header: the name, and one way to get in touch. Pages live in the rail. */
 export function Header() {
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const scrollTo = useScrollToId();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -18,12 +14,6 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const toHello = (e: MouseEvent) => {
-    e.preventDefault();
-    if (pathname === "/") scrollTo("hello");
-    else navigate("/#hello");
-  };
 
   return (
     <header
@@ -34,9 +24,9 @@ export function Header() {
           <Link to="/" className="text-[26px] leading-none font-medium tracking-[-0.05em] md:text-[30px]">
             {profile.name}
           </Link>
-          <a href="/#hello" onClick={toHello} className={pillButton}>
+          <Link to="/hello" className={pillButton}>
             Get in touch <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       </div>
     </header>

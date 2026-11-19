@@ -7,7 +7,7 @@ related_targets: []
 
 # Portfolio site (all routes in site/src)
 
-Scope: whole site. One long home page told in chapters, plus one case study page per project. Visitor mode: Persuade for the home opening and closing, Read for the chapters and case studies.
+Scope: whole site. Four focused pages (Work at /, How I work at /how, Path at /path, Say hello at /hello), plus one case study page per project. Mathew asked for multiple pages, each focused on one category. Visitor mode: Persuade for the home opening and closing, Read for the chapters and case studies.
 
 Audience and job: hiring managers judging a product designer quickly, then reading one or two case studies. Action: open a case study, then email.
 
@@ -15,7 +15,7 @@ Constraints: no photo of Mathew; no phone number; light mode only; every claim f
 
 ## Direction contract
 
-THESIS: The portfolio is a single story read in chapters (Work, How I work, Path, Say hello), with a progress rail that tells you where you are in it. Refuses the template stack of hero, card grid, services and logos, and refuses copying the reference's layout.
+THESIS: The portfolio is a story in four focused pages (Work, How I work, Path, Say hello), read in order, with a rail that tells you where you are in it and each page pointing on to the next. Refuses the template stack of hero, card grid, services and logos, and refuses copying the reference's layout.
 
 OWN-WORLD: The settled Formo-derived world: pure white ground, near-black ink, body grey and a soft grey for the quiet half of large statements, Geist regular, hairline dividers, flat grey tiles with 10px radius, thin Lucide strokes, no accent colour and no shadows.
 
@@ -23,6 +23,6 @@ STORY: The opening says who Mathew is in one sentence; Work shows six projects i
 
 FIRST VIEWPORT: Slim solid header on the 960px work measure (wordmark left, "Get in touch" right; hairline appears once scrolled). An oversized two-tone opening statement across the centred content column, about 3.75rem on desktop, 1.5x the chapter heads, with availability and a "Start with the work" link beneath. On desktop the chapter rail sits in the right margin: four chapter names, none active until Work is reached, a hairline beside them that fills as you read.
 
-FORM: Chapters with a progress rail, list position 5 of 7. seed:c2be6b296eaa8b9b. Signature interaction: the rail's hairline fills with scroll progress and the active chapter name steps forward; on phones a thin bar under the header does the same with the chapter name. Smooth (Lenis) scrolling throughout, off under reduced motion.
+FORM: Chapters with a progress rail, list position 5 of 7. seed:c2be6b296eaa8b9b. Signature interaction: the rail names the four pages, the current one steps forward and its hairline fills with that page's scroll; on phones a sticky page bar under the header does the same. Case pages use the rail for their chapters. Smooth (Lenis) scrolling throughout, off under reduced motion.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
