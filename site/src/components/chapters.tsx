@@ -1,11 +1,25 @@
 import { useLenis } from "lenis/react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, useScroll, useSpring } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { Column, Statement } from "./ui";
 
 export type ChapterInfo = { id: string; label: string };
+
+/** The four pages of the site, in reading order. */
+export const sitePages = [
+  { to: "/", label: "Work" },
+  { to: "/how", label: "How I work" },
+  { to: "/path", label: "Path" },
+  { to: "/hello", label: "Say hello" },
+];
+
+/** Height of everything pinned to the top (header and bars), so jumps land below it. */
+export function stickyOffset() {
+  const pinned = Array.from(document.querySelectorAll<HTMLElement>("[data-sticky]"));
+  return -(pinned.reduce((h, el) => h + el.getBoundingClientRect().height, 0) + 24);
+}
 
 /** Scrolls to an element id, through Lenis when smooth scrolling is on. */
 export function useScrollToId() {
@@ -14,7 +28,7 @@ export function useScrollToId() {
     (id: string) => {
       const el = document.getElementById(id);
       if (!el) return;
-      const offset = window.innerWidth >= 1280 ? -72 : -112;
+      const offset = stickyOffset();
       if (lenis) lenis.scrollTo(el, { offset });
       else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset });
     },
@@ -22,7 +36,7 @@ export function useScrollToId() {
   );
 }
 
-/** Index of the chapter whose top has passed 40% of the viewport, or -1 before the first. */
+/** Index of the section whose top has passed 40% of the viewport, or -1 before the first. */
 export function useActiveChapter(ids: string[]) {
   const [active, setActive] = useState(-1);
   const key = ids.join();
@@ -36,7 +50,7 @@ export function useActiveChapter(ids: string[]) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= line) current = i;
       });
-      // At the very bottom the last chapter is the one being read.
+      // At the very bottom the last section is the one being read.
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = ids.length - 1;
       setActive(current);
     };
@@ -56,58 +70,78 @@ export function useActiveChapter(ids: string[]) {
   return active;
 }
 
-/**
- * Where you are in the story. Desktop: a rail in the right margin whose
- * hairline fills as you read. Phones: a slim bar under the header.
- */
-export function ProgressRail({ chapters, label = "Chapters" }: { chapters: ChapterInfo[]; label?: string }) {
-  const active = useActiveChapter(chapters.map((c) => c.id));
-  const scrollTo = useScrollToId();
+/** A thin line along the bottom edge of the header that fills as you scroll the page. */
+export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 220, damping: 40, restDelta: 0.001 });
+  return <motion.span aria-hidden="true" className="absolute inset-x-0 -bottom-px h-px origin-left bg-fg" style={{ scaleX: progress }} />;
+}
+
+/** Phones and small tablets: the page links in a slim bar under the header. */
+export function SitePageBar() {
+  return (
+    <nav data-sticky aria-label="Pages" className="sticky top-16 z-40 border-b border-line bg-bg md:hidden">
+      <ol className="mx-auto flex h-11 max-w-[1008px] items-center gap-5 overflow-x-auto px-5 text-[15px] whitespace-nowrap [scrollbar-width:none]">
+        {sitePages.map((p) => (
+          <li key={p.to}>
+            <NavLink to={p.to} end className={({ isActive }) => `transition-colors ${isActive ? "text-fg" : "text-muted hover:text-fg"}`}>
+              {p.label}
+            </NavLink>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
+/** Case studies: their sections in a bar pinned under the header, the current one marked. */
+export function SectionBar({ sections }: { sections: ChapterInfo[] }) {
+  const active = useActiveChapter(sections.map((s) => s.id));
+  const scrollTo = useScrollToId();
+  const listRef = useRef<HTMLOListElement>(null);
+
+  // On narrow screens the bar scrolls sideways; keep the current section in view.
+  useEffect(() => {
+    const list = listRef.current;
+    const item = active >= 0 ? (list?.children[active] as HTMLElement | undefined) : undefined;
+    if (list && item) list.scrollTo({ left: item.offsetLeft - list.offsetLeft - 16, behavior: "smooth" });
+  }, [active]);
 
   return (
-    <>
-      <nav aria-label={label} className="fixed top-1/2 right-6 z-40 hidden -translate-y-1/2 xl:flex">
-        <ol className="flex flex-col items-end gap-3 py-1 pr-5">
-          {chapters.map((c, i) => (
-            <li key={c.id}>
+    <nav data-sticky aria-label="Case study sections" className="sticky top-16 z-40 border-b border-line bg-bg">
+      <div className="mx-auto flex h-11 max-w-[1008px] items-center gap-5 px-5 text-[15px] md:px-6">
+        <Link to="/#work" className="flex shrink-0 items-center gap-1.5 text-muted transition-colors hover:text-fg">
+          <ArrowLeft size={15} strokeWidth={1.5} aria-hidden="true" />
+          <span className="sr-only sm:not-sr-only">All work</span>
+        </Link>
+        <span aria-hidden="true" className="h-4 w-px shrink-0 bg-line" />
+        <ol ref={listRef} className="flex min-w-0 items-center gap-5 overflow-x-auto whitespace-nowrap [scrollbar-width:none]">
+          {sections.map((s, i) => (
+            <li key={s.id} className="shrink-0">
               <a
-                href={`#${c.id}`}
+                href={`#${s.id}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollTo(c.id);
+                  scrollTo(s.id);
                 }}
                 aria-current={i === active ? "location" : undefined}
-                className={`block text-[15px] transition-[color,translate] duration-500 ease-out-expo ${
-                  i === active ? "-translate-x-1.5 text-fg" : "text-muted hover:text-fg"
-                }`}
+                className={`relative block py-3 transition-colors ${i === active ? "text-fg" : "text-muted hover:text-fg"}`}
               >
-                {c.label}
+                {s.label}
+                {i === active && (
+                  <motion.span
+                    layoutId="section-marker"
+                    aria-hidden="true"
+                    className="absolute inset-x-0 -bottom-px h-px bg-fg"
+                    transition={{ type: "spring", stiffness: 420, damping: 38 }}
+                  />
+                )}
               </a>
             </li>
           ))}
         </ol>
-        <span aria-hidden="true" className="relative w-px bg-line">
-          <motion.span className="absolute inset-0 origin-top bg-fg" style={{ scaleY: progress }} />
-        </span>
-      </nav>
-
-      <div
-        aria-hidden={active < 0}
-        className={`fixed inset-x-0 top-16 z-40 border-b border-line bg-bg transition-opacity duration-300 xl:hidden ${
-          active < 0 ? "pointer-events-none opacity-0" : "opacity-100"
-        }`}
-      >
-        <div className="mx-auto flex h-10 max-w-[1008px] items-center justify-between px-5 text-[15px] md:px-6">
-          <span>{chapters[Math.max(active, 0)].label}</span>
-          <span className="text-muted tabular-nums">
-            {Math.max(active, 0) + 1} / {chapters.length}
-          </span>
-        </div>
-        <motion.span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px origin-left bg-fg" style={{ scaleX: progress }} />
       </div>
-    </>
+    </nav>
   );
 }
 
@@ -127,7 +161,7 @@ export function Chapter({
   children: ReactNode;
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-h`} className="scroll-mt-28">
+    <section id={id} aria-labelledby={`${id}-h`}>
       <Column>
         <div className="border-t border-line pt-16 md:pt-24">
           <Statement as="h2" id={`${id}-h`} size={plain ? "md" : "lg"} ink={title} soft={plain ? undefined : soft} />
@@ -135,75 +169,6 @@ export function Chapter({
       </Column>
       <div className={`${plain ? "mt-8 md:mt-10" : "mt-12 md:mt-16"} pb-24 md:pb-32`}>{children}</div>
     </section>
-  );
-}
-
-/** The four pages of the site, in reading order. */
-export const sitePages = [
-  { to: "/", label: "Work" },
-  { to: "/how", label: "How I work" },
-  { to: "/path", label: "Path" },
-  { to: "/hello", label: "Say hello" },
-];
-
-function usePageProgress() {
-  const { scrollYProgress } = useScroll();
-  return useSpring(scrollYProgress, { stiffness: 220, damping: 40, restDelta: 0.001 });
-}
-
-/**
- * Site navigation as a reading rail. Desktop: the four pages in the right
- * margin; the current one steps forward and the hairline fills as you scroll
- * it. Phones: the same pages in a slim bar under the header (SitePageBar).
- */
-export function SiteRail() {
-  const progress = usePageProgress();
-  return (
-    <nav aria-label="Pages" className="fixed top-1/2 right-6 z-40 hidden -translate-y-1/2 xl:flex">
-      <ol className="flex flex-col items-end gap-3 py-1 pr-5">
-        {sitePages.map((p) => (
-          <li key={p.to}>
-            <NavLink
-              to={p.to}
-              end
-              className={({ isActive }) =>
-                `block text-[15px] transition-[color,translate] duration-500 ease-out-expo ${
-                  isActive ? "-translate-x-1.5 text-fg" : "text-muted hover:text-fg"
-                }`
-              }
-            >
-              {p.label}
-            </NavLink>
-          </li>
-        ))}
-      </ol>
-      <span aria-hidden="true" className="relative w-px bg-line">
-        <motion.span className="absolute inset-0 origin-top bg-fg" style={{ scaleY: progress }} />
-      </span>
-    </nav>
-  );
-}
-
-/** Phone and tablet version of the rail: page links under the header, progress along the bottom. */
-export function SitePageBar() {
-  const progress = usePageProgress();
-  return (
-    <nav aria-label="Pages" className="sticky top-16 z-40 border-b border-line bg-bg xl:hidden">
-      <ol className="mx-auto flex h-11 max-w-[1008px] items-center gap-5 overflow-x-auto px-5 text-[15px] whitespace-nowrap [scrollbar-width:none] md:px-6">
-        {sitePages.map((p) => (
-          <li key={p.to}>
-            <NavLink
-              to={p.to}
-              end
-              className={({ isActive }) => `transition-colors ${isActive ? "text-fg" : "text-muted hover:text-fg"}`}
-            >
-              {p.label}
-            </NavLink>
-          </li>
-        ))}
-      </ol>
-      <motion.span aria-hidden="true" className="absolute inset-x-0 -bottom-px h-px origin-left bg-fg" style={{ scaleX: progress }} />
-    </nav>
   );
 }
 
@@ -252,4 +217,3 @@ export function Page({
     </main>
   );
 }
-

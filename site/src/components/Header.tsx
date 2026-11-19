@@ -1,11 +1,17 @@
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { profile } from "../data/content";
+import { ScrollProgress, sitePages } from "./chapters";
 import { pillButton } from "./ui";
 
-/** Slim header: the name, and one way to get in touch. Pages live in the rail. */
+/**
+ * The site's navigation, along the top: name on the left, the pages and a
+ * "Say hello" button on the right. A hairline along the bottom fills as you
+ * scroll. On phones the page links move into a bar just below (SitePageBar).
+ */
 export function Header() {
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -15,20 +21,44 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isActive = (to: string) => (to === "/" ? pathname === "/" || pathname.startsWith("/work/") : pathname === to);
+  const links = sitePages.filter((p) => p.to !== "/hello");
+
   return (
     <header
+      data-sticky
       className={`sticky top-0 z-50 border-b bg-bg transition-colors duration-300 ${scrolled ? "border-line" : "border-transparent"}`}
     >
-      <div className="mx-auto w-full max-w-[1008px] px-5 md:px-6">
-        <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="text-[26px] leading-none font-medium tracking-[-0.05em] md:text-[30px]">
-            {profile.name}
+      <div className="mx-auto flex h-16 w-full max-w-[1008px] items-center justify-between gap-6 px-5 md:px-6">
+        <Link to="/" className="shrink-0 text-[26px] leading-none font-medium tracking-[-0.05em] md:text-[30px]">
+          {profile.name}
+        </Link>
+        <nav aria-label="Main" className="flex items-center gap-7">
+          <ul className="hidden items-center gap-7 md:flex">
+            {links.map((p) => (
+              <li key={p.to}>
+                <Link
+                  to={p.to}
+                  aria-current={isActive(p.to) ? "page" : undefined}
+                  className={`relative py-2 text-base transition-colors duration-300 ${
+                    isActive(p.to) ? "text-fg" : "text-muted hover:text-fg"
+                  }`}
+                >
+                  {p.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/hello"
+            aria-current={pathname === "/hello" ? "page" : undefined}
+            className={`${pillButton} ${pathname === "/hello" ? "bg-[#e8e8e8]" : ""}`}
+          >
+            Say hello <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
           </Link>
-          <Link to="/hello" className={pillButton}>
-            Get in touch <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
-          </Link>
-        </div>
+        </nav>
       </div>
+      <ScrollProgress />
     </header>
   );
 }

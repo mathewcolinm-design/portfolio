@@ -1,10 +1,68 @@
-import { ArrowLeft } from "lucide-react";
-import { Link, useParams } from "react-router";
-import { Chapter, ProgressRail } from "../components/chapters";
+import { useParams } from "react-router";
+import { Chapter, SectionBar } from "../components/chapters";
+import { Prose } from "../components/Prose";
 import { Column, Statement, Tile, ruledRow } from "../components/ui";
 import { WorkFigure } from "../components/WorkFigure";
-import { projects } from "../data/content";
+import { projects, type Metric, type StorySection } from "../data/content";
 import { NotFound } from "./NotFound";
+
+const isOutcome = (s: StorySection) => /outcome|result|impact/i.test(s.title);
+/** Short label for the section bar: "The challenge" → "Challenge". */
+const shortLabel = (title: string) => {
+  const t = title.replace(/^the\s+/i, "");
+  return t.charAt(0).toUpperCase() + t.slice(1);
+};
+
+function Results({ metrics }: { metrics: Metric[] }) {
+  return (
+    <dl className="mt-10 border-t border-line">
+      {metrics.map((m) => (
+        <div key={m.label} className="grid grid-cols-[1fr_auto] items-baseline gap-x-6 border-b border-line py-4">
+          <dt className="text-base">
+            {m.label}
+            {m.detail && (
+              <span className="block text-muted sm:inline">
+                <span className="hidden sm:inline"> · </span>
+                {m.detail}
+              </span>
+            )}
+          </dt>
+          <dd className="text-right text-[clamp(1.5rem,2.6vw,2rem)] leading-none tracking-[-0.035em] tabular-nums">{m.value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function StoryChapter({ section, first, metrics }: { section: StorySection; first: boolean; metrics?: Metric[] }) {
+  return (
+    <Chapter id={section.id} title={section.title} plain>
+      <Column>
+        {section.blocks.length > 0 && <Prose blocks={section.blocks} lead={first} />}
+        {section.steps.length > 0 && (
+          <ol className={section.blocks.length ? "mt-10" : ""}>
+            {section.steps.map((step, i) => (
+              <li key={step.title} className="grid gap-x-6 border-t border-line py-6 last:border-b sm:grid-cols-[56px_1fr]">
+                <span aria-hidden="true" className="text-[15px] text-muted tabular-nums sm:pt-0.5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-lg">{step.title}</h3>
+                  {step.blocks.length > 0 && (
+                    <div className="mt-2">
+                      <Prose blocks={step.blocks} />
+                    </div>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
+        {metrics && <Results metrics={metrics} />}
+      </Column>
+    </Chapter>
+  );
+}
 
 export function Case() {
   const { slug } = useParams();
@@ -15,10 +73,13 @@ export function Case() {
 
   const ready = p.shots.filter((s) => s.src);
   const pending = p.shots.filter((s) => !s.src);
-  const rail = [
-    { id: "overview", label: "Overview" },
-    { id: "process", label: "What I did" },
-    ...(p.metrics ? [{ id: "results", label: "Results" }] : []),
+  const outcome = p.story.find(isOutcome);
+  // Results sit inside the outcome section; without one they get their own.
+  const extraResults = p.metrics && !outcome;
+
+  const sections = [
+    ...p.story.map((s) => ({ id: s.id, label: shortLabel(s.title) })),
+    ...(extraResults ? [{ id: "results", label: "Results" }] : []),
     { id: "designs", label: "Designs" },
     { id: "next", label: "Next" },
   ];
@@ -31,15 +92,10 @@ export function Case() {
 
   return (
     <>
-      <ProgressRail chapters={rail} label="Case study" />
+      <SectionBar sections={sections} />
       <main id="main" key={p.slug}>
-        <Column className="pt-12 md:pt-20">
-          <Link to="/#work" className="inline-flex items-center gap-1.5 text-base text-muted transition-colors hover:text-fg">
-            <ArrowLeft size={16} strokeWidth={1.5} aria-hidden="true" /> All work
-          </Link>
-          <div className="mt-10">
-            <Statement as="h1" size="xl" ink={`${p.name}.`} soft={` ${p.caption}.`} />
-          </div>
+        <Column className="pt-14 md:pt-24">
+          <Statement as="h1" size="xl" ink={`${p.name}.`} soft={` ${p.caption}.`} />
           <dl className="mt-12 border-t border-line">
             {meta.map((m) => (
               <div key={m.label} className={ruledRow}>
@@ -53,43 +109,14 @@ export function Case() {
           <Tile src={p.cover} alt={`${p.name} cover`} />
         </Column>
 
-        <Chapter id="overview" title="Overview" plain>
-          <Column>
-            <p className="max-w-[54ch] text-lg leading-relaxed">{p.overview}</p>
-          </Column>
-        </Chapter>
+        {p.story.map((section, i) => (
+          <StoryChapter key={section.id} section={section} first={i === 0} metrics={section === outcome ? p.metrics : undefined} />
+        ))}
 
-        <Chapter id="process" title="What I did" plain>
-          <Column>
-            <ul className="border-t border-line">
-              {p.did.map((d) => (
-                <li key={d} className="border-b border-line py-4 text-base leading-relaxed">
-                  {d}
-                </li>
-              ))}
-            </ul>
-          </Column>
-        </Chapter>
-
-        {p.metrics && (
+        {extraResults && (
           <Chapter id="results" title="Results" plain>
             <Column>
-              <dl className="border-t border-line">
-                {p.metrics.map((m) => (
-                  <div key={m.label} className="grid grid-cols-[1fr_auto] items-start gap-x-6 border-b border-line py-3 text-base">
-                    <dt>
-                      {m.label}
-                      {m.detail && (
-                        <span className="block text-muted sm:inline">
-                          <span className="hidden sm:inline"> · </span>
-                          {m.detail}
-                        </span>
-                      )}
-                    </dt>
-                    <dd className="text-right tabular-nums">{m.value}</dd>
-                  </div>
-                ))}
-              </dl>
+              <Results metrics={p.metrics!} />
             </Column>
           </Chapter>
         )}

@@ -120,7 +120,7 @@ components:
 
 **Creative North Star: "The Quiet Column"**
 
-A white page, centred columns, and nothing raised off the ground. The site is four pages, each about one thing, read in order: Work (which opens on an oversized two-tone sentence), How I work, Path and Say hello. Each page ends by pointing to the next. Each case page runs as chapters: Overview, What I did, Results, Designs and Next project. Every chapter starts at a hairline with a large statement and then gives way to its content: flat grey work tiles on a wider measure, ruled lists and short muted paragraphs on a narrower reading measure. A rail in the right margin (a slim page bar under the header on smaller screens) names the four pages, marks the current one and fills as you scroll it; on case pages the same rail tracks the chapters. There is no accent hue: the system is ink, two greys, white and one tile grey.
+A white page, centred columns, and nothing raised off the ground. The site is four pages, each about one thing, read in order: Work (which opens on an oversized two-tone sentence), How I work, Path and Say hello. Each page ends by pointing to the next. Each case page is a story written in Markdown: The context, The challenge, How I approached it (numbered steps), The outcome (with results) and optionally What I learned, then Designs and Next project. Every chapter starts at a hairline with a large statement and then gives way to its content: flat grey work tiles on a wider measure, ruled lists and short muted paragraphs on a narrower reading measure. Navigation sits along the top: the header carries the page links (Work, How I work, Path) and a "Say hello" pill, with a hairline along its bottom edge that fills as you scroll. On phones the page links sit in a slim bar under the header. Case pages add a section bar under the header listing the story's sections, the current one underlined. There is no accent hue: the system is ink, two greys, white and one tile grey.
 
 Density is low and the rhythm is long: 96 to 128px of air closes each chapter, 64 to 96px opens the next. Hierarchy comes from size and tone, never weight: large text is regular with tight negative tracking, and the second half of a large statement drops to a softer grey so one sentence reads as claim then context. Motion is slow-settling and small: Lenis-eased scrolling, a rail hairline that fills with reading progress, an active chapter name that steps 6px forward, an arrow that travels 2px, an image that eases in by 2%. All of it stands down under reduced motion.
 
@@ -252,5 +252,5 @@ Lenis smooth scrolling on the root (lerp 0.09, wheel smoothing on) carries all i
 - **Don't** use soft grey for text under 24px.
 - **Don't** add shadows, glass or raised cards; depth is tone and hairlines.
 - **Don't** bold headings; the only weight above 400 is the wordmark.
-- **Don't** add header navigation links; chapters belong to the rail.
+- **Don't** add a side rail or a second navigation; pages live in the header, case sections in the section bar.
 - **Don't** fall back to a hero, card grid, services row and logo strip.

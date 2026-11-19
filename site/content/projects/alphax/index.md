@@ -1,6 +1,6 @@
 ---
 # ── AlphaX ──────────────────────────────────────────────
-# Project details. The text below the closing --- line is the Overview.
+# Project details. The story is written below the closing --- line.
 # Images: put cover.webp (or .png/.jpg) in this folder, and screens in
 # the screens/ folder. See EDITING.md.
 
@@ -15,9 +15,6 @@ role: Web & brand designer
 timeline: 2024 – 2025
 focus: Landing page
 
-what_i_did:
-  - Designed a responsive, conversion-focused landing page.
-  - Created all of the product's brand visuals.
 
 # To show Results, add a block like this:
 # results:
@@ -33,4 +30,30 @@ screens:
   - Landing page, mobile
   - Brand visuals
 ---
-AlphaX is a DeFi product that needed a single page to explain itself and convert visitors.
+<!--
+  DRAFT written only from your résumé. Make it yours: add what you found,
+  what you decided and why, and what changed. Write each section in your
+  own voice. Lines inside these arrows are notes and never show on the site.
+-->
+
+## The context
+
+AlphaX is a DeFi product. At MATQCODE I designed its landing page and all of its brand visuals.
+
+## The challenge
+
+The page had to explain a DeFi product and turn visitors into users, on any screen size.
+
+## How I approached it
+
+### A page built to convert
+I designed a responsive, conversion-focused landing page.
+
+### The product's look
+I created all of AlphaX's brand visuals.
+
+<!--
+  Optional ending. Remove the arrows around this to show it:
+  ## What I learned
+  One or two honest sentences about what this project taught you.
+-->

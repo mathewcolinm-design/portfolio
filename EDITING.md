@@ -5,7 +5,7 @@ All of the site's words and images live in one folder: **`site/content/`**. You 
 | What you want to change | File |
 |---|---|
 | Your name, email, LinkedIn, the opening statement, page headings, What I do, Toolkit, career, education, skills, other work | `site/content/site.yml` |
-| A project's details, results and overview | `site/content/projects/<project>/index.md` |
+| A project's details, results and story | `site/content/projects/<project>/index.md` |
 | A project's cover image | `site/content/projects/<project>/cover.webp` |
 | A project's screenshots | `site/content/projects/<project>/screens/` |
 | Images for "Other work" | `site/content/other-work/` |
@@ -56,7 +56,9 @@ Lines starting with `#` are notes to you. The site ignores them.
 
 ## 3. Edit a project
 
-Open `site/content/projects/<project>/index.md`. The top part, between the two `---` lines, holds the details:
+Open `site/content/projects/<project>/index.md`. It has two parts.
+
+### The details (between the two `---` lines)
 
 ```yaml
 ---
@@ -69,11 +71,7 @@ role: UI/UX designer
 timeline: Aug 2025 – Jan 2026
 focus: Trading platform
 
-what_i_did:
-  - Designed user flows, wireframes and high-fidelity prototypes.
-  - Built and maintained a Figma design system.
-
-results:                 # optional; delete the whole block if you have none
+results:                 # optional; shown inside "The outcome"
   - value: "142,000+"
     label: Waitlist signups
     detail: For the beta
@@ -82,12 +80,47 @@ screens:
   - Trading screen
   - Order flow
 ---
-Tetra lets traders work across crypto, forex, stocks and commodities...
 ```
 
-Everything **below** the second `---` is the **Overview** paragraph. Leave a blank line between paragraphs.
-
 **Reorder projects** by changing the `order` numbers.
+
+### The story (everything below the second `---`)
+
+The case study page is told as a story. Each line starting with `## ` starts a new section, and each line starting with `### ` inside a section becomes a numbered step:
+
+```markdown
+## The context
+
+Who the product is for, what it does, and where you came in.
+
+## The challenge
+
+What made it hard. What was at stake for users or the business.
+
+## How I approached it
+
+### Mapping the flows
+What you did first, and why.
+
+### Testing the hard parts
+What you tested, what you found, what you changed because of it.
+
+## The outcome
+
+What changed. The numbers from `results:` appear here automatically.
+
+## What I learned
+
+One or two honest sentences.
+```
+
+- **Paragraphs:** leave a blank line between them.
+- **Bullet lists:** start lines with `- `.
+- **Bold, italic and links:** `**bold**`, `*italic*` and `[link text](https://example.com)`.
+- **Section names:** call sections whatever you like. They appear in the bar under the header automatically. A section with "outcome", "result" or "impact" in its name gets the `results` numbers.
+- **Notes to yourself:** anything between `<!--` and `-->` is hidden on the site. Each project starts with a note marking the story as a draft.
+
+**The drafts only contain facts from your résumé.** The stories get much stronger when you add what only you know: what you noticed, the options you weighed, what you decided and why, what users said, and what changed afterwards.
 
 ---
 

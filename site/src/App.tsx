@@ -3,7 +3,7 @@ import { MotionConfig } from "motion/react";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { Footer } from "./components/Footer";
-import { SitePageBar, SiteRail, sitePages } from "./components/chapters";
+import { SitePageBar, sitePages, stickyOffset } from "./components/chapters";
 import { Header } from "./components/Header";
 import { Case } from "./pages/Case";
 import { Hello } from "./pages/Hello";
@@ -20,7 +20,7 @@ function ScrollManager() {
     const id = hash.slice(1);
     requestAnimationFrame(() => {
       const el = id ? document.getElementById(id) : null;
-      const offset = window.innerWidth >= 1280 ? -72 : -112;
+      const offset = stickyOffset();
       if (el) {
         if (lenis) lenis.scrollTo(el, { offset, immediate: true });
         else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset });
@@ -62,12 +62,7 @@ function Layout() {
       </a>
       <ScrollManager />
       <Header />
-      {onSitePage && (
-        <>
-          <SitePageBar />
-          <SiteRail />
-        </>
-      )}
+      {onSitePage && <SitePageBar />}
       <Routes>
         <Route path="/" element={<Work />} />
         <Route path="/how" element={<How />} />

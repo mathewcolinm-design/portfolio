@@ -159,6 +159,11 @@ export const experiments: Experiment[] = list(SITE, site, "other_work", { option
 export type Metric = { value: string; label: string; detail?: string };
 export type Shot = { label: string; src?: string };
 
+/** A paragraph or a bulleted list inside a story section. */
+export type Block = { type: "p"; text: string } | { type: "ul"; items: string[] };
+/** One "## Heading" section of a project's story. "### Steps" inside it become numbered steps. */
+export type StorySection = { id: string; title: string; blocks: Block[]; steps: { title: string; blocks: Block[] }[] };
+
 export type Project = {
   slug: string;
   name: string;
@@ -169,8 +174,7 @@ export type Project = {
   role: string;
   timeline: string;
   focus: string;
-  overview: string;
-  did: string[];
+  story: StorySection[];
   metrics?: Metric[];
   shots: Shot[];
   cover?: string;
@@ -187,14 +191,51 @@ const projectImages = import.meta.glob<string>("../../content/projects/*/**/*.{w
   import: "default",
 });
 
+/** Paragraphs are separated by blank lines; lines starting with "- " form a list. */
+function toBlocks(source: string): Block[] {
+  return source
+    .split(/\n\s*\n/)
+    .map((chunk) => chunk.trim())
+    .filter(Boolean)
+    .map((chunk): Block => {
+      const lines = chunk.split("\n").map((l) => l.trim());
+      if (lines.every((l) => l.startsWith("- "))) return { type: "ul", items: lines.map((l) => l.slice(2).trim()) };
+      return { type: "p", text: lines.join(" ") };
+    });
+}
+
+/** Splits the story into "## " sections, and each section's "### " parts into steps. */
+function toStory(file: string, body: string): StorySection[] {
+  const clean = body.replace(/<!--[\s\S]*?-->/g, "").trim();
+  if (!clean) throw new ContentError(file, "the story below the closing --- line is empty");
+  const parts = clean.split(/^## +/m);
+  const sections: StorySection[] = [];
+  // Text before the first "## " heading becomes an untitled opening section.
+  if (parts[0].trim()) sections.push({ id: "story", title: "The story", blocks: toBlocks(parts[0]), steps: [] });
+  for (const part of parts.slice(1)) {
+    const [heading, ...rest] = part.split("\n");
+    const title = heading.trim();
+    const [lead, ...stepParts] = rest.join("\n").split(/^### +/m);
+    sections.push({
+      id: slugify(title) || `section-${sections.length + 1}`,
+      title,
+      blocks: toBlocks(lead),
+      steps: stepParts.map((step) => {
+        const [stepTitle, ...stepBody] = step.split("\n");
+        return { title: stepTitle.trim(), blocks: toBlocks(stepBody.join("\n")) };
+      }),
+    });
+  }
+  return sections;
+}
+
 function loadProject(path: string, source: string): Project & { order: number } {
   const slug = path.split("/").at(-2)!;
   const file = `content/projects/${slug}/index.md`;
   const match = source.replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
   if (!match) throw new ContentError(file, "the details must sit between two --- lines at the top");
   const meta = parseYaml(file, match[1]);
-  const overview = match[2].trim();
-  if (!overview) throw new ContentError(file, "the Overview text below the closing --- line is empty");
+  const story = toStory(file, match[2]);
 
   const images = Object.entries(projectImages).filter(([p]) => p.includes(`/projects/${slug}/`));
   const cover = images.find(([p]) => /\/cover\.[^/]+$/.test(p))?.[1];
@@ -233,8 +274,7 @@ function loadProject(path: string, source: string): Project & { order: number } 
     role: text(file, meta, "role"),
     timeline: text(file, meta, "timeline"),
     focus: text(file, meta, "focus"),
-    overview,
-    did: list(file, meta, "what_i_did").map((d) => String(d).trim()),
+    story,
     metrics: results.length ? results : undefined,
     shots,
     cover,

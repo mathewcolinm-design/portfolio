@@ -23,6 +23,6 @@ STORY: The opening says who Mathew is in one sentence; Work shows six projects i
 
 FIRST VIEWPORT: Slim solid header on the 960px work measure (wordmark left, "Get in touch" right; hairline appears once scrolled). An oversized two-tone opening statement across the centred content column, about 3.75rem on desktop, 1.5x the chapter heads, with availability and a "Start with the work" link beneath. On desktop the chapter rail sits in the right margin: four chapter names, none active until Work is reached, a hairline beside them that fills as you read.
 
-FORM: Chapters with a progress rail, list position 5 of 7. seed:c2be6b296eaa8b9b. Signature interaction: the rail names the four pages, the current one steps forward and its hairline fills with that page's scroll; on phones a sticky page bar under the header does the same. Case pages use the rail for their chapters. Smooth (Lenis) scrolling throughout, off under reduced motion.
+FORM: Chapters with a progress rail, list position 5 of 7. seed:c2be6b296eaa8b9b. Signature interaction: navigation along the top (page links in the header, a hairline under it that fills with scroll; a sticky page bar on phones); case studies add a section bar whose underline glides to the section being read. Case studies read as stories: context, challenge, numbered approach steps, outcome with results. Smooth (Lenis) scrolling throughout, off under reduced motion.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
