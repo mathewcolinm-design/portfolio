@@ -89,28 +89,52 @@ export function ArrowLink({ to, children, external = false }: { to: string; chil
   );
 }
 
-/** Flat grey tile that holds a piece of work, or says plainly that screens are coming. */
+const isVideo = (src: string) => /\.(mp4|webm)(\?|$)/i.test(src);
+
+/** Silent looping video; shows its first frame only when the visitor prefers less motion. */
+function TileVideo({ src, label }: { src: string; label: string }) {
+  const still = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return (
+    <video
+      src={src}
+      aria-label={label}
+      className="absolute inset-0 h-full w-full object-cover"
+      muted
+      loop
+      playsInline
+      autoPlay={!still}
+      preload="metadata"
+    />
+  );
+}
+
+/** Flat grey tile that holds a piece of work (image or video), or says plainly that screens are coming. */
 export function Tile({
   src,
   alt,
   ratio = "16 / 9",
   zoom = false,
   placeholder = "Screens on the way",
+  fit = "cover",
 }: {
   src?: string;
   alt: string;
   ratio?: string;
   zoom?: boolean;
   placeholder?: ReactNode;
+  /** "contain" shows the whole image on the grey tile instead of filling it. */
+  fit?: "cover" | "contain";
 }) {
   return (
     <div className="relative overflow-hidden rounded-[10px] bg-tile" style={{ aspectRatio: ratio }}>
-      {src ? (
+      {src && isVideo(src) ? (
+        <TileVideo src={src} label={alt} />
+      ) : src ? (
         <img
           src={src}
           alt={alt}
           loading="lazy"
-          className={`absolute inset-0 h-full w-full object-cover ${
+          className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain p-4 md:p-8" : "object-cover"} ${
             zoom ? "transition-transform duration-700 ease-out-expo group-hover:scale-[1.02]" : ""
           }`}
         />

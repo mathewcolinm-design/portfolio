@@ -13,6 +13,10 @@
 name: Mathew Colin
 email: mathewcolinm@gmail.com
 linkedin: https://linkedin.com/in/mathew-colin/
+behance: https://www.behance.net/mathewcolin
+
+# A short paragraph about you, shown at the top of the Path page.
+about: I specialise in clean, intuitive interfaces with thoughtful motion and custom visuals that bring digital products to life. Beyond design, I'm all about genuine connections, finding inspiration in the everyday, and turning small sparks of insight into big results.
 
 # The small line with a + mark under the opening statement.
 availability: Looking for my next full-time product role
@@ -45,7 +49,7 @@ pages:
 # workflow, code, mail.
 what_i_do:
   - name: Product & UX design
-    line: Flows, wireframes and shipped interfaces for products with a lot going on.
+    line: Websites, web apps and mobile apps, from first flow to developer-friendly handoff. Web3 is my specialty, but not my limit.
     icon: interface
   - name: Design systems
     line: Tokens, components and patterns, so the hundredth screen looks like the first.
@@ -56,9 +60,12 @@ what_i_do:
   - name: Brand identity
     line: Identities that hold up everywhere, from the logo kit to the event booth.
     icon: brand
-  - name: Motion & video
-    line: Motion graphics, social pieces and product films, from script to final cut.
+  - name: Motion graphics
+    line: I bring static stuff to life. Scroll-stopping visuals and stories you can feel in a few seconds. Movement with meaning, not motion for motion's sake.
     icon: motion
+  - name: Video editing
+    line: I cut the fluff and keep the story. Quick, clean edits for reels, long-form and product films.
+    icon: film
   - name: AI design workflows
     line: Figma and Claude Code workflows that turn one good design into hundreds of on-brand assets.
     icon: workflow

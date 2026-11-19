@@ -10,7 +10,7 @@ All of the site's words and images live in one folder: **`site/content/`**. You 
 | A project's screenshots | `site/content/projects/<project>/screens/` |
 | Images for "Other work" | `site/content/other-work/` |
 
-Project folders: `tetra`, `fxdx`, `avitus`, `certinal-brand`, `demo-films`, `alphax`.
+Project folders (newest first): `certinal-brand`, `demo-films`, `fxdx`, `avitus-motion`, `avitus`, `pricepal`. Hidden projects live in `site/content/archive/` (currently Tetra and AlphaX). Move a folder back into `projects/` to show it again.
 
 ---
 
@@ -140,7 +140,7 @@ On the Work page, the 1st and 4th projects show **wide** tiles (16:9) and the ot
 
 ### Screens (the Designs section of a case study)
 
-Put them in the project's `screens/` folder and **name each file after its entry in the `screens:` list**: lower case, with dashes instead of spaces.
+Put them in the project's `screens/` folder. **Videos work too**: an `.mp4` plays silently on a loop (and stays still for visitors who prefer less motion). **Name each file after its entry in the `screens:` list**: lower case, with dashes instead of spaces.
 
 | In `screens:` | File name |
 |---|---|
@@ -175,13 +175,20 @@ Logos are included for Certinal, Tech Mahindra and Swftconnect. Asva Labs, MATQC
 
 ## 5. Add, hide or remove a project
 
+To hide a project, move its folder to `site/content/archive/`.
+
 - **Add:** copy a whole project folder (for example `tetra`), rename the copy (lower case, dashes, such as `new-project`), then edit its `index.md` and swap the images. The folder name becomes the web address: `/work/new-project`.
 - **Remove:** delete the project's folder.
 - **Hide for now:** move the folder out of `site/content/projects/`, for example to your desktop.
 
 ---
 
-## 6. Add a job, internship, course or skill
+## 6. Your links, about text, jobs, courses and skills
+
+- `linkedin:` and `behance:` in `site.yml` set the links on Say hello and in the footer. Delete the `behance:` line to hide it.
+- `about:` is the paragraph at the top of the Path page.
+
+### Jobs, internships, courses and skills
 
 In `site.yml`, copy an existing entry under `career:`, `internships:`, `education:` or `skills:` and edit it. Internships are listed separately from the career timeline. Career entries go **newest first**. The Path page shows them oldest to newest, and the first entry is marked as your current role.
 

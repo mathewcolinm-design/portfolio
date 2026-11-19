@@ -1,7 +1,7 @@
 import { ArrowUp, Mail } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { profile } from "../data/content";
-import { LinkedInIcon } from "./icons";
+import { BehanceIcon, LinkedInIcon } from "./icons";
 import { Column } from "./ui";
 
 export function Footer() {
@@ -22,6 +22,11 @@ export function Footer() {
             <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-fg">
               <LinkedInIcon />
             </a>
+            {profile.behance && (
+              <a href={profile.behance} target="_blank" rel="noreferrer" aria-label="Behance" className="transition-colors hover:text-fg">
+                <BehanceIcon />
+              </a>
+            )}
           <button type="button" onClick={toTop} className="inline-flex items-center gap-1.5 transition-colors hover:text-fg">
             Back to top <ArrowUp size={15} strokeWidth={1.5} aria-hidden="true" />
           </button>

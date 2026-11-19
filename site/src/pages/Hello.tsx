@@ -1,7 +1,7 @@
 import { ArrowUpRight, Mail } from "lucide-react";
 import { Page } from "../components/chapters";
 import { CopyEmail } from "../components/CopyEmail";
-import { LinkedInIcon } from "../components/icons";
+import { BehanceIcon, LinkedInIcon } from "../components/icons";
 import { Column } from "../components/ui";
 import { chapters, profile } from "../data/content";
 
@@ -33,6 +33,13 @@ export function Hello() {
             LinkedIn
             {arrow}
           </a>
+          {profile.behance && (
+            <a href={profile.behance} target="_blank" rel="noreferrer" className={linkClass}>
+              <BehanceIcon />
+              Behance
+              {arrow}
+            </a>
+          )}
         </div>
       </Column>
     </Page>

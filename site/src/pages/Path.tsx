@@ -1,7 +1,7 @@
 import { Page } from "../components/chapters";
 import { CompanyLogo } from "../components/icons";
 import { Column, ruledRow } from "../components/ui";
-import { chapters, education, internships, jobs, skills } from "../data/content";
+import { chapters, education, internships, jobs, profile, skills } from "../data/content";
 
 const year = (dates: string) => dates.match(/\d{4}/)?.[0] ?? "";
 
@@ -9,7 +9,11 @@ export function Path() {
   const path = [...jobs].reverse();
 
   return (
-    <Page title={chapters.path.title} soft={chapters.path.soft}>
+    <Page
+      title={chapters.path.title}
+      soft={chapters.path.soft}
+      note={profile.about ? <p className="max-w-[50ch] text-lg leading-relaxed">{profile.about}</p> : undefined}
+    >
       <Column className="pb-24 md:pb-32">
         <h2 className="sr-only">Career</h2>
         <ol className="relative">

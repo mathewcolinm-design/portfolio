@@ -16,7 +16,7 @@ import {
   Workflow,
   type LucideIcon,
 } from "lucide-react";
-import { siClaude, siElevenlabs, siFigma, siFramer, siLottiefiles, siMaze, siNotion } from "simple-icons";
+import { siBehance, siClaude, siElevenlabs, siFigma, siFramer, siLottiefiles, siMaze, siNotion } from "simple-icons";
 import { logoFor } from "../data/content";
 
 /**
@@ -110,6 +110,15 @@ export function CompanyLogo({ company, size = 20 }: { company: string; size?: nu
     >
       <img src={src} alt="" width={size} height={size} loading="lazy" className="h-full w-full object-contain" />
     </span>
+  );
+}
+
+/** Behance mark, monochrome. */
+export function BehanceIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true" className="shrink-0">
+      <path d={siBehance.path} />
+    </svg>
   );
 }
 

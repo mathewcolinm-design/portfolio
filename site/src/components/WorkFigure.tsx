@@ -10,7 +10,7 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
       <Tile
         src={project.cover}
         alt={`${project.name}: ${project.caption}`}
-        ratio={shape === "wide" ? (project.cover ? "16 / 9" : "16 / 7") : "4 / 5"}
+        ratio={shape === "wide" ? (project.cover ? "16 / 9" : "16 / 7") : project.cover ? "4 / 3" : "4 / 5"}
         zoom
         placeholder={
           <div className="flex h-full flex-col justify-between p-6 md:p-8">

@@ -103,6 +103,8 @@ export const profile = {
   name: text(SITE, site, "name"),
   email: text(SITE, site, "email"),
   linkedin: text(SITE, site, "linkedin"),
+  behance: optionalText(site, "behance"),
+  about: optionalText(site, "about"),
   availability: text(SITE, site, "availability"),
   /** Opening statement: the ink part, then the soft grey continuation. */
   statement: [text(SITE, intro, "bold", " under intro"), ` ${text(SITE, intro, "soft", " under intro")}`] as [string, string],
@@ -226,7 +228,7 @@ const projectSources = import.meta.glob<string>("../../content/projects/*/index.
   query: "?raw",
   import: "default",
 });
-const projectImages = import.meta.glob<string>("../../content/projects/*/**/*.{webp,png,jpg,jpeg,avif,gif}", {
+const projectImages = import.meta.glob<string>("../../content/projects/*/**/*.{webp,png,jpg,jpeg,avif,gif,mp4,webm}", {
   eager: true,
   query: "?url",
   import: "default",

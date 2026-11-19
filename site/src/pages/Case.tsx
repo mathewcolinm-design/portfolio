@@ -132,7 +132,7 @@ export function Case() {
                 {ready.map((s) => (
                   <li key={s.label}>
                     <figure>
-                      <Tile src={s.src} alt={s.label} />
+                      <Tile src={s.src} alt={s.label} ratio="16 / 10" fit="contain" />
                       <figcaption className="mt-3 text-base text-muted">{s.label}</figcaption>
                     </figure>
                   </li>

@@ -1,67 +1,50 @@
 ---
 # ── FXDX ──────────────────────────────────────────────
 # Project details. The story is written below the closing --- line.
-# Images: put cover.webp (or .png/.jpg) in this folder, and screens in
-# the screens/ folder. See EDITING.md.
+# Images and videos: cover.webp in this folder; screens (images or .mp4
+# videos) in the screens/ folder. See EDITING.md.
 
 name: FXDX
 # Position on the Work page (1 = first; keep the newest first).
-order: 4
-company: MATQCODE
-year: 2024–25
+order: 3
+company: FXDX
+year: "2025"
 # One line under the tile, and the case study's grey headline.
-caption: Untangling a trading platform and giving it a design system to stand on
+caption: Redesigning the first impression of a decentralized exchange on Monad
 role: UI/UX designer
-timeline: 2024 – 2025
-focus: Design system
+timeline: "2025"
+focus: Landing page and motion
 
-
-# To show Results, add a block like this:
-# results:
-#   - value: "120+"
-#     label: Something you can count
-#     detail: Short context (optional)
-
-# Screens for the Designs section, in order. Each name matches an image
-# in the screens/ folder: "Order flow" → screens/order-flow.webp.
-# Names without an image yet are listed as "on the way".
+# Screens for the Designs section, in order. Each name matches a file in
+# screens/: "Brand mark" → screens/03-brand-mark.webp (numbers set the order).
 screens:
-  - Trading interface
-  - Colour and type tokens
-  - Component library
-  - Landing page
+  - Landing page motion
+  - Mobile landing page
+  - Brand mark
 ---
 <!--
-  DRAFT written only from your résumé. Make it yours: add what you found,
-  what you decided and why, and what changed. Write each section in your
-  own voice. Lines inside these arrows are notes and never show on the site.
+  Written from your old portfolio and your résumé. Add what only you know:
+  what you found, what you decided and why, and what changed.
 -->
 
 ## The context
 
-FXDX is a decentralized exchange built by MATQCODE in Bengaluru. I joined as a UI/UX designer to rework the trading platform and the marketing site around it.
+FXDX is a decentralized perpetual exchange built on the high-performance Monad chain. I redesigned its landing page: the first thing a trader sees before they ever place a trade.
 
 ## The challenge
 
-The platform's information architecture and visual design made core trading tasks slower and harder than they needed to be, and there was no design system underneath to keep new work consistent.
+The goal was a clean, fast experience that reflects the speed and efficiency of FXDX on Monad. The page had to feel as quick as the product it describes.
 
 ## How I approached it
 
-### Restructuring the platform
-I redesigned the information architecture and visual design so core trading tasks became quicker and easier.
+### A page that moves like the product
+I redesigned the landing page with UI animations, so the speed shows in how the page moves instead of sitting in a claim.
 
-### A design system from scratch
-I built the design system from the ground up: typography, colour tokens, component libraries and interaction patterns.
+### Built for every screen
+I designed the page for desktop and mobile, keeping the same calm, dark, high-contrast look across both.
 
-### A landing page with motion
-I redesigned the marketing landing page with UI animations.
-
-### Shorter handoff
-I streamlined design-to-development handoff, which cut iteration cycles between design and engineering.
-
-## The outcome
-
-The platform got a clearer structure for its core trading tasks, a design system the team could build on, and a shorter path from design to development.
+### A smoother handoff
+I streamlined design-to-development handoff, which cut the iteration cycles between design and engineering.
 
 <!--
   Optional ending. Remove the arrows around this to show it:
