@@ -19,9 +19,9 @@ import("./App")
     const box = document.createElement("div");
     box.setAttribute("role", "alert");
     box.style.cssText =
-      "max-width:640px;margin:15vh auto;padding:24px;font:16px/1.6 system-ui,sans-serif;color:#0a0a0a;border:1px solid rgb(0 0 0/.12);border-radius:10px";
+      "max-width:640px;margin:15vh auto;padding:24px;font:16px/1.6 'Geist Variable',system-ui,sans-serif;color:#0a0a0a;border:1px solid rgb(0 0 0/.12);border-radius:10px";
     const title = document.createElement("p");
-    title.style.cssText = "margin:0 0 8px;font-weight:600";
+    title.style.cssText = "margin:0 0 8px;font-weight:500";
     title.textContent = "The site couldn't load its content";
     const message = document.createElement("p");
     message.style.margin = "0";

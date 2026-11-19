@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-18T19:51:56.255782Z",
+  "generatedAt": "2026-11-19T14:11:50.270993Z",
   "title": "Design System: Mathew Colin Portfolio",
   "extensions": {
     "colorMeta": {
@@ -95,7 +95,7 @@
         "role": "neutral",
         "displayName": "Tile Pressed",
         "canonical": "#e8e8e8",
-        "note": "Pill button hover fill; literal in source.",
+        "note": "Pill hover fill and its fill on the Say hello page; literal in source.",
         "tonalRamp": [
           "#1a1a1a",
           "#2e2e2e",
@@ -128,35 +128,39 @@
     "typographyMeta": {
       "wordmark": {
         "displayName": "Wordmark",
-        "purpose": "The name in the header (26px below 768px). Only weight-500 text."
+        "purpose": "The name in the header (26px below 768px)."
       },
       "display": {
         "displayName": "Display",
-        "purpose": "Page-opening two-tone statement on Home and case titles."
+        "purpose": "Page-opening two-tone statement on every site page and case titles."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Two-tone chapter openers on Home; not-found message."
+        "purpose": "Two-tone chapter openers on site pages; next-page link; not-found message."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Plain, ink-only chapter openers on case pages."
+        "purpose": "Plain, ink-only chapter openers on case pages (story section titles)."
       },
       "body-lead": {
         "displayName": "Body Lead",
-        "purpose": "Case Overview paragraph, max 54ch."
+        "purpose": "First story section's prose in ink, max 50ch; step titles."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Subheads, list rows, project names and meta, links, buttons."
+        "purpose": "Header page links, subheads, list rows, project names and meta, links, buttons."
       },
       "body-reading": {
         "displayName": "Body Reading",
-        "purpose": "Muted paragraphs (Path entries, skills), max 54 to 60ch."
+        "purpose": "Muted story and step prose, Path entries, skills; max 54 to 56ch."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Result values, right-aligned tabular numerals."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Rail and bar names, tile placeholder notes, footer, copy hint."
+        "purpose": "Page-bar and section-bar links, step numerals, tile placeholder notes, next-page label, footer, copy hint."
       }
     },
     "shadows": [],
@@ -168,7 +172,7 @@
       {
         "name": "ease-out-expo",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Arrow travel, rail step, tile zoom."
+        "purpose": "Arrow travel, next-page arrow, tile zoom."
       },
       {
         "name": "smooth-scroll",
@@ -176,23 +180,23 @@
         "purpose": "All scrolling and in-page jumps; not mounted under prefers-reduced-motion."
       },
       {
-        "name": "rail-progress",
-        "value": "spring(stiffness 220, damping 40) on scrollYProgress",
-        "purpose": "Rail hairline fill (scaleY) and chapter-bar line (scaleX)."
+        "name": "scroll-progress",
+        "value": "spring(stiffness 220, damping 40) on scrollYProgress, scaleX from the left",
+        "purpose": "1px ink line along the header's bottom edge."
       },
       {
-        "name": "rail-step",
-        "value": "translateX(-6px) + colour, 500ms ease-out-expo",
-        "purpose": "Active chapter name on the rail."
+        "name": "section-marker",
+        "value": "shared-layout spring(stiffness 420, damping 38)",
+        "purpose": "Section bar underline gliding to the current section."
       },
       {
         "name": "fade-color",
         "value": "300ms",
-        "purpose": "Link, pill, header hairline and chapter-bar fades."
+        "purpose": "Link, nav link, pill and header hairline fades."
       },
       {
         "name": "arrow-travel",
-        "value": "2px in the arrow's direction over 300ms ease-out-expo",
+        "value": "2px in the arrow's direction over 300ms ease-out-expo; 6px over 500ms on the next-page arrow",
         "purpose": "Arrow links on hover."
       },
       {
@@ -210,25 +214,21 @@
       {
         "name": "sm",
         "value": "640px",
-        "purpose": "Result details move inline."
+        "purpose": "Result details move inline; step numeral column; 'All work' label shown."
       },
       {
         "name": "md",
         "value": "768px",
-        "purpose": "Wider gutters, larger chapter spacing, work pairs side by side, two-column lists, Path year column."
-      },
-      {
-        "name": "xl",
-        "value": "1280px",
-        "purpose": "Progress rail replaces the chapter bar."
+        "purpose": "Page links move from the page bar into the header; wider gutters, larger chapter spacing, work pairs side by side, two-column lists, Path year column."
       }
     ],
     "layout": {
       "textMeasure": "760px content (808px incl. gutters)",
       "wideMeasure": "960px content (1008px incl. gutters)",
-      "header": "64px sticky, solid",
-      "chapterBar": "40px under header, below 1280px",
-      "scrollOffset": "72px with rail, 112px with bar"
+      "header": "64px sticky, solid, page links from 768px",
+      "pageBar": "44px sticky under header, below 768px, site pages",
+      "sectionBar": "44px sticky under header, all widths, case pages",
+      "scrollOffset": "measured height of [data-sticky] elements + 24px"
     }
   },
   "components": [
@@ -236,8 +236,8 @@
       "name": "Pill Button",
       "kind": "button",
       "refersTo": "button-pill",
-      "description": "Header 'Get in touch': tile grey, ink label, up-right arrow; scrolls to Say hello.",
-      "html": "<a class=\"ds-btn-pill\" href=\"#\">Get in touch <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "description": "Header 'Say hello': tile grey, ink label, up-right arrow; pressed grey on the Say hello page.",
+      "html": "<a class=\"ds-btn-pill\" href=\"#\">Say hello <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
       "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-btn-pill{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:10px;background:var(--tile);color:var(--fg);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;text-decoration:none;transition:background-color .3s;} .ds-btn-pill:hover{background:#e8e8e8;} .ds-btn-pill:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:4px;}"
     },
     {
@@ -252,7 +252,7 @@
       "name": "Chapter Opener",
       "kind": "custom",
       "refersTo": "headline",
-      "description": "Hairline, then a two-tone headline statement; the only section heading device.",
+      "description": "Hairline, then a two-tone headline statement; the only section heading device (plain title on case pages).",
       "html": "<section class=\"ds-chapter\"><h2>Work.<span> Six projects across trading platforms, a Web3 game, a rebrand and product films.</span></h2></section>",
       "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-chapter{max-width:760px;border-top:1px solid var(--line);padding-top:64px;} .ds-chapter h2{margin:0;font:400 clamp(1.625rem,2.8vw,2.5rem)/1.08 'Geist Variable', ui-sans-serif, system-ui, sans-serif;letter-spacing:-0.035em;color:var(--fg);} .ds-chapter h2 span{color:var(--soft);}"
     },
@@ -263,22 +263,6 @@
       "description": "Page-opening two-tone sentence: claim in ink, continuation in soft grey.",
       "html": "<h1 class=\"ds-display\">Mathew Colin designs complex products so they feel clear.<span> A product designer for SaaS, fintech and Web3.</span></h1>",
       "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-display{margin:0;max-width:760px;font:400 clamp(2.5rem,4.4vw,3.75rem)/1.04 'Geist Variable', ui-sans-serif, system-ui, sans-serif;letter-spacing:-0.045em;color:var(--fg);} .ds-display span{color:var(--soft);}"
-    },
-    {
-      "name": "Progress Rail",
-      "kind": "nav",
-      "refersTo": "rail-link",
-      "description": "Desktop chapter rail: muted names, active one in ink stepped 6px forward, hairline track filling in ink.",
-      "html": "<nav class=\"ds-rail\" aria-label=\"Chapters\"><ol><li><a href=\"#\">Work</a></li><li><a href=\"#\">How I work</a></li><li><a href=\"#\" aria-current=\"location\">Path</a></li><li><a href=\"#\">Say hello</a></li></ol><span class=\"ds-track\"><span class=\"ds-fill\"></span></span></nav>",
-      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-rail{display:inline-flex;font:400 15px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-rail ol{display:flex;flex-direction:column;align-items:flex-end;gap:12px;margin:0;padding:4px 20px 4px 0;list-style:none;} .ds-rail a{display:block;color:var(--muted);text-decoration:none;transition:color .5s var(--ease-out-expo),translate .5s var(--ease-out-expo);} .ds-rail a:hover{color:var(--fg);} .ds-rail a[aria-current]{color:var(--fg);translate:-6px 0;} .ds-rail a:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:4px;} .ds-track{position:relative;width:1px;background:var(--line);} .ds-fill{position:absolute;inset:0 0 35% 0;background:var(--fg);}"
-    },
-    {
-      "name": "Chapter Bar",
-      "kind": "nav",
-      "refersTo": "chapter-bar",
-      "description": "Below 1280px: 40px strip under the header with chapter name, n / total, and an ink progress line.",
-      "html": "<div class=\"ds-bar\"><span>Work</span><span class=\"ds-n\">1 / 4</span><i></i></div>",
-      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-bar{position:relative;display:flex;align-items:center;justify-content:space-between;height:40px;padding:0 20px;background:var(--bg);border-bottom:1px solid var(--line);color:var(--fg);font:400 15px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-n{color:var(--muted);font-variant-numeric:tabular-nums;} .ds-bar i{position:absolute;left:0;bottom:-1px;height:1px;width:25%;background:var(--fg);}"
     },
     {
       "name": "Work Figure",
@@ -297,6 +281,22 @@
       "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-ruled{margin:0;max-width:760px;border-top:1px solid var(--line);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;color:var(--fg);} .ds-ruled div{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 24px;padding:12px 0;border-bottom:1px solid var(--line);} .ds-ruled dt{color:var(--muted);} .ds-ruled dd{margin:0;font-variant-numeric:tabular-nums;}"
     },
     {
+      "name": "Story Step",
+      "kind": "custom",
+      "refersTo": "story-step",
+      "description": "Numbered approach step: hairline rows, muted tabular numeral in a 56px column, 18px ink title, 16px muted prose.",
+      "html": "<ol class=\"ds-steps\"><li><span>01</span><div><h3>Designing the games</h3><p>I designed the full user experience: the Crash, Coinflip and Dice games, token wagering, rewards and leaderboards.</p></div></li><li><span>02</span><div><h3>Getting it seen</h3><p>I created motion graphics and social media assets for the product, which generated more than a million impressions.</p></div></li></ol>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-steps{max-width:760px;margin:0;padding:0;list-style:none;font:400 16px/1.625 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-steps li{display:grid;grid-template-columns:56px 1fr;column-gap:24px;padding:24px 0;border-top:1px solid var(--line);} .ds-steps li:last-child{border-bottom:1px solid var(--line);} .ds-steps span{font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px;} .ds-steps h3{margin:0;font:inherit;font-size:18px;color:var(--fg);} .ds-steps p{margin:8px 0 0;max-width:56ch;color:var(--muted);}"
+    },
+    {
+      "name": "Result Row",
+      "kind": "custom",
+      "refersTo": "result-row",
+      "description": "Outcome results: hairline rows, label and muted detail left, large tabular value right.",
+      "html": "<dl class=\"ds-results\"><div><dt>Waitlist signups<span> · For the beta</span></dt><dd>142,000+</dd></div><div><dt>Concurrent users<span> · Active during the beta</span></dt><dd>1,300+</dd></div></dl>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-results{max-width:760px;margin:0;border-top:1px solid var(--line);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;color:var(--fg);} .ds-results div{display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:24px;padding:16px 0;border-bottom:1px solid var(--line);} .ds-results dt span{color:var(--muted);} .ds-results dd{margin:0;text-align:right;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1;letter-spacing:-0.035em;font-variant-numeric:tabular-nums;}"
+    },
+    {
       "name": "Path Timeline",
       "kind": "custom",
       "refersTo": "path-node",
@@ -307,22 +307,38 @@
     {
       "name": "Header",
       "kind": "nav",
-      "refersTo": "button-pill",
-      "description": "64px solid header on the 960px measure: wordmark left, pill right; hairline after scroll.",
-      "html": "<header class=\"ds-head\"><a class=\"ds-mark\" href=\"#\">Mathew Colin</a><a class=\"ds-pill\" href=\"#\">Get in touch <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a></header>",
-      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-head{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:960px;background:var(--bg);border-bottom:1px solid var(--line);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-mark{font-size:30px;line-height:1;font-weight:500;letter-spacing:-0.05em;color:var(--fg);text-decoration:none;} .ds-pill{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:10px;background:var(--tile);color:var(--fg);text-decoration:none;transition:background-color .3s;} .ds-pill:hover{background:#e8e8e8;}"
+      "refersTo": "header",
+      "description": "64px solid sticky header on the 960px measure: wordmark left, page links and pill right; ink line along the bottom fills with scroll.",
+      "html": "<header class=\"ds-head\"><a class=\"ds-mark\" href=\"#\">Mathew Colin</a><nav><a href=\"#\" aria-current=\"page\">Work</a><a href=\"#\">How I work</a><a href=\"#\">Path</a><a class=\"ds-pill\" href=\"#\">Say hello <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a></nav><span class=\"ds-prog\"></span></header>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-head{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px;max-width:960px;background:var(--bg);border-bottom:1px solid var(--line);font:400 16px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-mark{font-size:30px;line-height:1;font-weight:500;letter-spacing:-0.05em;color:var(--fg);text-decoration:none;} .ds-head nav{display:flex;align-items:center;gap:28px;} .ds-head nav a{color:var(--muted);text-decoration:none;transition:color .3s;} .ds-head nav a:hover,.ds-head nav a[aria-current]{color:var(--fg);} .ds-head nav a:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:4px;} .ds-head .ds-pill{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 16px;border-radius:10px;background:var(--tile);color:var(--fg);transition:background-color .3s;} .ds-head .ds-pill:hover{background:#e8e8e8;} .ds-prog{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--fg);transform:scaleX(.4);transform-origin:left;}"
+    },
+    {
+      "name": "Page Bar",
+      "kind": "nav",
+      "refersTo": "page-bar",
+      "description": "Below 768px: 44px sticky strip under the header with the four page links, current in ink.",
+      "html": "<nav class=\"ds-pbar\" aria-label=\"Pages\"><a href=\"#\" aria-current=\"page\">Work</a><a href=\"#\">How I work</a><a href=\"#\">Path</a><a href=\"#\">Say hello</a></nav>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-pbar{display:flex;align-items:center;gap:20px;height:44px;padding:0 20px;background:var(--bg);border-bottom:1px solid var(--line);white-space:nowrap;overflow-x:auto;scrollbar-width:none;font:400 15px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-pbar a{color:var(--muted);text-decoration:none;transition:color .3s;} .ds-pbar a:hover,.ds-pbar a[aria-current]{color:var(--fg);} .ds-pbar a:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:4px;}"
+    },
+    {
+      "name": "Section Bar",
+      "kind": "nav",
+      "refersTo": "section-bar",
+      "description": "Case pages: 44px sticky strip with All work, a divider, and the story's sections; the current one ink with a 1px underline that glides.",
+      "html": "<nav class=\"ds-sbar\" aria-label=\"Case study sections\"><a class=\"ds-back\" href=\"#\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m12 19-7-7 7-7\"/><path d=\"M19 12H5\"/></svg><span>All work</span></a><i></i><ol><li><a href=\"#\">Context</a></li><li><a href=\"#\" aria-current=\"location\">Challenge</a></li><li><a href=\"#\">How I approached it</a></li><li><a href=\"#\">Outcome</a></li><li><a href=\"#\">Designs</a></li><li><a href=\"#\">Next</a></li></ol></nav>",
+      "css": ":host{--bg:#ffffff;--fg:#0a0a0a;--muted:#666666;--soft:#8a8a8a;--line:rgb(0 0 0 / 0.08);--tile:#f2f2f2;--field:#f5f5f5;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);} .ds-sbar{display:flex;align-items:center;gap:20px;height:44px;max-width:960px;padding:0 24px;background:var(--bg);border-bottom:1px solid var(--line);font:400 15px/1.5 'Geist Variable', ui-sans-serif, system-ui, sans-serif;} .ds-sbar a{color:var(--muted);text-decoration:none;transition:color .3s;} .ds-sbar a:hover{color:var(--fg);} .ds-back{display:inline-flex;align-items:center;gap:6px;flex-shrink:0;} .ds-sbar i{width:1px;height:16px;background:var(--line);flex-shrink:0;} .ds-sbar ol{display:flex;gap:20px;margin:0;padding:0;list-style:none;min-width:0;overflow-x:auto;white-space:nowrap;scrollbar-width:none;} .ds-sbar ol a{position:relative;display:block;padding:12px 0;} .ds-sbar ol a[aria-current]{color:var(--fg);} .ds-sbar ol a[aria-current]::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--fg);} .ds-sbar a:focus-visible{outline:2px solid var(--fg);outline-offset:3px;border-radius:4px;}"
     }
   ],
   "narrative": {
     "northStar": "The Quiet Column",
-    "overview": "A white page, centred columns, and nothing raised off the ground. The site is one story read in chapters: the home page opens on an oversized two-tone sentence, then runs Work, How I work, Path and Say hello; each case page runs Overview, What I did, Results, Designs and Next project. Every chapter starts at a hairline with a large statement and then gives way to its content: flat grey work tiles on a wider measure, ruled lists and short muted paragraphs on a narrower reading measure. A progress rail in the right margin (a thin bar under the header on smaller screens) says where you are in the story. There is no accent hue: the system is ink, two greys, white and one tile grey.\n\nDensity is low and the rhythm is long: 96 to 128px of air closes each chapter, 64 to 96px opens the next. Hierarchy comes from size and tone, never weight: large text is regular with tight negative tracking, and the second half of a large statement drops to a softer grey so one sentence reads as claim then context. Motion is slow-settling and small: Lenis-eased scrolling, a rail hairline that fills with reading progress, an active chapter name that steps 6px forward, an arrow that travels 2px, an image that eases in by 2%. All of it stands down under reduced motion.",
+    "overview": "A white page, centred columns, and nothing raised off the ground. The site is four pages, each about one thing, read in order: Work (which opens on an oversized two-tone sentence), How I work, Path and Say hello. Each page ends by pointing to the next. Each case page is a story written in Markdown: The context, The challenge, How I approached it (numbered steps), The outcome (with results) and optionally What I learned, then Designs and Next project. Every chapter starts at a hairline with a large statement and then gives way to its content: flat grey work tiles on a wider measure, ruled lists and short muted paragraphs on a narrower reading measure. Navigation sits along the top: the header carries the page links (Work, How I work, Path) and a \"Say hello\" pill, with a hairline along its bottom edge that fills as you scroll. On phones the page links sit in a slim bar under the header. Case pages add a section bar under the header listing the story's sections, the current one underlined. There is no accent hue: the system is ink, two greys, white and one tile grey.\n\nDensity is low and the rhythm is long: 96 to 128px of air closes each chapter, 64 to 96px opens the next. Hierarchy comes from size and tone, never weight: large text is regular with tight negative tracking, and the second half of a large statement drops to a softer grey so one sentence reads as claim then context. Motion is slow-settling and small: Lenis-eased scrolling, a header hairline that fills with reading progress, a section underline that glides to the section being read, an arrow that travels 2px, an image that eases in by 2%. All of it stands down under reduced motion.",
     "keyCharacteristics": [
       "Pure white ground, near-black ink, body grey, and a soft grey reserved for large text.",
-      "Geist everywhere, regular weight; medium only for the name wordmark.",
-      "Two centred measures: 760px for reading, 960px for work; the header shares the 960px measure.",
-      "Chapters open with a hairline and a large statement; a progress rail tracks them.",
+      "Geist everywhere, regular weight; medium only for the name wordmark and inline emphasis in story prose.",
+      "Two centred measures: 760px for reading, 960px for work; the header and bars share the 960px measure.",
+      "Chapters open with a hairline and a large statement; the header's ink hairline tracks reading progress.",
       "Flat grey tiles with 10px corners hold the work; no shadows anywhere.",
-      "Thin Lucide strokes: up-right arrows on links, a small plus on notes, hollow-to-solid dots on the path."
+      "Thin Lucide strokes: arrows on links, a small plus on notes, hollow-to-solid dots on the path."
     ],
     "rules": [
       {
@@ -332,22 +348,22 @@
       },
       {
         "name": "The Soft-Is-Large Rule",
-        "body": "Soft grey appears only at 24px and up: the second half of a statement, or a large figure like a Path year. Text that needs to recede below that uses muted.",
+        "body": "Soft grey appears only at 24px and up: the second half of a statement, or a large figure like a Path year. Text that needs to recede below that uses muted. (A list bullet is a mark, not text.)",
         "section": "colors"
       },
       {
         "name": "The One Weight Rule",
-        "body": "Everything is 400 except the wordmark at 500. Hierarchy is size and ink-versus-grey, never bold.",
+        "body": "Everything is 400 except the wordmark and inline bold inside story prose, both at 500. Headings are never bold; hierarchy is size and ink-versus-grey.",
         "section": "typography"
       },
       {
         "name": "The Two-Tone Sentence Rule",
-        "body": "A large statement that opens a page or a home chapter is one sentence: the claim in ink, the continuation in soft grey, same size, same line. Case-page chapters open plain, ink only and a step smaller.",
+        "body": "A large statement that opens a page or a site-page chapter is one sentence: the claim in ink, the continuation in soft grey, same size, same line. Case-page chapters open plain, ink only and a step smaller.",
         "section": "typography"
       },
       {
         "name": "The Two Measures Rule",
-        "body": "Reading lives on the 760px measure, work on the 960px measure. Only the header and the rail sit outside them.",
+        "body": "Reading lives on the 760px measure, work on the 960px measure. Only the header and the sticky bars span the wide measure outside a work context.",
         "section": "layout"
       },
       {
@@ -357,9 +373,11 @@
       }
     ],
     "dos": [
-      "Do tell a page as chapters: a hairline, a large statement, then the content, with the rail or bar tracking position.",
+      "Do tell a page as chapters: a hairline, a large statement, then the content.",
+      "Do keep navigation along the top: page links in the header (in the page bar below 768px), case sections in the section bar, progress as the header's ink hairline.",
+      "Do write case studies as stories in Markdown: context, challenge, numbered steps, outcome with results.",
       "Do keep reading on the 760px measure and work on the 960px measure, both centred.",
-      "Do open the page and home chapters with a two-tone statement in regular weight, ink then soft grey; open case chapters plain.",
+      "Do open pages and site-page chapters with a two-tone statement in regular weight, ink then soft grey; open case chapters plain.",
       "Do put work in flat tile-grey tiles with 10px corners, in the wide, pair, wide rhythm, and say plainly when screens are not ready yet.",
       "Do show structured facts as ruled lists with right-aligned, tabular values.",
       "Do switch off smooth scrolling and soften motion under prefers-reduced-motion."
@@ -368,8 +386,8 @@
       "Don't add an accent colour, gradient or tinted surface; the palette is ink, greys and white.",
       "Don't use soft grey for text under 24px.",
       "Don't add shadows, glass or raised cards; depth is tone and hairlines.",
-      "Don't bold headings; the only weight above 400 is the wordmark.",
-      "Don't add header navigation links; chapters belong to the rail.",
+      "Don't bold headings; the only weights above 400 are the wordmark and inline bold in story prose.",
+      "Don't add side or margin navigation, or a second navigation; pages live in the header, case sections in the section bar.",
       "Don't fall back to a hero, card grid, services row and logo strip."
     ]
   }
