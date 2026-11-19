@@ -1,39 +1,160 @@
-// All site copy lives here. Edit this file to change what the site says.
-// Every fact comes from Mathew's résumé; nothing is invented.
+// Loads the site's text and images from the content/ folder.
 //
-// Images: drop files into site/public/work/<slug>/ and set the paths below,
-// e.g. cover: "/work/tetra/cover.webp". Anything without an image shows a
-// clearly labelled placeholder.
+// You should not need to edit this file. To change what the site says,
+// edit content/site.yml or a project's content/projects/<project>/index.md.
+// See EDITING.md at the root of the repository.
+//
+// Every value is checked when the site loads. If something is missing or
+// mistyped, the preview shows a message naming the file and the field.
+
+import YAML from "yaml";
+import siteSource from "../../content/site.yml?raw";
+
+// ---------- Helpers ----------
+
+class ContentError extends Error {
+  constructor(file: string, message: string) {
+    super(`Problem in ${file}: ${message}. See EDITING.md for examples.`);
+    this.name = "ContentError";
+  }
+}
+
+type Raw = Record<string, unknown>;
+
+function parseYaml(file: string, source: string): Raw {
+  try {
+    const value = YAML.parse(source);
+    if (!value || typeof value !== "object") throw new Error("the file is empty");
+    return value as Raw;
+  } catch (e) {
+    throw new ContentError(file, `the text couldn't be read (${(e as Error).message.split("\n")[0]})`);
+  }
+}
+
+function text(file: string, obj: Raw, key: string, where = ""): string {
+  const value = obj[key];
+  if (value === undefined || value === null || String(value).trim() === "") {
+    throw new ContentError(file, `"${key}"${where} is missing or empty`);
+  }
+  return String(value).trim();
+}
+
+function optionalText(obj: Raw, key: string): string | undefined {
+  const value = obj[key];
+  return value === undefined || value === null || String(value).trim() === "" ? undefined : String(value).trim();
+}
+
+function list(file: string, obj: Raw, key: string, { optional = false } = {}): unknown[] {
+  const value = obj[key];
+  if (value === undefined || value === null) {
+    if (optional) return [];
+    throw new ContentError(file, `the "${key}" list is missing`);
+  }
+  if (!Array.isArray(value)) throw new ContentError(file, `"${key}" should be a list (each item starts with "- ")`);
+  return value;
+}
+
+function record(file: string, value: unknown, where: string): Raw {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new ContentError(file, `${where} should be a group of named fields`);
+  }
+  return value as Raw;
+}
+
+/** "Order flow" → "order-flow", used to match screen names to image files. */
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/[\s_]+/g, "-");
+
+const fileName = (p: string) => p.split("/").pop()!.replace(/\.[^.]+$/, "");
+
+// ---------- Site text ----------
+
+const SITE = "content/site.yml";
+const site = parseYaml(SITE, siteSource);
+const intro = record(SITE, site.intro, '"intro"');
+const pages = record(SITE, site.pages, '"pages"');
+
+const pageText = (key: string) => {
+  const p = record(SITE, pages[key], `"pages → ${key}"`);
+  return { title: text(SITE, p, "bold", ` under pages → ${key}`), soft: ` ${text(SITE, p, "soft", ` under pages → ${key}`)}` };
+};
 
 export const profile = {
-  name: "Mathew Colin",
-  role: "Product designer",
-  availability: "Open to full-time product design roles",
-  /** Home statement: the ink part, then the soft grey continuation. */
-  statement: ["Mathew Colin designs complex products so they feel clear.", " A product designer for SaaS, fintech and Web3, with brand and motion in the toolkit."],
-  tagline:
-    "Product designer for SaaS, fintech and Web3. I also do brand and motion, and build AI workflows that help teams ship more.",
-  email: "mathewcolinm@gmail.com",
-  linkedin: "https://linkedin.com/in/mathew-colin/",
+  name: text(SITE, site, "name"),
+  email: text(SITE, site, "email"),
+  linkedin: text(SITE, site, "linkedin"),
+  availability: text(SITE, site, "availability"),
+  /** Opening statement: the ink part, then the soft grey continuation. */
+  statement: [text(SITE, intro, "bold", " under intro"), ` ${text(SITE, intro, "soft", " under intro")}`] as [string, string],
 };
 
 export const chapters = {
-  work: { title: "Work.", soft: " Six projects across trading platforms, a Web3 game, a rebrand and product films." },
-  how: { title: "How I work.", soft: " I design the system by hand, then build the tools that scale it." },
-  path: { title: "Path.", soft: " From a support desk in Chennai to leading UI/UX for a trading platform." },
-  hello: { title: "Say hello.", soft: " I’m open to full-time product design roles." },
+  work: pageText("work"),
+  how: pageText("how"),
+  path: pageText("path"),
+  hello: pageText("hello"),
 };
 
+export const services = list(SITE, site, "what_i_do").map((item, i) => {
+  const r = record(SITE, item, `item ${i + 1} in "what_i_do"`);
+  return { name: text(SITE, r, "name", ` (what_i_do item ${i + 1})`), line: text(SITE, r, "line", ` (what_i_do item ${i + 1})`) };
+});
 
-export const services = [
-  { name: "Product & UX design", line: "Flows, wireframes and production-ready interfaces for complex products." },
-  { name: "Design systems", line: "Tokens, component libraries and patterns that keep a product consistent." },
-  { name: "User research & testing", line: "Interviews, surveys and usability tests that find friction early." },
-  { name: "Brand identity", line: "Identities rolled out from logo kit to website and event booth." },
-  { name: "Motion & video", line: "Motion graphics, social assets and product films." },
-  { name: "AI design workflows", line: "Figma and Claude Code workflows that produce on-brand work at scale." },
-];
+export const toolkit = list(SITE, site, "toolkit").map((item, i) => {
+  const r = record(SITE, item, `item ${i + 1} in "toolkit"`);
+  return { name: text(SITE, r, "name", ` (toolkit item ${i + 1})`), use: text(SITE, r, "use", ` (toolkit item ${i + 1})`) };
+});
 
+export type Job = { role: string; company: string; dates: string; place?: string; text: string };
+
+/** Newest first, as written in site.yml. */
+export const jobs: Job[] = list(SITE, site, "career").map((item, i) => {
+  const r = record(SITE, item, `item ${i + 1} in "career"`);
+  const where = ` (career item ${i + 1})`;
+  return {
+    role: text(SITE, r, "role", where),
+    company: text(SITE, r, "company", where),
+    dates: text(SITE, r, "dates", where),
+    place: optionalText(r, "place"),
+    text: text(SITE, r, "summary", where),
+  };
+});
+
+export const education = list(SITE, site, "education").map((item, i) => {
+  const r = record(SITE, item, `item ${i + 1} in "education"`);
+  const where = ` (education item ${i + 1})`;
+  return { name: text(SITE, r, "name", where), place: text(SITE, r, "place", where), dates: text(SITE, r, "dates", where) };
+});
+
+export const skills = list(SITE, site, "skills").map((s) => String(s).trim());
+
+// Other work: optional images live in content/other-work/.
+const otherWorkImages = import.meta.glob<string>("../../content/other-work/*.{webp,png,jpg,jpeg,avif,gif}", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
+
+export type Experiment = { title: string; note: string; src?: string };
+
+export const experiments: Experiment[] = list(SITE, site, "other_work", { optional: true }).map((item, i) => {
+  const r = record(SITE, item, `item ${i + 1} in "other_work"`);
+  const where = ` (other_work item ${i + 1})`;
+  const image = optionalText(r, "image");
+  let src: string | undefined;
+  if (image) {
+    src = Object.entries(otherWorkImages).find(([p]) => p.endsWith(`/${image}`))?.[1];
+    if (!src) throw new ContentError(SITE, `the image "${image}"${where} isn't in content/other-work/`);
+  }
+  return { title: text(SITE, r, "title", where), note: text(SITE, r, "note", where), src };
+});
+
+// ---------- Projects ----------
 
 export type Metric = { value: string; label: string; detail?: string };
 export type Shot = { label: string; src?: string };
@@ -43,9 +164,8 @@ export type Project = {
   name: string;
   company: string;
   year: string;
-  /** One-line caption under the card, also the case study's headline. */
+  /** One line under the tile; also the case study's grey headline. */
   caption: string;
-  intro: string;
   role: string;
   timeline: string;
   focus: string;
@@ -56,254 +176,72 @@ export type Project = {
   cover?: string;
 };
 
-export const projects: Project[] = [
-  {
-    slug: "tetra",
-    name: "Tetra",
-    company: "Asva Labs",
-    year: "2025",
-    caption: "Designing one exchange for crypto, forex, stocks and commodities",
-    intro:
-      "I led the UI/UX design of Tetra, a multi-asset decentralized exchange, from user flows to the production interface and the design system behind it.",
-    role: "UI/UX designer",
-    timeline: "Aug 2025 – Jan 2026",
-    focus: "Trading platform",
-    overview:
-      "Tetra lets traders work across crypto, forex, stocks and commodities in one decentralized exchange, with cross-chain trading on Hyperliquid, Solana and Arbitrum.",
-    did: [
-      "Designed user flows, wireframes and high-fidelity prototypes for cross-chain trading on Hyperliquid, Solana and Arbitrum.",
-      "Built and maintained a Figma design system and component library that kept the product consistent and sped up developer handoff.",
-      "Ran usability reviews to find friction in complex trading flows.",
-      "Shipped production-ready interfaces on schedule with engineering and product.",
-    ],
-    shots: [{ label: "Trading screen" }, { label: "Order flow" }, { label: "Cross-chain flow" }, { label: "Component library" }],
-  },
-  {
-    slug: "fxdx",
-    name: "FXDX",
-    company: "MATQCODE",
-    year: "2024–25",
-    caption: "Rebuilding a trading platform around a new design system",
-    intro:
-      "I redesigned the information architecture and visual design of FXDX, a decentralized exchange, and built its design system from scratch.",
-    role: "UI/UX designer",
-    timeline: "2024 – 2025",
-    focus: "Design system",
-    overview:
-      "FXDX is a decentralized exchange. The redesign set out to make core trading tasks quicker and easier, and to give the team a design system it could build on.",
-    did: [
-      "Redesigned the platform's information architecture and visual design so core trading tasks take fewer steps.",
-      "Built a design system from scratch: typography, colour tokens, component libraries and interaction patterns.",
-      "Redesigned the marketing landing page with UI animations.",
-      "Streamlined design-to-development handoff to cut iteration cycles.",
-    ],
-    shots: [{ label: "Trading interface" }, { label: "Colour and type tokens" }, { label: "Component library" }, { label: "Landing page" }],
-  },
-  {
-    slug: "avitus",
-    name: "Avitus",
-    company: "MATQCODE",
-    year: "2024–25",
-    caption: "Designing a Web3 gaming platform whose beta drew 142K+ signups",
-    intro:
-      "I designed the full experience of Avitus, a crypto gaming platform, plus its motion graphics, social assets and investor pitch deck.",
-    role: "Product & motion designer",
-    timeline: "2024 – 2025",
-    focus: "Web3 gaming",
-    overview:
-      "Avitus is a Web3 casino platform with Crash, Coinflip and Dice games, token wagering, rewards and leaderboards.",
-    did: [
-      "Designed the full user experience: Crash, Coinflip and Dice games, token wagering, rewards and leaderboards.",
-      "Created motion graphics and social media assets that generated 1M+ impressions.",
-      "Designed the investor pitch deck.",
-    ],
-    metrics: [
-      { value: "142,000+", label: "Waitlist signups", detail: "For the beta" },
-      { value: "1,300+", label: "Concurrent users", detail: "Active during the beta" },
-      { value: "1M+", label: "Social impressions", detail: "From motion and social assets" },
-    ],
-    shots: [{ label: "Game lobby" }, { label: "Crash game" }, { label: "Rewards and leaderboard" }, { label: "Campaign motion" }],
-  },
-  {
-    slug: "certinal-brand",
-    name: "Certinal",
-    company: "Certinal",
-    year: "2026",
-    caption: "Revamping Certinal's brand, from logo kit to event booth",
-    intro:
-      "I led Certinal's brand revamp end to end and built the AI-assisted workflow that rolled it out across the website.",
-    role: "Brand & creative designer",
-    timeline: "Jun 2026 – Nov 2026",
-    focus: "Brand identity",
-    overview:
-      "Certinal is an eSignature and compliance company whose brand shows up in decks, on its website and at events.",
-    did: [
-      "Led the brand revamp end to end with marketing and leadership.",
-      "Rolled the identity out across the logo kit, brand deck, website and event booths.",
-      "Built an AI-assisted design workflow in Figma that produced on-brand website assets at scale.",
-    ],
-    metrics: [
-      { value: "850+", label: "On-brand website assets", detail: "Produced through the Figma workflow" },
-      { value: "13", label: "Website sections", detail: "Covered by the new assets" },
-    ],
-    shots: [{ label: "Logo kit" }, { label: "Brand deck" }, { label: "Website sections" }, { label: "Event booth" }],
-  },
-  {
-    slug: "demo-films",
-    name: "Certinal films",
-    company: "Certinal",
-    year: "2026",
-    caption: "Producing product films with an AI-assisted pipeline",
-    intro:
-      "I owned Certinal's product demo films from script to final 4K edit, using an AI-assisted pipeline.",
-    role: "Writer, designer & editor",
-    timeline: "2026",
-    focus: "Motion & video",
-    overview:
-      "These are product demo films for Certinal's sales team, which now uses them when reaching out to hospitals.",
-    did: [
-      "Wrote the scripts and built the storyboards.",
-      "Produced the voiceover with ElevenLabs.",
-      "Animated and edited the films in After Effects, delivering final 4K edits.",
-    ],
-    shots: [{ label: "Storyboard" }, { label: "Film stills" }, { label: "Product walkthrough" }],
-  },
-  {
-    slug: "alphax",
-    name: "AlphaX",
-    company: "MATQCODE",
-    year: "2024–25",
-    caption: "A conversion-focused landing page for a DeFi product",
-    intro: "I designed a responsive landing page for AlphaX, a DeFi product, along with all of its brand visuals.",
-    role: "Web & brand designer",
-    timeline: "2024 – 2025",
-    focus: "Landing page",
-    overview:
-      "AlphaX is a DeFi product that needed a single page to explain itself and convert visitors.",
-    did: ["Designed a responsive, conversion-focused landing page.", "Created all of the product's brand visuals."],
-    shots: [{ label: "Landing page, desktop" }, { label: "Landing page, mobile" }, { label: "Brand visuals" }],
-  },
-];
+const projectSources = import.meta.glob<string>("../../content/projects/*/index.md", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+});
+const projectImages = import.meta.glob<string>("../../content/projects/*/**/*.{webp,png,jpg,jpeg,avif,gif}", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
 
-export type Experiment = { title: string; note: string; src?: string };
+function loadProject(path: string, source: string): Project & { order: number } {
+  const slug = path.split("/").at(-2)!;
+  const file = `content/projects/${slug}/index.md`;
+  const match = source.replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) throw new ContentError(file, "the details must sit between two --- lines at the top");
+  const meta = parseYaml(file, match[1]);
+  const overview = match[2].trim();
+  if (!overview) throw new ContentError(file, "the Overview text below the closing --- line is empty");
 
-export const experiments: Experiment[] = [
-  { title: "Avitus campaign motion", note: "Motion and social pieces for Avitus" },
-  { title: "Certinal product film", note: "Frames from a product demo film" },
-  { title: "Certinal event booth", note: "The new identity at full scale" },
-  { title: "Asset workflow", note: "Website assets generated through Figma" },
-  { title: "Avitus pitch deck", note: "Investor pitch deck for Avitus" },
-  { title: "Broadcast graphics", note: "Graphics from my time at Jaya TV" },
-];
+  const images = Object.entries(projectImages).filter(([p]) => p.includes(`/projects/${slug}/`));
+  const cover = images.find(([p]) => /\/cover\.[^/]+$/.test(p))?.[1];
+  const screenFiles = images.filter(([p]) => p.includes(`/projects/${slug}/screens/`));
 
-export const about = {
-  hello: "Hi, I’m Mathew.",
-  lead: "A product designer who makes complex products feel clear.",
-  bio: [
-    "I have 3+ years of experience across SaaS, healthcare, fintech and Web3. Most of my work lives inside complex products: trading platforms, dashboards and the design systems behind them.",
-    "I came to design from the support desk. Two years helping people with internet and in-app problems at Tech Mahindra showed me exactly where products frustrate people, and I still design with that in mind.",
-    "Alongside product work I do brand identity and motion, most recently leading Certinal’s brand revamp and producing its product films.",
-    "I also build AI-assisted design workflows so a small team can ship more without lowering the bar. One of them produced 850+ on-brand website assets.",
-  ],
-  facts: [
-    { label: "Looking for", value: "Full-time product design roles" },
-    { label: "Domains", value: "SaaS, healthcare, fintech, Web3" },
-    { label: "Strengths", value: "Product design, design systems, brand, motion" },
-  ],
-};
+  // Screens listed in index.md, matched to files by name; extra files are added after them.
+  const listed = list(file, meta, "screens", { optional: true }).map((s) => String(s).trim());
+  const used = new Set<string>();
+  const shots: Shot[] = listed.map((label) => {
+    const hit = screenFiles.find(([p]) => slugify(fileName(p)).replace(/^\d+-/, "") === slugify(label));
+    if (hit) used.add(hit[0]);
+    return { label, src: hit?.[1] };
+  });
+  for (const [p, src] of screenFiles.sort(([a], [b]) => a.localeCompare(b))) {
+    if (used.has(p)) continue;
+    const label = fileName(p).replace(/^\d+[-_ ]*/, "").replace(/[-_]+/g, " ");
+    shots.push({ label: label.charAt(0).toUpperCase() + label.slice(1), src });
+  }
 
-export type Job = {
-  role: string;
-  company: string;
-  initials: string;
-  dates: string;
-  place?: string;
-  text: string;
-};
+  const results = list(file, meta, "results", { optional: true }).map((item, i) => {
+    const r = record(file, item, `item ${i + 1} in "results"`);
+    const where = ` (results item ${i + 1})`;
+    return { value: text(file, r, "value", where), label: text(file, r, "label", where), detail: optionalText(r, "detail") };
+  });
 
-export const jobs: Job[] = [
-  {
-    role: "Brand & Creative Designer",
-    company: "Certinal",
-    initials: "Ce",
-    dates: "Jun 2026 – Nov 2026",
-    text: "Led the brand revamp end to end with marketing and leadership, across the logo kit, brand deck, website and event booths. Built an AI-assisted Figma workflow that produced 850+ on-brand website assets, and produced the product demo films from script to 4K edit.",
-  },
-  {
-    role: "UI/UX Designer",
-    company: "Asva Labs",
-    initials: "As",
-    dates: "Aug 2025 – Jan 2026",
-    place: "Remote",
-    text: "Led UI/UX for Tetra, a multi-asset decentralized exchange, including cross-chain trading on Hyperliquid, Solana and Arbitrum. Built and maintained its Figma design system and ran usability reviews on complex trading flows.",
-  },
-  {
-    role: "UI/UX Designer",
-    company: "MATQCODE",
-    initials: "Mq",
-    dates: "Jul 2024 – Aug 2025",
-    place: "Bengaluru",
-    text: "Redesigned the FXDX trading platform and built its design system from scratch. Designed Avitus, a Web3 gaming beta that reached 142,000+ waitlist signups, and the AlphaX DeFi landing page.",
-  },
-  {
-    role: "Junior Product Designer",
-    company: "Swftconnect",
-    initials: "Sw",
-    dates: "Aug 2023 – Jan 2024",
-    place: "UK, remote",
-    text: "Ran user interviews, surveys and usability tests for a SaaS profile builder and team dashboard, and helped build its design system.",
-  },
-  {
-    role: "Technical Support Associate",
-    company: "Tech Mahindra",
-    initials: "Tm",
-    dates: "Feb 2021 – May 2023",
-    place: "Chennai",
-    text: "Resolved internet and in-app issues for end users, which taught me where products frustrate people.",
-  },
-  {
-    role: "Graphic Design & Video Editing Intern",
-    company: "Jaya Television",
-    initials: "Jt",
-    dates: "Jan 2020 – Feb 2020",
-    place: "Chennai",
-    text: "Edited video and created broadcast graphics for television.",
-  },
-];
+  const order = Number(meta.order);
+  if (!Number.isFinite(order)) throw new ContentError(file, `"order" should be a number, like 1`);
 
+  return {
+    slug,
+    order,
+    name: text(file, meta, "name"),
+    company: text(file, meta, "company"),
+    year: text(file, meta, "year"),
+    caption: text(file, meta, "caption"),
+    role: text(file, meta, "role"),
+    timeline: text(file, meta, "timeline"),
+    focus: text(file, meta, "focus"),
+    overview,
+    did: list(file, meta, "what_i_did").map((d) => String(d).trim()),
+    metrics: results.length ? results : undefined,
+    shots,
+    cover,
+  };
+}
 
-export const skills = [
-  "Product design",
-  "User research",
-  "Journey mapping",
-  "Information architecture",
-  "Prototyping",
-  "Usability testing",
-  "Interaction design",
-  "Design systems",
-  "Accessibility (WCAG)",
-  "Brand identity",
-  "Motion graphics",
-  "Video production",
-];
-
-/** Tools, in the order I reach for them. */
-export const toolkit = [
-  { name: "Figma", use: "UI design and design systems" },
-  { name: "Figma MCP", use: "Generating on-brand assets at scale" },
-  { name: "Claude Code", use: "Building sites, scripts and design automations" },
-  { name: "Framer", use: "Web design and prototypes" },
-  { name: "After Effects", use: "Motion and product films" },
-  { name: "ElevenLabs", use: "Voiceover for product films" },
-  { name: "Illustrator", use: "Brand and vector work" },
-  { name: "Lottie", use: "Product animation" },
-  { name: "Higgsfield, Magnific, Midjourney", use: "Image generation, upscaling and exploration" },
-  { name: "Maze", use: "Usability testing" },
-  { name: "Notion", use: "Writing and planning" },
-];
-
-export const education = [
-  { name: "Bachelor of Electronic Media", place: "University of Madras, Chennai", dates: "2017 – 2020" },
-  { name: "Advanced UI/UX Design", place: "Aspira Design, Chennai", dates: "2023" },
-  { name: "Digital Skills: User Experience", place: "Accenture", dates: "2024" },
-];
+export const projects: Project[] = Object.entries(projectSources)
+  .map(([path, source]) => loadProject(path, source))
+  .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name))
+  .map(({ order: _order, ...p }) => p);

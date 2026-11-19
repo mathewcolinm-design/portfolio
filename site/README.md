@@ -28,11 +28,10 @@ npm run build    # production build into site/dist
 
 ## Edit content
 
-All text lives in [`src/data/content.ts`](src/data/content.ts): the opening statement, chapter lines, projects, other work, services, toolkit, career path, education and skills.
+All words and images live in `content/`, not in the code:
 
-## Add your screenshots
+- `content/site.yml`: name, contact, opening statement, page headings, What I do, toolkit, career, education, skills, other work.
+- `content/projects/<project>/index.md`: one file per project (details at the top, Overview below).
+- `content/projects/<project>/cover.webp` and `screens/`: images, picked up automatically by file name.
 
-1. Put images in `public/work/<slug>/`, for example `public/work/tetra/cover.webp`. WebP at about 2000px wide is ideal.
-2. In `content.ts`, set the project's `cover: "/work/tetra/cover.webp"`. On the home page, projects alternate one wide tile (16:9) and a pair of tall tiles (4:5), so crop covers to suit their position: 1st and 4th wide, the rest tall.
-3. For a case study's Designs chapter, add `src` to entries in `shots`, e.g. `{ label: "Trading screen", src: "/work/tetra/trading.webp" }`. Shots without an image are listed as "Screens on the way".
-4. "Other work" items show a tile once you set `src`.
+Step-by-step instructions are in [EDITING.md](../EDITING.md). Content is checked when the site loads; a mistake shows a message naming the file and field instead of a blank page.

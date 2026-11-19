@@ -1,0 +1,155 @@
+# ──────────────────────────────────────────────────────────────────
+# Site text. Edit anything to the right of a colon, save, and the
+# preview updates. Projects live in content/projects/ (one folder each).
+# Full guide: EDITING.md at the root of this repository.
+#
+# Tips
+# • Keep the two-space indents exactly as they are.
+# • If a line contains a colon followed by a space (": "), wrap the
+#   whole text in double quotes: "Like this: example".
+# ──────────────────────────────────────────────────────────────────
+
+# About you ─────────────────────────────────────────────────────────
+name: Mathew Colin
+email: mathewcolinm@gmail.com
+linkedin: https://linkedin.com/in/mathew-colin/
+
+# The small line with a + mark under the opening statement.
+availability: Open to full-time product design roles
+
+# Opening statement on the Work page.
+# "bold" is the black part, "soft" is the grey part that follows it.
+intro:
+  bold: Mathew Colin designs complex products so they feel clear.
+  soft: A product designer for SaaS, fintech and Web3, with brand and motion in the toolkit.
+
+# Page headings ─────────────────────────────────────────────────────
+# Each page opens with a black word and a grey sentence.
+pages:
+  work:
+    bold: Work.
+    soft: Six projects across trading platforms, a Web3 game, a rebrand and product films.
+  how:
+    bold: How I work.
+    soft: I design the system by hand, then build the tools that scale it.
+  path:
+    bold: Path.
+    soft: From a support desk in Chennai to leading UI/UX for a trading platform.
+  hello:
+    bold: Say hello.
+    soft: I’m open to full-time product design roles.
+
+# How I work page ───────────────────────────────────────────────────
+what_i_do:
+  - name: Product & UX design
+    line: Flows, wireframes and production-ready interfaces for complex products.
+  - name: Design systems
+    line: Tokens, component libraries and patterns that keep a product consistent.
+  - name: User research & testing
+    line: Interviews, surveys and usability tests that find friction early.
+  - name: Brand identity
+    line: Identities rolled out from logo kit to website and event booth.
+  - name: Motion & video
+    line: Motion graphics, social assets and product films.
+  - name: AI design workflows
+    line: Figma and Claude Code workflows that produce on-brand work at scale.
+
+toolkit:
+  - name: Figma
+    use: UI design and design systems
+  - name: Figma MCP
+    use: Generating on-brand assets at scale
+  - name: Claude Code
+    use: Building sites, scripts and design automations
+  - name: Framer
+    use: Web design and prototypes
+  - name: After Effects
+    use: Motion and product films
+  - name: ElevenLabs
+    use: Voiceover for product films
+  - name: Illustrator
+    use: Brand and vector work
+  - name: Lottie
+    use: Product animation
+  - name: Higgsfield, Magnific, Midjourney
+    use: Image generation, upscaling and exploration
+  - name: Maze
+    use: Usability testing
+  - name: Notion
+    use: Writing and planning
+
+# Path page ─────────────────────────────────────────────────────────
+# Newest first. The page shows them oldest to newest as a timeline,
+# with the first entry here marked as your current role.
+career:
+  - role: Brand & Creative Designer
+    company: Certinal
+    dates: Jun 2026 – Nov 2026
+    summary: Led the brand revamp end to end with marketing and leadership, across the logo kit, brand deck, website and event booths. Built an AI-assisted Figma workflow that produced 850+ on-brand website assets, and produced the product demo films from script to 4K edit.
+  - role: UI/UX Designer
+    company: Asva Labs
+    dates: Aug 2025 – Jan 2026
+    place: Remote
+    summary: Led UI/UX for Tetra, a multi-asset decentralized exchange, including cross-chain trading on Hyperliquid, Solana and Arbitrum. Built and maintained its Figma design system and ran usability reviews on complex trading flows.
+  - role: UI/UX Designer
+    company: MATQCODE
+    dates: Jul 2024 – Aug 2025
+    place: Bengaluru
+    summary: Redesigned the FXDX trading platform and built its design system from scratch. Designed Avitus, a Web3 gaming beta that reached 142,000+ waitlist signups, and the AlphaX DeFi landing page.
+  - role: Junior Product Designer
+    company: Swftconnect
+    dates: Aug 2023 – Jan 2024
+    place: UK, remote
+    summary: Ran user interviews, surveys and usability tests for a SaaS profile builder and team dashboard, and helped build its design system.
+  - role: Technical Support Associate
+    company: Tech Mahindra
+    dates: Feb 2021 – May 2023
+    place: Chennai
+    summary: Resolved internet and in-app issues for end users, which taught me where products frustrate people.
+  - role: Graphic Design & Video Editing Intern
+    company: Jaya Television
+    dates: Jan 2020 – Feb 2020
+    place: Chennai
+    summary: Edited video and created broadcast graphics for television.
+
+education:
+  - name: Bachelor of Electronic Media
+    place: University of Madras, Chennai
+    dates: 2017 – 2020
+  - name: Advanced UI/UX Design
+    place: Aspira Design, Chennai
+    dates: "2023"
+  - name: "Digital Skills: User Experience"
+    place: Accenture
+    dates: "2024"
+
+skills:
+  - Product design
+  - User research
+  - Journey mapping
+  - Information architecture
+  - Prototyping
+  - Usability testing
+  - Interaction design
+  - Design systems
+  - Accessibility (WCAG)
+  - Brand identity
+  - Motion graphics
+  - Video production
+
+# Other work (listed under the projects on the Work page) ───────────
+# To show an image, put it in content/other-work/ and add a line
+# "image: file-name.webp" to the item.
+other_work:
+  - title: Avitus campaign motion
+    note: Motion and social pieces for Avitus
+  - title: Certinal product film
+    note: Frames from a product demo film
+  - title: Certinal event booth
+    note: The new identity at full scale
+  - title: Asset workflow
+    note: Website assets generated through Figma
+  - title: Avitus pitch deck
+    note: Investor pitch deck for Avitus
+  - title: Broadcast graphics
+    note: Graphics from my time at Jaya TV
