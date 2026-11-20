@@ -89,7 +89,7 @@ export function ArrowLink({ to, children, external = false }: { to: string; chil
   );
 }
 
-const isVideo = (src: string) => /\.(mp4|webm)(\?|$)/i.test(src);
+export const isVideo = (src: string) => /\.(mp4|webm)(\?|$)/i.test(src);
 
 /** Silent looping video; shows its first frame only when the visitor prefers less motion. */
 function TileVideo({ src, label }: { src: string; label: string }) {
@@ -125,8 +125,13 @@ export function Tile({
   /** "contain" shows the whole image on the grey tile instead of filling it. */
   fit?: "cover" | "contain";
 }) {
+  // ratio "fill" makes the tile take the full height of its grid cell instead of a fixed shape.
+  const fill = ratio === "fill";
   return (
-    <div className="relative overflow-hidden rounded-[10px] bg-tile" style={{ aspectRatio: ratio }}>
+    <div
+      className={`relative overflow-hidden rounded-[10px] bg-tile ${fill ? "h-full min-h-0" : ""}`}
+      style={fill ? undefined : { aspectRatio: ratio }}
+    >
       {src && isVideo(src) ? (
         <TileVideo src={src} label={alt} />
       ) : src ? (

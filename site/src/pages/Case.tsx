@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { Chapter, SectionBar } from "../components/chapters";
+import { DesignGallery } from "../components/DesignGallery";
 import { Prose } from "../components/Prose";
 import { CompanyLogo } from "../components/icons";
 import { Column, Statement, Tile, ruledRow } from "../components/ui";
@@ -128,16 +129,7 @@ export function Case() {
         <Chapter id="designs" title="Designs" plain>
           {ready.length > 0 && (
             <Column width="wide">
-              <ul className="space-y-10">
-                {ready.map((s) => (
-                  <li key={s.label}>
-                    <figure>
-                      <Tile src={s.src} alt={s.label} ratio="16 / 10" fit="contain" />
-                      <figcaption className="mt-3 text-base text-muted">{s.label}</figcaption>
-                    </figure>
-                  </li>
-                ))}
-              </ul>
+              <DesignGallery shots={ready.map((s) => ({ label: s.label, src: s.src! }))} />
             </Column>
           )}
           {pending.length > 0 && (

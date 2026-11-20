@@ -148,7 +148,9 @@ Put them in the project's `screens/` folder. **Videos work too**: an `.mp4` play
 | Order flow | `screens/order-flow.webp` |
 | Cross-chain flow | `screens/cross-chain-flow.webp` |
 
-You can also put a number first to fix the order: `01-trading-screen.webp`. Screens without an image are listed as "Screens on the way". Images in the folder that aren't in the list still show up after the listed ones, labelled from their file name.
+You can also put a number first to fix the order: `01-trading-screen.webp`. Screens without an image are listed as "Screens on the way".
+
+**The layout is automatic.** The site measures each screen. Tall phone screens are gathered together: four or more form a bento grid, two or three sit side by side, and a single one pairs with a wide image. Wide images and videos run full width. Every image fills its tile, so keep the important part of a phone mockup away from the edges. Images in the folder that aren't in the list still show up after the listed ones, labelled from their file name.
 
 ### Other work
 
