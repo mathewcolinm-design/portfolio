@@ -105,7 +105,7 @@ export function CountUp({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const reduced = useReducedMotion();
   const parsed = parse(value);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, margin: "0px 0px -8% 0px" });
   const [shown, setShown] = useState(() => (parsed && !reduced ? format(parsed, 0) : value));
 
   useEffect(() => {
