@@ -27,6 +27,17 @@ Open **http://localhost:5173**. Leave it running. Every time you save a file in 
 
 To stop it, click in the terminal and press **Ctrl + C**.
 
+### Version 2 (the violet design)
+
+There is a second design of the site in `site-v2/`. It uses **the same content folder**, so everything in this guide applies to both. To preview it, run this in a second terminal:
+
+```
+cd ~/Documents/Mine/Claude/site-v2
+npm run dev
+```
+
+Then open **http://localhost:5174**. Version 2 also shows the `numbers:` list from `site.yml` (four large figures under the opening statement) and each project's `results:` as large figures. Only use numbers you can back up.
+
 ---
 
 ## 2. Change text
