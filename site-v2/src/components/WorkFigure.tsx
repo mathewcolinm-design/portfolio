@@ -13,15 +13,15 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
         ratio={shape === "wide" ? (project.cover ? "16 / 9" : "16 / 7") : "4 / 3"}
         zoom
         placeholder={
-          // No screens yet: say so, and let the project's own figures carry the tile.
-          <div className="flex h-full flex-col justify-between p-5 md:p-8">
+          <div className="flex h-full flex-col justify-between p-6 md:p-8">
             <p className="text-[15px]">Screens on the way</p>
             {project.metrics ? (
+              // No screens yet: the project's own figures carry the tile.
               <dl className="flex flex-wrap gap-x-10 gap-y-3">
                 {project.metrics.map((m) => (
                   <div key={m.label} className="flex flex-col">
-                    <dt className="order-2 mt-1 text-[15px] text-muted">{m.label}</dt>
-                    <dd className="order-1 text-[clamp(2rem,5vw,3.75rem)] leading-none tracking-[-0.04em] text-violet tabular-nums">{m.value}</dd>
+                    <dt className="order-2 mt-1.5 text-[15px] text-muted">{m.label}</dt>
+                    <dd className="order-1 text-[clamp(2.25rem,5vw,3.75rem)] leading-none tracking-[-0.04em] tabular-nums">{m.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -34,7 +34,7 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
         }
       />
       <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 text-base">
-        <h3 className="transition-colors duration-300 group-hover:text-violet">{project.name}</h3>
+        <h3 className="transition-colors duration-300 group-hover:text-muted">{project.name}</h3>
         <p className="inline-flex items-center gap-1.5 text-muted tabular-nums">
           <CompanyLogo company={project.company} size={16} />
           {project.company} · {project.year}
@@ -45,7 +45,7 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
         <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-base">
           {project.metrics.map((m) => (
             <span key={m.label}>
-              <span className="text-violet tabular-nums">{m.value}</span> <span className="text-muted">{m.label.toLowerCase()}</span>
+              <span className="tabular-nums">{m.value}</span> <span className="text-muted">{m.label.toLowerCase()}</span>
             </span>
           ))}
         </p>

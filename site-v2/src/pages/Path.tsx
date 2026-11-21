@@ -23,8 +23,8 @@ export function Path() {
             <li key={j.company + j.dates} className="relative grid gap-x-8 pb-10 pl-8 last:pb-0 md:grid-cols-[96px_1fr]">
               <span
                 aria-hidden="true"
-                className={`absolute top-[9px] left-0 h-[11px] w-[11px] rounded-full border ${
-                  i === path.length - 1 ? "border-violet bg-violet" : "border-fg bg-bg"
+                className={`absolute top-[9px] left-0 h-[11px] w-[11px] rounded-full border border-fg ${
+                  i === path.length - 1 ? "bg-fg" : "bg-bg"
                 }`}
               />
               <p className="text-[clamp(1.5rem,2.6vw,1.75rem)] leading-none tracking-[-0.03em] text-soft tabular-nums md:pt-0.5">

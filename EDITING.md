@@ -27,16 +27,16 @@ Open **http://localhost:5173**. Leave it running. Every time you save a file in 
 
 To stop it, click in the terminal and press **Ctrl + C**.
 
-### Version 2 (the violet design)
+### Version 2 (numbers first)
 
-There is a second design of the site in `site-v2/`. It uses **the same content folder**, so everything in this guide applies to both. To preview it, run this in a second terminal:
+There is a second version of the site in `site-v2/`. It looks the same as the main site but leads with numbers: a grid of figures under the opening statement, a facts strip and an Impact section on each case study, and figures on the project tiles. It uses **the same content folder**, so everything in this guide applies to both. To preview it, run this in a second terminal:
 
 ```
 cd ~/Documents/Mine/Claude/site-v2
 npm run dev
 ```
 
-Then open **http://localhost:5174**. Version 2 also shows the `numbers:` list from `site.yml` (four large figures under the opening statement) and each project's `results:` as large figures. Only use numbers you can back up.
+Then open **http://localhost:5174**. The figures come from the `numbers:` list in `site.yml` (the first one is shown largest) and from each project's `results:`. Only use numbers you can back up.
 
 ---
 

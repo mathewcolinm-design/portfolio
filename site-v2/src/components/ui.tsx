@@ -42,26 +42,23 @@ export function Statement({
   soft,
   size = "lg",
   id,
-  tone = "light",
 }: {
   as?: "h1" | "h2" | "p";
   ink: string;
   soft?: string;
   size?: keyof typeof statementScale;
   id?: string;
-  /** "deep" for statements set inside a violet field. */
-  tone?: "light" | "deep";
 }) {
   return (
     <Tag id={id} className={`${statementScale[size]} font-normal`}>
       {ink}
-      {soft && <span className={tone === "deep" ? "text-on-deep-soft" : "text-soft"}>{soft}</span>}
+      {soft && <span className="text-soft">{soft}</span>}
     </Tag>
   );
 }
 
 const arrowLinkClass =
-  "group inline-flex items-center gap-1.5 text-base text-fg transition-colors duration-300 hover:text-violet";
+  "group inline-flex items-center gap-1.5 text-base text-fg transition-colors duration-300 hover:text-muted";
 
 function Arrow() {
   return (
@@ -119,7 +116,6 @@ export function Tile({
   zoom = false,
   placeholder = "Screens on the way",
   fit = "cover",
-  tone = "light",
 }: {
   src?: string;
   alt: string;
@@ -128,14 +124,12 @@ export function Tile({
   placeholder?: ReactNode;
   /** "contain" shows the whole image on the grey tile instead of filling it. */
   fit?: "cover" | "contain";
-  /** "deep" for tiles sitting inside a violet field. */
-  tone?: "light" | "deep";
 }) {
   // ratio "fill" makes the tile take the full height of its grid cell instead of a fixed shape.
   const fill = ratio === "fill";
   return (
     <div
-      className={`relative overflow-hidden rounded-[12px] ${tone === "deep" ? "bg-deep-tile" : "bg-tile"} ${fill ? "h-full min-h-0" : ""}`}
+      className={`relative overflow-hidden rounded-[10px] bg-tile ${fill ? "h-full min-h-0" : ""}`}
       style={fill ? undefined : { aspectRatio: ratio }}
     >
       {src && isVideo(src) ? (
@@ -151,7 +145,7 @@ export function Tile({
         />
       ) : (
         typeof placeholder === "string" ? (
-          <p className={`absolute inset-0 grid place-items-center text-[15px] ${tone === "deep" ? "text-on-deep-muted" : "text-muted"}`}>{placeholder}</p>
+          <p className="absolute inset-0 grid place-items-center text-[15px] text-muted">{placeholder}</p>
         ) : (
           <div className="absolute inset-0">{placeholder}</div>
         )
@@ -164,8 +158,4 @@ export function Tile({
 export const ruledRow = "flex flex-wrap items-baseline justify-between gap-x-6 gap-y-0.5 border-b border-line py-3 text-base";
 
 export const pillButton =
-  "inline-flex h-10 items-center gap-1.5 rounded-[10px] bg-tile px-4 text-base text-fg transition-colors duration-300 hover:bg-[#e9e5f2]";
-
-/** The one filled action: deep violet, brightening to violet on hover. */
-export const primaryButton =
-  "inline-flex h-10 items-center gap-1.5 rounded-[10px] bg-deep px-4 text-base text-white transition-colors duration-300 hover:bg-violet";
+  "inline-flex h-10 items-center gap-1.5 rounded-[10px] bg-tile px-4 text-base text-fg transition-colors duration-300 hover:bg-[#e8e8e8]";

@@ -1,8 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router";
-import { Bloom, CountUp } from "../components/bloom";
 import { Chapter, Page } from "../components/chapters";
-import { Column, Note, Statement, Tile } from "../components/ui";
+import { FigureBento } from "../components/numbers";
+import { Column, Note, Tile } from "../components/ui";
 import { WorkFigure } from "../components/WorkFigure";
 import { chapters, experiments, highlights, profile, projects } from "../data/content";
 
@@ -22,47 +20,22 @@ function workRows() {
   return rows;
 }
 
-/** The career in four figures, set large on deep violet right under the opening. */
-function Numbers() {
-  if (highlights.length === 0) return null;
-  return (
-    <Bloom id="numbers" labelledBy="numbers-h" className="mb-24 md:mb-32">
-      <Column width="wide" className="py-20 md:py-28">
-        <Statement as="h2" id="numbers-h" tone="deep" ink="In numbers." soft=" What the work has moved so far." />
-        <dl className="mt-12 grid border-t border-deep-line sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
-          {highlights.map((h) => {
-            const project = h.project ? projects.find((p) => p.slug === h.project) : undefined;
-            return (
-              <div key={h.label} className="flex flex-col border-b border-deep-line py-8 sm:pr-8 lg:border-b-0 lg:[&:not(:first-child)]:border-l lg:[&:not(:first-child)]:pl-8">
-                <dt className="order-2 mt-5 max-w-[24ch] text-base text-on-deep-muted">{h.label}</dt>
-                <dd className="order-1 text-[clamp(3rem,4.6vw,4rem)] leading-[0.95] tracking-[-0.04em]">
-                  <CountUp value={h.value} />
-                </dd>
-                {project && (
-                  <dd className="order-3 mt-4">
-                    <Link
-                      to={`/work/${project.slug}`}
-                      className="group inline-flex items-center gap-1 text-[15px] text-on-deep transition-colors hover:text-on-deep-muted"
-                    >
-                      {project.name}
-                      <ArrowUpRight size={15} strokeWidth={1.5} aria-hidden="true" className="transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
-                  </dd>
-                )}
-              </div>
-            );
-          })}
-        </dl>
-      </Column>
-    </Bloom>
-  );
-}
-
 export function Work() {
   return (
     <Page title={profile.statement[0]} soft={profile.statement[1]} note={<Note>{profile.availability}</Note>}>
-      <Numbers />
-      <Chapter id="work" title={chapters.work.title} soft={chapters.work.soft} rule={highlights.length === 0}>
+      {highlights.length > 0 && (
+        <Chapter id="numbers" title="In numbers." soft=" What the work has moved so far.">
+          <Column width="wide">
+            <FigureBento
+              figures={highlights.map((h) => {
+                const project = h.project ? projects.find((p) => p.slug === h.project) : undefined;
+                return { value: h.value, label: h.label, to: project && `/work/${project.slug}`, linkLabel: project?.name };
+              })}
+            />
+          </Column>
+        </Chapter>
+      )}
+      <Chapter id="work" title={chapters.work.title} soft={chapters.work.soft}>
         <Column width="wide">
           <ul className="space-y-14 md:space-y-20">
             {workRows().map((row, i) =>

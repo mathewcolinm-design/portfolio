@@ -4,7 +4,7 @@ import type { ProcessStage } from "../data/content";
 function Stage({ stage, index }: { stage: ProcessStage; index: number }) {
   return (
     <div className="grid gap-x-6 py-6 sm:grid-cols-[56px_1fr]">
-      <span aria-hidden="true" className="text-[15px] text-violet tabular-nums sm:pt-0.5">
+      <span aria-hidden="true" className="text-[15px] text-muted tabular-nums sm:pt-0.5">
         {String(index + 1).padStart(2, "0")}
       </span>
       <div>

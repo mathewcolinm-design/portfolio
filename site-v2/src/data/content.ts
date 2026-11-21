@@ -131,7 +131,7 @@ export const toolkit = list(SITE, site, "toolkit").map((item, i) => {
   return { name: text(SITE, r, "name", ` (toolkit item ${i + 1})`), use: text(SITE, r, "use", ` (toolkit item ${i + 1})`) };
 });
 
-/** Career numbers shown large under the opening statement (optional "numbers:" in site.yml). */
+/** Career numbers shown under the opening statement (optional "numbers:" in site.yml). */
 export type Highlight = { value: string; label: string; project?: string };
 export const highlights: Highlight[] = list(SITE, site, "numbers", { optional: true }).map((item, i) => {
   const r = record(SITE, item, `item ${i + 1} in "numbers"`);

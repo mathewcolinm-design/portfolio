@@ -2,7 +2,6 @@ import { ReactLenis, useLenis } from "lenis/react";
 import { MotionConfig } from "motion/react";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes, useLocation, useParams } from "react-router";
-import { Glow } from "./components/bloom";
 import { Footer } from "./components/Footer";
 import { SitePageBar, sitePages, stickyOffset } from "./components/chapters";
 import { Header } from "./components/Header";
@@ -54,8 +53,7 @@ function Layout() {
   const { pathname } = useLocation();
   const onSitePage = sitePages.some((p) => p.to === pathname);
   return (
-    <div className="relative isolate">
-      <Glow key={pathname} />
+    <>
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-[10px] focus:bg-fg focus:px-4 focus:py-2 focus:text-white"
@@ -80,7 +78,7 @@ function Layout() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 }
 

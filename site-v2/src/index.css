@@ -3,27 +3,17 @@
 @import "lenis/dist/lenis.css";
 
 /* ---------- Palette ----------
-   Version 2: the white Quiet Column, tinted violet. One hue does the work:
-   `violet` for actions and figures on white, `deep` for the fields the work
-   and its numbers bloom into. `soft` is for the quiet half of large
-   statements only (24px and up); body text uses `muted`. */
+   Light only, after the Formo reference: white ground, near-black ink and
+   two greys. `soft` is for the quiet half of large two-tone statements only
+   (24px and up); body text uses `muted`. */
 :root {
   --bg: #ffffff;
-  --fg: #0e0b16;
-  --muted: #565164;
-  --soft: #7a748a;
-  --line: rgb(30 16 60 / 0.09);
-  --tile: #f3f1f7;
-  --field: #f6f4fa;
-  --violet: #6b3cf0;
-  --violet-hover: #5a2fd6;
-  --deep: #150c27;
-  --deep-2: #20123d;
-  --on-deep: #f5f1ff;
-  --on-deep-muted: #b6aad6;
-  --on-deep-soft: #8e82b3;
-  --deep-line: rgb(255 255 255 / 0.12);
-  --deep-tile: rgb(255 255 255 / 0.06);
+  --fg: #0a0a0a;
+  --muted: #666666;
+  --soft: #8a8a8a;
+  --line: rgb(0 0 0 / 0.08);
+  --tile: #f2f2f2;
+  --field: #f5f5f5;
   color-scheme: light;
 }
 
@@ -35,33 +25,8 @@
   --color-line: var(--line);
   --color-tile: var(--tile);
   --color-field: var(--field);
-  --color-violet: var(--violet);
-  --color-violet-hover: var(--violet-hover);
-  --color-deep: var(--deep);
-  --color-deep-2: var(--deep-2);
-  --color-on-deep: var(--on-deep);
-  --color-on-deep-muted: var(--on-deep-muted);
-  --color-on-deep-soft: var(--on-deep-soft);
-  --color-deep-line: var(--deep-line);
-  --color-deep-tile: var(--deep-tile);
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* The lavender bloom behind each page opening, and its deeper twin inside
-   the violet fields. Soft-edged light, not a gradient fill. */
-.glow-light {
-  background:
-    radial-gradient(closest-side at 50% 50%, rgb(150 118 255 / 0.42), rgb(150 118 255 / 0) 100%),
-    radial-gradient(closest-side at 72% 58%, rgb(244 196 255 / 0.55), rgb(244 196 255 / 0) 100%),
-    radial-gradient(closest-side at 28% 62%, rgb(178 196 255 / 0.45), rgb(178 196 255 / 0) 100%);
-  filter: blur(24px);
-}
-.glow-deep {
-  background:
-    radial-gradient(55% 75% at 50% 0%, rgb(124 82 255 / 0.5), rgb(124 82 255 / 0) 100%),
-    radial-gradient(30% 55% at 84% 0%, rgb(214 120 255 / 0.26), rgb(214 120 255 / 0) 100%),
-    radial-gradient(28% 50% at 14% 0%, rgb(120 150 255 / 0.2), rgb(120 150 255 / 0) 100%);
 }
 
 html {
@@ -70,9 +35,9 @@ html {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  scrollbar-color: rgb(80 50 160 / 0.35) var(--bg);
-  caret-color: var(--violet);
-  accent-color: var(--violet);
+  scrollbar-color: rgb(0 0 0 / 0.25) var(--bg);
+  caret-color: var(--fg);
+  accent-color: var(--fg);
 }
 
 body {
@@ -82,23 +47,18 @@ body {
 }
 
 ::selection {
-  background: rgb(107 60 240 / 0.18);
+  background: rgb(0 0 0 / 0.1);
   color: var(--fg);
 }
 
-.bg-deep ::selection {
-  background: rgb(190 160 255 / 0.35);
-  color: var(--on-deep);
-}
-
 :focus-visible {
-  outline: 2px solid var(--violet);
+  outline: 2px solid var(--fg);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
 ::placeholder {
-  color: var(--muted);
+  color: #6b6b6b;
   opacity: 1;
 }
 
@@ -119,7 +79,3 @@ a {
   text-decoration-thickness: 1px;
 }
 
-
-.bg-deep :focus-visible {
-  outline-color: var(--on-deep);
-}

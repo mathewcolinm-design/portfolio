@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Tile, isVideo } from "./ui";
 
 type Shot = { label: string; src: string };
-type Tone = "light" | "deep";
 type Shape = "portrait" | "landscape";
 
 /** Reads each image's or video's real size in the browser, so screens never need labelling. */
@@ -75,12 +74,12 @@ function plan(shots: Shot[], shapes: Record<string, Shape>): Block[] {
   return blocks;
 }
 
-function Caption({ shots, tone }: { shots: Shot[]; tone: Tone }) {
-  return <figcaption className={`mt-3 text-base ${tone === "deep" ? "text-on-deep-muted" : "text-muted"}`}>{shots.map((s) => s.label).join(" · ")}</figcaption>;
+function Caption({ shots }: { shots: Shot[] }) {
+  return <figcaption className="mt-3 text-base text-muted">{shots.map((s) => s.label).join(" · ")}</figcaption>;
 }
 
 /** Bento: in each group of four, two tall tiles and two stacked squares; leftovers fill a final row. */
-function Bento({ shots, tone }: { shots: Shot[]; tone: Tone }) {
+function Bento({ shots }: { shots: Shot[] }) {
   const full = shots.length - (shots.length % 4);
   const grouped = shots.slice(0, full);
   const rest = shots.slice(full);
@@ -89,14 +88,14 @@ function Bento({ shots, tone }: { shots: Shot[]; tone: Tone }) {
       <div className="grid auto-rows-[clamp(150px,22vw,250px)] grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
         {grouped.map((s, i) => (
           <div key={s.src} className={i % 4 < 2 ? "row-span-2" : ""}>
-            <Tile src={s.src} alt={s.label} ratio="fill" tone={tone} />
+            <Tile src={s.src} alt={s.label} ratio="fill" />
           </div>
         ))}
       </div>
       {rest.length > 0 && (
         <div className="mt-3 grid gap-3 sm:mt-4 sm:gap-4" style={{ gridTemplateColumns: `repeat(${rest.length}, minmax(0, 1fr))` }}>
           {rest.map((s) => (
-            <Tile key={s.src} src={s.src} alt={s.label} ratio="4 / 5" tone={tone} />
+            <Tile key={s.src} src={s.src} alt={s.label} ratio="4 / 5" />
           ))}
         </div>
       )}
@@ -104,7 +103,7 @@ function Bento({ shots, tone }: { shots: Shot[]; tone: Tone }) {
   );
 }
 
-export function DesignGallery({ shots, tone = "light" }: { shots: Shot[]; tone?: Tone }) {
+export function DesignGallery({ shots }: { shots: Shot[] }) {
   const shapes = useShapes(shots);
 
   // Until sizes are known, hold the space with plain tiles so nothing jumps far.
@@ -113,7 +112,7 @@ export function DesignGallery({ shots, tone = "light" }: { shots: Shot[]; tone?:
       <ul className="space-y-10" aria-busy="true">
         {shots.map((s) => (
           <li key={s.src}>
-            <Tile src={undefined} alt={s.label} ratio="16 / 10" placeholder="" tone={tone} />
+            <Tile src={undefined} alt={s.label} ratio="16 / 10" placeholder="" />
           </li>
         ))}
       </ul>
@@ -125,19 +124,19 @@ export function DesignGallery({ shots, tone = "light" }: { shots: Shot[]; tone?:
       {plan(shots, shapes).map((block, i) => (
         <li key={i}>
           <figure>
-            {block.kind === "wide" && <Tile src={block.shot.src} alt={block.shot.label} ratio="16 / 9" tone={tone} />}
+            {block.kind === "wide" && <Tile src={block.shot.src} alt={block.shot.label} ratio="16 / 9" />}
             {block.kind === "row" && (
               <div
                 className="grid gap-3 sm:gap-4"
                 style={{ gridTemplateColumns: `repeat(${block.shots.length}, minmax(0, 1fr))` }}
               >
                 {block.shots.map((s) => (
-                  <Tile key={s.src} src={s.src} alt={s.label} ratio={block.shots.length === 3 ? "3 / 4" : "4 / 5"} tone={tone} />
+                  <Tile key={s.src} src={s.src} alt={s.label} ratio={block.shots.length === 3 ? "3 / 4" : "4 / 5"} />
                 ))}
               </div>
             )}
-            {block.kind === "bento" && <Bento shots={block.shots} tone={tone} />}
-            <Caption shots={block.kind === "wide" ? [block.shot] : block.shots} tone={tone} />
+            {block.kind === "bento" && <Bento shots={block.shots} />}
+            <Caption shots={block.kind === "wide" ? [block.shot] : block.shots} />
           </figure>
         </li>
       ))}

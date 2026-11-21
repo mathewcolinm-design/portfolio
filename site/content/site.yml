@@ -28,11 +28,10 @@ intro:
   soft: Product designer for fintech, Web3 and SaaS. Brand, motion and AI workflows come with it.
 
 # Numbers (version 2 only) ──────────────────────────────────────────
-# Shown large under the opening statement in site-v2. Only use numbers you
-# can back up. "project" (optional) links to that project's folder name.
+# Shown under the opening statement in site-v2. The first one is shown
+# largest. Only use numbers you can back up. "project" (optional) links
+# to that project's folder name.
 numbers:
-  - value: 3+
-    label: Years designing products
   - value: 142K+
     label: Waitlist signups for the Avitus beta
     project: avitus
@@ -42,6 +41,8 @@ numbers:
   - value: 850+
     label: On-brand website assets from one Figma workflow
     project: certinal-brand
+  - value: 3+
+    label: Years designing products
 
 # Page headings ─────────────────────────────────────────────────────
 # Each page opens with a black word and a grey sentence.
