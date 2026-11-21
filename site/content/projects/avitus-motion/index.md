@@ -15,7 +15,7 @@ role: Motion designer
 timeline: "2025"
 focus: Motion graphics
 
-# Numbers shown in the outcome section of the story.
+# Numbers shown as large figures (Impact) and on the Work page.
 results:
   - value: 400K+
     label: Impressions
@@ -23,19 +23,23 @@ results:
   - value: 130K+
     label: Conversions
     detail: From the launch posts
+  - value: "2"
+    label: Launch videos
+    detail: A teaser and a launch film
 
 screens:
   - Launch teaser
   - Redefining onchain engagement
 ---
 <!--
-  Written from your old portfolio and your résumé. Add what only you know:
-  what you found, what you decided and why, and what changed.
+  Written from your old portfolio, your résumé and the videos. Check every
+  line, and add what only you know: how long each video runs, what tools
+  you used, and how the idea for each one came about.
 -->
 
-## The context
+## Overview
 
-As part of the Avitus Casino launch, I created two motion-driven assets designed to generate hype and drive early waitlist signups.
+As part of the Avitus Casino launch, I created two motion-driven assets designed to generate hype and drive early waitlist signups. Both were posted on X.
 
 ## The challenge
 
@@ -46,11 +50,14 @@ A launch post gets a second or two in someone's feed before they scroll past. Th
 ### Story first
 I focused on visual storytelling: each video makes one point and lets the motion carry it.
 
-### Web3-native styling
-Bold type, warm light and a dark, onchain look that fits the space it was posted in.
+### A teaser that pulls you in
+The first video is built around "NOW", set inside rippling rings of orange and yellow that draw the eye to the centre, before resolving on the Avitus logo.
+
+### A film about engagement
+The second, "Redefining onchain engagement", uses a glowing golden orb travelling over a grid horizon, with type revealed around it.
 
 ### A rhythm made for social
-Clean animation rhythm tailored for social platforms, short enough to watch to the end.
+Bold type, warm light and a dark, onchain look, cut to a clean rhythm tailored for social platforms and short enough to watch to the end.
 
 ## The outcome
 

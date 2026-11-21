@@ -23,28 +23,38 @@ screens:
   - Brand mark
 ---
 <!--
-  Written from your old portfolio and your résumé. Add what only you know:
-  what you found, what you decided and why, and what changed.
+  Written from your old portfolio, your résumé and the screens. Check every
+  line, and add what only you know: what the old page looked like, what
+  you changed and why, and anything you measured after launch.
 -->
 
-## The context
+## Overview
 
-FXDX is a decentralized perpetual exchange built on the high-performance Monad chain. I redesigned its landing page: the first thing a trader sees before they ever place a trade.
+FXDX is a decentralized perpetual exchange built on Monad, a high-performance blockchain. I worked on FXDX as a UI/UX designer at MATQCODE, redesigning the trading platform and building its design system from scratch. This case study is about the landing page: the first thing a trader sees before they ever place a trade.
 
 ## The challenge
 
-The goal was a clean, fast experience that reflects the speed and efficiency of FXDX on Monad. The page had to feel as quick as the product it describes.
+FXDX's pitch is speed: near-instant trades, scalable liquidity and low fees. The landing page had to feel as fast as the product, and stay clear for traders deciding in a few seconds whether to trust a new exchange.
 
 ## How I approached it
 
-### A page that moves like the product
-I redesigned the landing page with UI animations, so the speed shows in how the page moves instead of sitting in a claim.
+### Let the speed show in motion
+Instead of only claiming speed, I redesigned the page with UI animations, so it shows in how the page moves. Sections reveal and transition the way the product responds.
 
-### Built for every screen
-I designed the page for desktop and mobile, keeping the same calm, dark, high-contrast look across both.
+### A mark that becomes a system
+The f[x]dx logo puts the x in purple brackets. I carried the brackets into the page itself, framing key words like [Stocks], so the brand and the interface speak the same language.
+
+### One accent, lots of contrast
+The palette is black, white and one electric purple. The desktop page is light and open; the mobile page goes dark with a purple glow, and the same accent and type tie the two together.
 
 ### A smoother handoff
-I streamlined design-to-development handoff, which cut the iteration cycles between design and engineering.
+I streamlined design-to-development handoff for the team, which cut the iteration cycles between design and engineering.
+
+## Design details
+
+- **Desktop:** headlines such as "All in one place", "Experience blazing-fast on-chain trading" and "Faster, Smarter & Stronger", each paired with a line drawing that animates.
+- **Mobile:** "Precision Meets Performance on Monad" on a dark screen, explaining why Monad's parallel processing makes trades near-instant.
+- **Brand mark:** the bracketed x, in white and purple on black.
 
 <!--
   Optional ending. Remove the arrows around this to show it:

@@ -15,6 +15,12 @@ role: UI/UX designer
 timeline: "2024"
 focus: Landing page and UI design
 
+# Numbers shown as large figures (Impact) and on the Work page.
+results:
+  - value: 142K+
+    label: Waitlist signups
+    detail: For the Avitus beta
+
 screens:
   - Landing page walkthrough
   - Mobile hero
@@ -22,28 +28,41 @@ screens:
   - Logo
 ---
 <!--
-  Written from your old portfolio and your résumé. Add what only you know:
-  what you found, what you decided and why, and what changed.
+  Written from your old portfolio, your résumé and the screens. Check every
+  line. Your old portfolio calls Avitus a decentralized perpetual exchange;
+  your résumé calls it a Web3 gaming beta and the launch videos say casino.
+  Make sure this page describes it the way you want.
 -->
 
-## The context
+## Overview
 
-Avitus is a decentralized perpetual exchange designed for the next era of DeFi. I crafted the landing page, the UI design and the visual direction.
+Avitus is a decentralized perpetual exchange designed for the next era of DeFi. Working at MATQCODE, I crafted its landing page, the UI design and the visual direction.
 
 ## The challenge
 
-The design had to reflect Avitus's vision of accessible, future-ready DeFi: credible enough for experienced traders, and clear enough for people new to it.
+DeFi asks people to trust a product with their money before they understand it. The page had to feel credible to experienced traders, clear to people new to on-chain trading, and back up Avitus's vision of accessible, future-ready DeFi.
 
 ## How I approached it
 
 ### A visual direction
-A restrained black-and-white look with a single yellow highlight, so the product reads as serious and modern and the key words stand out.
+I set a restrained black-and-white look with a single yellow highlight. The black and white make it read as serious and modern; the yellow marks the few words that matter, like "Avitus community".
 
-### The landing page
-I designed the landing page around a clear promise at the top, then the reasons to believe it further down.
+### A promise, then proof
+The page leads with one clear promise, "Powering the Future of Crypto Innovation", then backs it up: speed and security, deep liquidity, and a community figure to show people are already there.
 
-### Mobile, not an afterthought
-I designed the mobile screens alongside desktop, so the page works wherever traders find it.
+### Mobile alongside desktop
+I designed the mobile screens alongside desktop, not after it, so the page works wherever traders find it.
+
+## Design details
+
+- **Hero:** "Unlock speed, security, and liquidity with cutting-edge technology" on black, with a lightning icon in the brand yellow.
+- **Feature cards:** speed and security, and deep liquidity, each in one short line.
+- **Community:** "Join the Avitus community today and start trading with confidence", with the community count set large.
+- **Logo:** an angular A mark beside the AVITUS wordmark, in black on white.
+
+## The outcome
+
+The Avitus beta went on to reach more than 142,000 waitlist signups.
 
 <!--
   Optional ending. Remove the arrows around this to show it:
