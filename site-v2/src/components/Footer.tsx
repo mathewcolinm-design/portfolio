@@ -14,8 +14,8 @@ function BottomLine({ deep }: { deep: boolean }) {
   const hover = deep ? "hover:text-on-deep" : "hover:text-fg";
 
   return (
-    <div className={`flex items-center justify-between gap-4 border-t py-6 text-[15px] ${deep ? "border-deep-line" : "border-line"} ${quiet}`}>
-      <p>
+    <div className={`flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t py-6 text-[15px] ${deep ? "border-deep-line" : "border-line"} ${quiet}`}>
+      <p className="whitespace-nowrap">
         © {new Date().getFullYear()} {profile.name}
       </p>
       <div className="flex items-center gap-5">
@@ -30,7 +30,7 @@ function BottomLine({ deep }: { deep: boolean }) {
             <BehanceIcon />
           </a>
         )}
-        <button type="button" onClick={toTop} className={`inline-flex items-center gap-1.5 transition-colors ${hover}`}>
+        <button type="button" onClick={toTop} className={`inline-flex items-center gap-1.5 whitespace-nowrap transition-colors ${hover}`}>
           Back to top <ArrowUp size={15} strokeWidth={1.5} aria-hidden="true" />
         </button>
       </div>

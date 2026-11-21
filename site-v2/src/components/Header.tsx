@@ -1,8 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { profile } from "../data/content";
-import { ScrollProgress, sitePages } from "./chapters";
+import { ScrollProgress, barSurface, sitePages, useScrolled } from "./chapters";
 import { primaryButton } from "./ui";
 
 /**
@@ -12,14 +11,7 @@ import { primaryButton } from "./ui";
  */
 export function Header() {
   const { pathname } = useLocation();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const scrolled = useScrolled();
 
   const isActive = (to: string) => (to === "/" ? pathname === "/" || pathname.startsWith("/work/") : pathname === to);
   const links = sitePages.filter((p) => p.to !== "/hello");
@@ -27,7 +19,7 @@ export function Header() {
   return (
     <header
       data-sticky
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${scrolled ? "border-line bg-bg/95 backdrop-blur-xl" : "border-transparent bg-transparent"}`}
+      className={`sticky top-0 z-50 border-b ${barSurface(scrolled)}`}
     >
       <div className="mx-auto flex h-16 w-full max-w-[1008px] items-center justify-between gap-6 px-5 md:px-6">
         <Link to="/" className="shrink-0 text-[26px] leading-none font-medium tracking-[-0.05em] md:text-[30px]">

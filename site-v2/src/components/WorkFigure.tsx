@@ -10,14 +10,26 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
       <Tile
         src={project.cover}
         alt={`${project.name}: ${project.caption}`}
-        ratio={shape === "wide" ? (project.cover ? "16 / 9" : "16 / 7") : project.cover ? "4 / 3" : "4 / 5"}
+        ratio={shape === "wide" ? (project.cover ? "16 / 9" : "16 / 7") : "4 / 3"}
         zoom
         placeholder={
-          <div className="flex h-full flex-col justify-between p-6 md:p-8">
+          // No screens yet: say so, and let the project's own figures carry the tile.
+          <div className="flex h-full flex-col justify-between p-5 md:p-8">
             <p className="text-[15px]">Screens on the way</p>
-            <p className="max-w-[24ch] text-[clamp(1.25rem,2.2vw,1.75rem)] leading-[1.15] tracking-[-0.03em] text-muted">
-              {project.shots.map((s) => s.label).join(", ")}
-            </p>
+            {project.metrics ? (
+              <dl className="flex flex-wrap gap-x-10 gap-y-3">
+                {project.metrics.map((m) => (
+                  <div key={m.label} className="flex flex-col">
+                    <dt className="order-2 mt-1 text-[15px] text-muted">{m.label}</dt>
+                    <dd className="order-1 text-[clamp(2rem,5vw,3.75rem)] leading-none tracking-[-0.04em] text-violet tabular-nums">{m.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p className="max-w-[24ch] text-[clamp(1.25rem,2.2vw,1.75rem)] leading-[1.15] tracking-[-0.03em] text-muted">
+                {project.shots.map((s) => s.label).join(", ")}
+              </p>
+            )}
           </div>
         }
       />
@@ -29,7 +41,7 @@ export function WorkFigure({ project, shape = "wide" }: { project: Project; shap
         </p>
       </div>
       <p className="mt-0.5 max-w-[46ch] text-base text-muted">{project.caption}</p>
-      {project.metrics && (
+      {project.metrics && project.cover && (
         <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-base">
           {project.metrics.map((m) => (
             <span key={m.label}>

@@ -49,13 +49,18 @@ export function Bloom({
 }) {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
-  const { scrollYProgress: enter } = useScroll({ target: ref, offset: ["start end", "start 0.2"] });
-  const { scrollYProgress: leave } = useScroll({ target: ref, offset: ["end 0.75", "end start"] });
+  const { scrollYProgress: enter } = useScroll({ target: ref, offset: ["start end", "start 0.45"] });
+  const { scrollYProgress: leave } = useScroll({ target: ref, offset: ["end 0.35", "end start"] });
 
   // Horizontal inset (as % of the width) and corner radius: largest while
   // the field is arriving or leaving, zero while it is being read.
-  const inset = useTransform([enter, leave], ([a, b]: number[]) => Math.max((1 - a) * 7, b * 7));
-  const radius = useTransform([enter, leave], ([a, b]: number[]) => Math.max((1 - a) * 36, b * 36));
+  // Tiny leftovers snap to zero so an open field never shows a hairline seam.
+  const amount = useTransform([enter, leave], ([a, b]: number[]) => {
+    const t = Math.max(1 - a, b);
+    return t < 0.07 ? 0 : t;
+  });
+  const inset = useTransform(amount, (t) => t * 7);
+  const radius = useTransform(amount, (t) => t * 36);
   const clipPath = useMotionTemplate`inset(0% ${inset}% round ${radius}px)`;
   const glowY = useTransform(enter, [0, 1], ["-35%", "0%"]);
   const glowOpacity = useTransform(enter, [0, 1], [0.4, 1]);

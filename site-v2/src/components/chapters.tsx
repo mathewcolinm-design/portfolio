@@ -70,6 +70,22 @@ export function useActiveChapter(ids: string[]) {
   return active;
 }
 
+/** True once the page has scrolled past its very top. */
+export function useScrolled() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return scrolled;
+}
+
+/** Bars pinned to the top: clear over the page opening's glow, solid white once scrolled. */
+export const barSurface = (scrolled: boolean) =>
+  `transition-colors duration-300 ${scrolled ? "border-line bg-bg" : "border-transparent bg-transparent"}`;
+
 /** A thin line along the bottom edge of the header that fills as you scroll the page. */
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -79,10 +95,12 @@ export function ScrollProgress() {
 
 /** Phones and small tablets: the page links in a slim bar under the header. */
 export function SitePageBar() {
+  const scrolled = useScrolled();
   return (
-    <nav data-sticky aria-label="Pages" className="sticky top-16 z-40 border-b border-line bg-bg/95 backdrop-blur-xl md:hidden">
+    <nav data-sticky aria-label="Pages" className={`sticky top-16 z-40 border-b md:hidden ${barSurface(scrolled)}`}>
       <ol className="mx-auto flex h-11 max-w-[1008px] items-center gap-5 overflow-x-auto px-5 text-[15px] whitespace-nowrap [scrollbar-width:none]">
-        {sitePages.map((p) => (
+        {/* Say hello is already the button in the header. */}
+        {sitePages.filter((p) => p.to !== "/hello").map((p) => (
           <li key={p.to}>
             <NavLink to={p.to} end className={({ isActive }) => `transition-colors ${isActive ? "text-fg" : "text-muted hover:text-fg"}`}>
               {p.label}
@@ -99,23 +117,24 @@ export function SectionBar({ sections }: { sections: ChapterInfo[] }) {
   const active = useActiveChapter(sections.map((s) => s.id));
   const scrollTo = useScrollToId();
   const listRef = useRef<HTMLOListElement>(null);
+  const scrolled = useScrolled();
 
   // On narrow screens the bar scrolls sideways; keep the current section in view.
   useEffect(() => {
     const list = listRef.current;
     const item = active >= 0 ? (list?.children[active] as HTMLElement | undefined) : undefined;
-    if (list && item) list.scrollTo({ left: item.offsetLeft - list.offsetLeft - 16, behavior: "smooth" });
+    if (list && item) list.scrollTo({ left: item.offsetLeft - list.offsetLeft - 12, behavior: "smooth" });
   }, [active]);
 
   return (
-    <nav data-sticky aria-label="Case study sections" className="sticky top-16 z-40 border-b border-line bg-bg/95 backdrop-blur-xl">
+    <nav data-sticky aria-label="Case study sections" className={`sticky top-16 z-40 border-b ${barSurface(scrolled)}`}>
       <div className="mx-auto flex h-11 max-w-[1008px] items-center gap-5 px-5 text-[15px] md:px-6">
         <Link to="/#work" className="flex shrink-0 items-center gap-1.5 text-muted transition-colors hover:text-fg">
           <ArrowLeft size={15} strokeWidth={1.5} aria-hidden="true" />
           <span className="sr-only sm:not-sr-only">All work</span>
         </Link>
         <span aria-hidden="true" className="h-4 w-px shrink-0 bg-line" />
-        <ol ref={listRef} className="flex min-w-0 items-center gap-5 overflow-x-auto whitespace-nowrap [scrollbar-width:none]">
+        <ol ref={listRef} className="flex min-w-0 items-center gap-5 overflow-x-auto px-3 whitespace-nowrap [scrollbar-width:none] [scroll-padding-inline:12px] [mask-image:linear-gradient(to_right,transparent,black_12px,black_calc(100%-24px),transparent)]">
           {sections.map((s, i) => (
             <li key={s.id} className="shrink-0">
               <a

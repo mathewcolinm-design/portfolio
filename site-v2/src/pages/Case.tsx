@@ -134,9 +134,14 @@ export function Case() {
           </dl>
         </Column>
 
-        <Column width="wide" className="mt-10 pb-24 md:mt-14 md:pb-32">
-          <Tile src={p.cover} alt={`${p.name} cover`} />
-        </Column>
+        {p.cover ? (
+          <Column width="wide" className="mt-10 pb-24 md:mt-14 md:pb-32">
+            <Tile src={p.cover} alt={`${p.name} cover`} />
+          </Column>
+        ) : (
+          // No cover yet: the screens still to come are listed under Designs.
+          <div className="pb-16 md:pb-24" />
+        )}
 
         {p.metrics && (
           <div className="pb-16 md:pb-20">
