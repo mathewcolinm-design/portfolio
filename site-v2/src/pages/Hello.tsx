@@ -5,7 +5,7 @@ import { BehanceIcon, LinkedInIcon } from "../components/icons";
 import { Column } from "../components/ui";
 import { chapters, profile } from "../data/content";
 
-const linkClass = "group inline-flex items-center gap-2 text-base transition-colors hover:text-muted";
+const linkClass = "group inline-flex items-center gap-2 text-base transition-colors hover:text-violet";
 const arrow = (
   <ArrowUpRight
     size={16}

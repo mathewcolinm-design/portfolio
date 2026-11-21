@@ -98,7 +98,7 @@ body {
 }
 
 ::placeholder {
-  color: #6b6b6b;
+  color: var(--muted);
   opacity: 1;
 }
 
