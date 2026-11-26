@@ -8,6 +8,18 @@
         "value": "geist",
         "createdAt": "2026-11-26T15:12:26.030Z",
         "reason": "Agent: Geist is DESIGN.md's documented face (declared as 'Geist Variable'); boards load the same file under the family name Geist"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "createdAt": "2026-11-26T15:18:28.852Z",
+        "reason": "Agent: Geist is the portfolio's documented face in DESIGN.md; the rebrand boards reuse it deliberately"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "sf mono",
+        "createdAt": "2026-11-26T15:18:28.863Z",
+        "reason": "Agent: monospace label face for presentation boards rendered to images (Flaren-style annotations), not site UI"
       }
     ]
   }

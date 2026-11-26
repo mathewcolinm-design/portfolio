@@ -19,9 +19,9 @@ body.light { background: var(--neutral); color: var(--black); }
 
 /* Small monospace labels, the way the reference annotates its boards. */
 .label { font-family: var(--mono); font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(255 255 255 / 0.55); }
-.light .label { color: rgb(20 20 20 / 0.55); }
+.light .label { color: rgb(20 20 20 / 0.66); }
 .label b { color: var(--g6); font-weight: 400; }
-.light .label b { color: var(--g1); }
+.light .label b { color: #00784a; }
 
 /* Corner furniture: title top-left, page code top-right, footer. */
 .corner { position: absolute; }
