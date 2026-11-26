@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+body { background: linear-gradient(#050806 0 62%, #0d130f 62%); }
+.light { position: absolute; left: 50%; top: 0; width: 2000px; height: 1200px; transform: translateX(-50%); background: radial-gradient(50% 60% at 50% 40%, rgb(1 180 109 / .22), transparent 70%); }
+.stage { position: absolute; inset: 0; perspective: 2600px; perspective-origin: 50% 40%; }
+.wall { position: absolute; left: 480px; top: 260px; width: 1440px; height: 760px; transform: rotateY(-14deg); transform-origin: left center; box-shadow: 0 0 140px rgb(1 180 109 / .35); --cx: 100%; --cy: 0%; --r1: 13%; --r2: 25%; --r3: 37%; --r4: 50%; --r5: 65%; }
+.wall img { position: absolute; left: 110px; top: 300px; width: 760px; }
+.side { position: absolute; left: 330px; top: 260px; width: 160px; height: 760px; background: #0a0f0c; transform: rotateY(60deg); transform-origin: right center; }
+.counter { position: absolute; left: 860px; top: 820px; width: 620px; height: 320px; background: #f4f6f3; border-radius: 6px; box-shadow: 0 40px 80px rgb(0 0 0 / .6); display: grid; place-items: center; }
+.counter img { width: 380px; }
+.floor { position: absolute; left: 380px; right: 380px; top: 1030px; height: 300px; background: linear-gradient(rgb(1 180 109 / .16), transparent); filter: blur(30px); }
+</style>
+<body class="landscape">
+<div class="light"></div>
+<div class="stage"><div class="side"></div><div class="wall rings"><img class="logo-white" src="../assets/certinal-logo-colour.svg"></div></div>
+<div class="floor"></div>
+<div class="counter"><img src="../assets/certinal-logo-colour.svg"></div>
+<p class="corner tl label">Event booth · <b>Mockup</b></p>
+</body>

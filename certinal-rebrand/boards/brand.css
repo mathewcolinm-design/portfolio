@@ -1,0 +1,44 @@
+/* Shared styles for the Certinal rebrand presentation boards.
+   Colours are the six greens of the layered logo, plus the kit's black
+   and white. The deep green-black ground is a presentation colour only. */
+@font-face { font-family: Geist; src: url("../assets/geist.woff2") format("woff2"); font-weight: 100 900; }
+
+:root {
+  --g1: #01b46d; --g2: #2ac169; --g3: #53cf64; --g4: #7bdc60; --g5: #a4ea5b; --g6: #cdf757;
+  --black: #141414; --white: #ffffff; --neutral: #f3f5f2;
+  --night: #07100b; --night-2: #0d1912; --night-line: rgb(205 247 87 / 0.09);
+  --mono: "SF Mono", ui-monospace, Menlo, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: var(--w); height: var(--h); overflow: hidden; }
+body { font-family: Geist, sans-serif; -webkit-font-smoothing: antialiased; background: var(--night); color: var(--white); position: relative; }
+body.landscape { --w: 2400px; --h: 1600px; }
+body.portrait { --w: 1600px; --h: 2000px; }
+body.light { background: var(--neutral); color: var(--black); }
+
+/* Small monospace labels, the way the reference annotates its boards. */
+.label { font-family: var(--mono); font-size: 22px; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(255 255 255 / 0.55); }
+.light .label { color: rgb(20 20 20 / 0.55); }
+.label b { color: var(--g6); font-weight: 400; }
+.light .label b { color: var(--g1); }
+
+/* Corner furniture: title top-left, page code top-right, footer. */
+.corner { position: absolute; }
+.tl { top: 72px; left: 80px; } .tr { top: 72px; right: 80px; text-align: right; }
+.bl { bottom: 72px; left: 80px; } .br { bottom: 72px; right: 80px; text-align: right; }
+
+/* Faint construction grid. */
+.grid { position: absolute; inset: 0; background-image:
+  linear-gradient(var(--night-line) 1px, transparent 1px),
+  linear-gradient(90deg, var(--night-line) 1px, transparent 1px);
+  background-size: 80px 80px; }
+
+/* The layered rings: the logo's fill, used as the brand graphic. */
+.rings { background: radial-gradient(circle at var(--cx, 100%) var(--cy, 0%),
+  var(--g6) 0 var(--r1, 12%), var(--g5) var(--r1, 12%) var(--r2, 24%), var(--g4) var(--r2, 24%) var(--r3, 36%),
+  var(--g3) var(--r3, 36%) var(--r4, 49%), var(--g2) var(--r4, 49%) var(--r5, 64%), var(--g1) var(--r5, 64%)); }
+
+/* Logos. The white logo is the colour artwork turned to a single white. */
+.logo-white { filter: brightness(0) invert(1); }
+.logo-black { filter: brightness(0); }

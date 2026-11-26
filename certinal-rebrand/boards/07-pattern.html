@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+body { padding: 64px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 24px; }
+.t { border-radius: 28px; position: relative; overflow: hidden; }
+.t img { position: absolute; }
+.t .label { position: absolute; left: 32px; bottom: 28px; }
+.mono-rings { background: repeating-radial-gradient(circle at var(--cx) var(--cy), transparent 0 58px, rgb(205 247 87 / .5) 58px 60px); }
+</style>
+<body class="landscape">
+<div class="t rings" style="--cx:100%;--cy:0%"><p class="label" style="color:rgb(20 20 20/.6)">Corner bloom</p></div>
+<div class="t rings" style="--cx:50%;--cy:110%;--r1:10%;--r2:20%;--r3:31%;--r4:43%;--r5:57%"><img class="logo-white" src="../assets/certinal-logo-colour.svg" style="width:440px;left:50%;top:36%;transform:translateX(-50%)"><p class="label" style="color:rgb(255 255 255/.85)">Horizon</p></div>
+<div class="t" style="background:var(--night-2)"><div class="mono-rings" style="position:absolute;inset:0;--cx:0%;--cy:100%"></div><p class="label">Line rings</p></div>
+<div class="t" style="background:var(--black)"><div class="rings" style="position:absolute;inset:0;--cx:0%;--cy:50%;-webkit-mask:linear-gradient(90deg,#000,transparent 75%)"></div><img src="../assets/certinal-icon-colour.svg" style="width:220px;right:60px;top:50%;transform:translateY(-50%)"><p class="label">Fade on black</p></div>
+<div class="t" style="background:#fff"><div class="rings" style="position:absolute;inset:0;--cx:100%;--cy:100%;--r1:6%;--r2:12%;--r3:18%;--r4:24%;--r5:30%;-webkit-mask:radial-gradient(circle at 100% 100%,#000 0 30%,transparent 30.5%)"></div><img src="../assets/certinal-logo-colour.svg" style="width:380px;left:40px;top:44px"><p class="label" style="color:rgb(20 20 20/.6)">Corner accent on white</p></div>
+<div class="t rings" style="--cx:50%;--cy:50%;--r1:8%;--r2:16%;--r3:24%;--r4:33%;--r5:43%"><img class="logo-white" src="../assets/certinal-icon-colour.svg" style="width:170px;left:50%;top:50%;transform:translate(-50%,-50%)"><p class="label" style="color:rgb(20 20 20/.6)">Centred</p></div>
+</body>

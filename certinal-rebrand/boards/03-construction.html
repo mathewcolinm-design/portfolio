@@ -1,0 +1,29 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+/* Logo drawn at scale s = 1800 / 605. X (cap height) = 71.44 units. */
+.wrap { position: absolute; left: 300px; top: 623px; width: 1800px; height: 354px; }
+.wrap img { width: 100%; display: block; opacity: .96; }
+.h { position: absolute; left: -120px; right: -120px; border-top: 2px dashed rgb(205 247 87 / .45); }
+.h.solid { border-top-style: solid; border-color: rgb(255 255 255 / .28); }
+.v { position: absolute; top: -90px; bottom: -90px; border-left: 2px dashed rgb(205 247 87 / .45); }
+.band { position: absolute; background: rgb(205 247 87 / .14); }
+.m { position: absolute; font-family: var(--mono); font-size: 24px; color: var(--g6); white-space: nowrap; }
+.xbox { position: absolute; right: -230px; top: 70.7px; width: 212.5px; height: 212.6px; border: 2px solid var(--g6); display: grid; place-items: center; font: 500 96px Geist; color: var(--g6); }
+</style>
+<body class="landscape">
+<div class="grid"></div>
+<p class="corner tl label">Logo construction · <b>Horizontal</b></p>
+<p class="corner tr label">02</p>
+<div class="wrap">
+  <img class="logo-white" src="../assets/certinal-logo-colour.svg">
+  <div class="h" style="top:0"></div><div class="h solid" style="top:70.7px"></div><div class="h solid" style="top:283.3px"></div><div class="h" style="top:354px"></div>
+  <div class="h" style="top:177px; border-color: rgb(255 255 255 /.18)"></div>
+  <div class="band" style="left:327.3px; width:86.2px; top:-90px; bottom:-90px"></div>
+  <div class="v" style="left:327.3px"></div><div class="v" style="left:413.5px"></div>
+  <p class="m" style="left:335px; top:-140px">0.42X</p>
+  <p class="m" style="left:-250px; top:20px">0.33X</p><p class="m" style="left:-250px; top:160px">X</p><p class="m" style="left:-250px; top:300px">0.33X</p>
+  <p class="m" style="left:-250px; top:-60px; color: rgb(255 255 255 /.5)">1.66X</p>
+  <div class="xbox">X</div>
+</div>
+<p class="corner bl label" style="max-width:1500px; line-height:1.6">X is the cap height of the wordmark. The caps sit centred on the icon, which overhangs them by <b>0.33X</b> above and below. The gap from the icon's outer points to the C is <b>0.42X</b>.</p>
+</body>

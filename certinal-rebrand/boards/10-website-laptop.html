@@ -1,0 +1,15 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+.bloom { position: absolute; inset: 0; --cx: 50%; --cy: 120%; --r1: 16%; --r2: 26%; --r3: 36%; --r4: 47%; --r5: 59%; -webkit-mask: radial-gradient(circle at 50% 120%, #000 0 40%, transparent 75%); opacity: .9; }
+.laptop { position: absolute; left: 50%; top: 150px; width: 1760px; transform: translateX(-50%); }
+.lid { background: #0b0d0c; border-radius: 44px 44px 12px 12px; padding: 34px 34px 46px; box-shadow: 0 0 0 3px #2a2e2c, 0 80px 140px rgb(0 0 0 / .55); }
+.screen { height: 1100px; border-radius: 10px; overflow: hidden; background: #fff; }
+.screen img { width: 100%; display: block; }
+.base { margin: 0 auto; width: 2060px; margin-left: -150px; height: 54px; background: linear-gradient(#d9dcda, #9da29f); border-radius: 0 0 40px 40px; position: relative; }
+.base::after { content: ""; position: absolute; left: 50%; top: 0; width: 300px; height: 18px; transform: translateX(-50%); background: #b9bdbb; border-radius: 0 0 16px 16px; }
+</style>
+<body class="landscape">
+<div class="bloom rings"></div>
+<div class="laptop"><div class="lid"><div class="screen"><img src="../assets/web/home-hero.png"></div></div><div class="base"></div></div>
+<p class="corner tl label">certinal.com · <b>Website</b></p>
+</body>

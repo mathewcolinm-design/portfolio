@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+body { display: grid; grid-template-rows: 1fr repeat(5, 120px) 560px; }
+.p { position: relative; padding: 48px 56px; font-family: var(--mono); font-size: 22px; letter-spacing: .06em; text-transform: uppercase; color: var(--black); }
+.p .hex { position: absolute; left: 56px; bottom: 48px; line-height: 1.6; }
+.p.strip { display: flex; align-items: center; padding-top: 0; padding-bottom: 0; justify-content: space-between; }
+.core { display: grid; grid-template-columns: 1fr 1fr; }
+.core .p { height: 100%; }
+</style>
+<body class="portrait">
+<div class="p" style="background:var(--g1); color:#fff">Primary · Certinal green<p class="hex">Hex #01B46D<br>RGB 1 / 180 / 109</p></div>
+<div class="p strip" style="background:var(--g2)"><span>02</span><span>#2AC169</span></div>
+<div class="p strip" style="background:var(--g3)"><span>03</span><span>#53CF64</span></div>
+<div class="p strip" style="background:var(--g4)"><span>04</span><span>#7BDC60</span></div>
+<div class="p strip" style="background:var(--g5)"><span>05</span><span>#A4EA5B</span></div>
+<div class="p strip" style="background:var(--g6)"><span>06 · Lime</span><span>#CDF757</span></div>
+<div class="core">
+  <div class="p" style="background:#fff">Core · White<p class="hex">Hex #FFFFFF<br>RGB 255 / 255 / 255</p></div>
+  <div class="p" style="background:var(--black); color:#fff">Core · Black<p class="hex">Hex #141414<br>RGB 20 / 20 / 20</p></div>
+</div>
+</body>

@@ -1,0 +1,19 @@
+<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+.icon { position: absolute; left: 50%; top: 46%; width: 900px; transform: translate(-50%, -50%); }
+.ring { position: absolute; left: 50%; top: 46%; border: 2px dashed rgb(205 247 87 / .22); border-radius: 50%; transform: translate(-50%, -50%); }
+.chips { position: absolute; left: 80px; right: 80px; bottom: 150px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.chips div { height: 120px; border-radius: 18px; display: flex; align-items: flex-end; padding: 16px; font-family: var(--mono); font-size: 20px; color: var(--black); }
+</style>
+<body class="portrait">
+<div class="grid"></div>
+<p class="corner tl label">The layered fill · <b>Icon</b></p>
+<p class="corner tr label">03</p>
+<div class="ring" style="width:1300px;height:1300px"></div><div class="ring" style="width:1060px;height:1060px"></div>
+<img class="icon" src="../assets/certinal-icon-colour.svg">
+<div class="chips">
+  <div style="background:var(--g1)">01</div><div style="background:var(--g2)">02</div><div style="background:var(--g3)">03</div>
+  <div style="background:var(--g4)">04</div><div style="background:var(--g5)">05</div><div style="background:var(--g6)">06</div>
+</div>
+<p class="corner bl label">Six greens, from the outer ring to the inner ring</p>
+</body>
